@@ -601,6 +601,53 @@
   .field textarea { min-height: 90px; resize: vertical; }
   .form .btn-primary { justify-self: start; margin-top: 6px; }
 
+  .map-card {
+    margin-top: 48px;
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--ink-800);
+    min-height: 360px;
+    position: relative;
+  }
+  .map-card iframe {
+    width: 100%;
+    height: clamp(320px, 42vw, 460px);
+    border: 0;
+    display: block;
+    filter: saturate(0.85) contrast(0.95);
+  }
+  .map-info {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    max-width: min(420px, calc(100% - 36px));
+    background: rgba(10,27,61,0.88);
+    border: 1px solid var(--border-dark-2);
+    color: white;
+    border-radius: 10px;
+    padding: 16px 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .map-info strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .map-info p {
+    color: rgba(255,255,255,0.72);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .map-info a {
+    display: inline-flex;
+    margin-top: 10px;
+    color: var(--ink-300);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
   /* ---------- FAQ ---------- */
   .faq { margin-top: 48px; max-width: 880px; }
   .faq-item { border-bottom: 1px solid var(--border-light); }
@@ -1164,7 +1211,7 @@
           </span>
           <div>
             <div class="label">Endereço</div>
-            <div class="val">Rua das Acácias, 240 · sala 12<br/>São Paulo, SP</div>
+            <div class="val">Rua Cônego Januário Barbosa, 225<br/>Jardim Vergueiro · Sorocaba, SP</div>
           </div>
         </div>
         <div class="c-item">
@@ -1200,6 +1247,20 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </form>
+    </div>
+
+    <div class="map-card reveal" aria-label="Mapa da localização do Labucal">
+      <iframe
+        title="Mapa para o Labucal em Sorocaba"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-47.4634548%2C-23.5114267%2C-47.4534548%2C-23.5054267&amp;layer=mapnik&amp;marker=-23.5084267%2C-47.4584548">
+      </iframe>
+      <div class="map-info">
+        <strong>Laboratório de prótese dentária</strong>
+        <p>Rua Cônego Januário Barbosa, 225 · Jardim Vergueiro · Sorocaba, Brazil</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20C%C3%B4nego%20Janu%C3%A1rio%20Barbosa%2C%20225%2C%20Jardim%20Vergueiro%2C%20Sorocaba%2C%20Brazil" target="_blank" rel="noopener">Abrir rota no Google Maps</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1275,7 +1336,7 @@
         <ul>
           <li><a href="https://wa.me/5511999999999">+55 (11) 99999-9999</a></li>
           <li><a href="/cdn-cgi/l/email-protection#fb9894958f9a8f94bb979a998e989a97d5989496d59989"><span class="__cf_email__" data-cfemail="43202c2d3722372c032f22213620222f6d202c2e6d2131">[email&#160;protected]</span></a></li>
-          <li>Rua das Acácias, 240 · São Paulo</li>
+          <li>Rua Cônego Januário Barbosa, 225 · Sorocaba</li>
           <li>Seg a sex · 08h às 18h</li>
         </ul>
       </div>

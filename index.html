@@ -808,6 +808,57 @@
   }
   .lz-send:hover { transform: translateX(2px); }
 
+  /* ---------- Cookie notice ---------- */
+  .cookie-notice {
+    position: fixed;
+    left: 22px; bottom: 22px;
+    z-index: 65;
+    max-width: 420px;
+    width: calc(100vw - 44px);
+    background: var(--ink-900);
+    color: white;
+    border: 1px solid var(--border-dark-2);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    align-items: start;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 400ms var(--ease), opacity 400ms var(--ease);
+  }
+  .cookie-notice.in { transform: translateY(0); opacity: 1; }
+  .cookie-notice[hidden] { display: none; }
+  .cookie-icon { color: var(--ink-300); padding-top: 2px; }
+  .cookie-text { grid-column: 2 / 3; }
+  .cookie-text strong {
+    display: block; font-size: 14px; font-weight: 600;
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .cookie-text p {
+    margin: 0; font-size: 13px; line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+  }
+  .cookie-text a {
+    color: var(--ink-300);
+    text-decoration: underline; text-underline-offset: 2px;
+    transition: color var(--t) var(--ease);
+  }
+  .cookie-text a:hover { color: white; }
+  .cookie-actions {
+    grid-column: 2 / 3; margin-top: 12px;
+    display: flex; justify-content: flex-end;
+  }
+  .cookie-btn {
+    background: white; color: var(--ink-900);
+    padding: 9px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 13px;
+    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
+  }
+  .cookie-btn:hover { transform: translateY(-1px); background: #ECEAE3; }
+
   /* ---------- Reveal on scroll ---------- */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
@@ -836,6 +887,13 @@
     .gallery-row2 { grid-template-columns: 1fr 1fr; }
     .foot-grid { grid-template-columns: 1fr; gap: 40px; }
     .scroll-cue { display: none; }
+  }
+  @media (max-width: 520px) {
+    .cookie-notice {
+      left: 12px; right: 12px; bottom: 90px;
+      width: auto; max-width: none;
+      padding: 14px 16px;
+    }
   }
   @media (max-width: 420px) {
     .lz-panel { right: 12px; bottom: 88px; }
@@ -1415,6 +1473,26 @@
   </form>
 </aside>
 
+<!-- ============ COOKIE NOTICE ============ -->
+<div class="cookie-notice" id="cookieNotice" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-icon" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21.5 12c0 5.25-4.25 9.5-9.5 9.5S2.5 17.25 2.5 12 6.75 2.5 12 2.5a3.5 3.5 0 0 0 4 4 3.5 3.5 0 0 0 4 4 3.5 3.5 0 0 0 1.5 1.5z"/>
+      <circle cx="8" cy="11" r="0.9" fill="currentColor"/>
+      <circle cx="14" cy="14" r="0.9" fill="currentColor"/>
+      <circle cx="10" cy="16.5" r="0.9" fill="currentColor"/>
+      <circle cx="16" cy="9" r="0.9" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="cookie-text">
+    <strong>Cookies e privacidade</strong>
+    <p>Utilizamos apenas cookies essenciais ao funcionamento do site. Não usamos rastreamento publicitário. Saiba mais em nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn" id="cookieAccept">Entendi</button>
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   // ---------- Nav scroll ----------
@@ -1740,6 +1818,24 @@
       }
     });
   });
+
+  // ---------- Cookie notice ----------
+  (function cookieNotice(){
+    const STORAGE_KEY = 'labucal_cookies_accepted';
+    const notice = document.getElementById('cookieNotice');
+    const acceptBtn = document.getElementById('cookieAccept');
+    if (!notice || !acceptBtn) return;
+    try {
+      if (localStorage.getItem(STORAGE_KEY) === '1') return;
+    } catch (e) { /* localStorage indisponível, mostrar mesmo assim */ }
+    notice.hidden = false;
+    setTimeout(() => notice.classList.add('in'), 700);
+    acceptBtn.addEventListener('click', () => {
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+      notice.classList.remove('in');
+      setTimeout(() => { notice.hidden = true; }, 400);
+    });
+  })();
 })();
 </script>
 </body>

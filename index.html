@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Labucal — Laboratório de próteses dentárias</title>
+<meta name="description" content="Laboratório de próteses dentárias. Precisão milimétrica, prazos cumpridos e parceria de longo prazo com dentistas e clínicas." />
+
+<link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink-900: #0A1B3D;   /* azul noche base */
+    --ink-800: #142A5C;   /* azul profundo */
+    --ink-600: #2E4A8C;   /* azul medio */
+    --ink-300: #7BA7E1;   /* azul claro acento */
+    --bone:    #F8F7F4;   /* blanco hueso */
+    --white:   #FFFFFF;
+    --text:    #1A1A1A;
+    --muted:   #6B6B6B;
+
+    --border-dark:  rgba(255,255,255,0.10);
+    --border-dark-2: rgba(255,255,255,0.18);
+    --border-light: rgba(10,27,61,0.10);
+
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow-card: 0 2px 12px rgba(0,0,0,0.04);
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --t: 240ms;
+
+    --container: 1240px;
+    --gutter: clamp(20px, 4vw, 56px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bone);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid var(--ink-300);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Type scale */
+  h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 600; }
+  h2 { font-size: clamp(28px, 4.2vw, 44px); }
+  h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.01em; }
+  p  { margin: 0; }
+
+  .overline {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-600);
+  }
+  .dark .overline { color: var(--ink-300); }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  section { position: relative; }
+  section.with-prosthesis {
+    overflow: hidden;
+  }
+  section.with-prosthesis > .container {
+    position: relative;
+    z-index: 1;
+  }
+  .pad {
+    padding-top: clamp(72px, 11vw, 140px);
+    padding-bottom: clamp(72px, 11vw, 140px);
+  }
+  .dark  { background: var(--ink-900); color: var(--white); }
+  .light { background: var(--bone);    color: var(--text); }
+  .dark .muted { color: rgba(255,255,255,0.65); }
+  .light .muted { color: var(--muted); }
+
+  .section-prosthesis {
+    --from-x: 0px;
+    --from-y: 0px;
+    --from-rot: 0deg;
+    --to-x: 0px;
+    --to-y: 0px;
+    --to-rot: 0deg;
+    --scroll-x: 0px;
+    --scroll-y: 0px;
+    --scroll-rot: 0deg;
+    --scroll-scale: 0.94;
+    --decor-opacity: 0.16;
+    position: absolute;
+    width: clamp(280px, 38vw, 600px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transform: translate3d(calc(var(--from-x) + var(--scroll-x)), calc(var(--from-y) + var(--scroll-y)), 0) rotate(calc(var(--from-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
+    transition: opacity 900ms var(--ease), transform 120ms linear;
+    filter: drop-shadow(0 28px 45px rgba(10,27,61,0.18));
+  }
+  .section-prosthesis.in {
+    opacity: var(--decor-opacity);
+    transform: translate3d(calc(var(--to-x) + var(--scroll-x)), calc(var(--to-y) + var(--scroll-y)), 0) rotate(calc(var(--to-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
+  }
+  .dark .section-prosthesis { --decor-opacity: 0.22; filter: drop-shadow(0 28px 50px rgba(0,0,0,0.35)); }
+  .light .section-prosthesis { --decor-opacity: 0.15; }
+  .section-prosthesis.decor-right {
+    right: max(-120px, -7vw);
+    top: 8%;
+    --from-x: 120px;
+    --from-rot: 12deg;
+    --to-rot: -5deg;
+  }
+  .section-prosthesis.decor-left {
+    left: max(-140px, -8vw);
+    bottom: 8%;
+    --from-x: -120px;
+    --from-rot: -13deg;
+    --to-rot: 5deg;
+  }
+  .section-prosthesis.decor-high {
+    top: 10%;
+    bottom: auto;
+  }
+  .section-prosthesis.decor-low {
+    top: auto;
+    bottom: 4%;
+  }
+  .section-prosthesis.decor-open {
+    width: clamp(340px, 46vw, 700px);
+  }
+  .section-prosthesis.decor-slim {
+    width: clamp(190px, 27vw, 430px);
+  }
+  .section-prosthesis.decor-small {
+    width: clamp(170px, 22vw, 340px);
+    --decor-opacity: 0.1;
+  }
+  .dark .section-prosthesis.decor-small { --decor-opacity: 0.15; }
+  .section-prosthesis.decor-left.decor-small {
+    left: max(-90px, -5vw);
+  }
+  .section-prosthesis.decor-right.decor-small {
+    right: max(-90px, -5vw);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    transition: background var(--t) var(--ease), backdrop-filter var(--t) var(--ease), border-color var(--t) var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(10,27,61,0.82);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    border-bottom-color: var(--border-dark);
+  }
+  .nav-inner {
+    height: 76px;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--white);
+  }
+  .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 600; letter-spacing: -0.01em; font-size: 18px;
+  }
+  .logo-img {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    font-size: 14px; opacity: 0.78; transition: opacity var(--t) var(--ease);
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--white); color: var(--ink-900);
+    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
+  }
+  .nav-cta:hover { transform: translateY(-1px); background: #ECEAE3; }
+
+  .hamburger {
+    display: none;
+    width: 40px; height: 40px; border-radius: 8px;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border-dark-2);
+  }
+  .hamburger span { display: block; width: 18px; height: 1.5px; background: white; position: relative; }
+  .hamburger span::before, .hamburger span::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 1.5px; background: white;
+  }
+  .hamburger span::before { top: -6px; }
+  .hamburger span::after  { top: 6px; }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed; inset: 0; background: var(--ink-900); z-index: 60;
+    display: none; flex-direction: column; padding: 100px var(--gutter) 40px;
+    color: white;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 28px; padding: 18px 0; border-bottom: 1px solid var(--border-dark); font-weight: 500; }
+  .mobile-menu .nav-cta { margin-top: 28px; text-align: center; width: 100%; padding: 16px; }
+  .mobile-close {
+    position: absolute; top: 22px; right: var(--gutter);
+    width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border-dark-2);
+    display: grid; place-items: center;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 140vh; min-height: 140svh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    background: var(--ink-900);
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(rgba(10,27,61,0.68), rgba(10,27,61,0.82)),
+      url("assets/labucal-images/hero-lab-bg.jpg") center / cover no-repeat,
+      radial-gradient(60% 50% at 80% 30%, rgba(46,74,140,0.35), transparent 70%),
+      radial-gradient(40% 40% at 10% 80%, rgba(46,74,140,0.18), transparent 70%);
+  }
+  .hero-grid {
+    position: sticky;
+    top: 96px;
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    min-height: calc(100svh - 200px);
+  }
+  .hero h1 {
+    margin-top: 20px;
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(180deg, var(--white) 0%, var(--ink-300) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead {
+    margin-top: 24px;
+    color: rgba(255,255,255,0.72);
+    max-width: 46ch;
+    font-size: clamp(16px, 1.2vw, 18px);
+  }
+  .hero-ctas { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 15px;
+    transition: transform var(--t) var(--ease), background var(--t) var(--ease), border-color var(--t) var(--ease), color var(--t) var(--ease);
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--white); color: var(--ink-900); }
+  .btn-primary:hover { transform: translateY(-1px); background: #ECEAE3; }
+  .btn-ghost { color: white; border-color: rgba(255,255,255,0.35); }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.06); }
+  .btn-dark { background: var(--ink-900); color: white; }
+  .btn-dark:hover { transform: translateY(-1px); background: #07142C; }
+
+  /* Constellation */
+  .constellation-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+    width: 100%;
+    max-width: 560px;
+    margin-left: auto;
+  }
+  .constellation-wrap svg { width: 100%; height: 100%; overflow: visible; }
+  .prosthesis {
+    position: absolute; inset: 22% 22% 22% 22%;
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.92);
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
+  }
+  .prosthesis svg,
+  .prosthesis img { width: 100%; height: 100%; object-fit: contain; }
+  .prosthesis.assembly {
+    --prosthesis-progress: 0;
+    --prosthesis-upper-y: -150px;
+    --prosthesis-lower-y: 170px;
+    --prosthesis-scale: 0.86;
+    isolation: isolate;
+  }
+  .prosthesis.assembly img {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    transition: transform 80ms linear;
+  }
+  .prosthesis-part.upper {
+    transform: translate3d(0, var(--prosthesis-upper-y), 0) scale(var(--prosthesis-scale));
+    transform-origin: 50% 72%;
+    z-index: 2;
+  }
+  .prosthesis-part.lower {
+    transform: translate3d(0, var(--prosthesis-lower-y), 0) scale(var(--prosthesis-scale));
+    transform-origin: 50% 28%;
+    z-index: 1;
+  }
+
+  /* dot pulse */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; r: 2.4; }
+    50%      { opacity: 1;   r: 3.6; }
+  }
+  @keyframes lineFlow {
+    0%, 100% { opacity: 0.18; }
+    50%      { opacity: 0.55; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .star { animation: pulse 4s var(--ease) infinite; transform-box: fill-box; transform-origin: center; }
+    .link { animation: lineFlow 6s var(--ease) infinite; }
+  }
+
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 32px; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .scroll-cue .line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+    position: relative; overflow: hidden;
+  }
+  .scroll-cue .line::after {
+    content: ""; position: absolute; top: -40px; left: 0; right: 0; height: 14px;
+    background: linear-gradient(to bottom, transparent, white);
+    animation: scrollDot 2.4s var(--ease) infinite;
+  }
+  @keyframes scrollDot {
+    0%   { transform: translateY(0); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: translateY(60px); opacity: 0; }
+  }
+
+  /* ---------- Value prop ---------- */
+  .section-head {
+    display: grid; gap: 20px;
+    max-width: 800px;
+  }
+  .section-head h2 { text-wrap: balance; max-width: 22ch; }
+  .pillars {
+    margin-top: 72px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .pillar {
+    background: var(--bone);
+    padding: 36px 32px;
+    display: grid; gap: 12px;
+    transition: background var(--t) var(--ease);
+  }
+  .pillar:hover { background: var(--white); }
+  .pillar .icon {
+    width: 36px; height: 36px;
+    color: var(--ink-800);
+    display: grid; place-items: center;
+    margin-bottom: 4px;
+  }
+  .pillar h3 { font-weight: 600; }
+  .pillar p { color: var(--muted); }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    margin-top: 64px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .service {
+    background: var(--ink-800);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: transform var(--t) var(--ease), border-color var(--t) var(--ease), background var(--t) var(--ease);
+    display: grid; gap: 16px;
+  }
+  .service:hover {
+    transform: translateY(-4px);
+    border-color: rgba(123,167,225,0.45);
+    background: #16306B;
+  }
+  .service-thumb {
+    aspect-ratio: 16/9;
+    background:
+      radial-gradient(100% 100% at 0% 0%, rgba(123,167,225,0.18), transparent 60%),
+      linear-gradient(135deg, #0E2350 0%, #1B3A7E 100%);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-dark);
+  }
+  .service-thumb svg {
+    position: absolute; inset: 0; margin: auto;
+    width: 56%; opacity: 0.85;
+  }
+  .service-thumb img,
+  .g-item .ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .service-thumb img { position: absolute; inset: 0; }
+  .service h3 { font-weight: 600; }
+  .service p { color: rgba(255,255,255,0.65); font-size: 15px; }
+  .service .more {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink-300); font-weight: 500; font-size: 14px;
+    margin-top: 4px;
+    transition: gap var(--t) var(--ease);
+  }
+  .service:hover .more { gap: 12px; }
+
+  /* ---------- Process ---------- */
+  .process {
+    margin-top: 72px;
+    position: relative;
+  }
+  .process-track {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
+    position: relative;
+  }
+  .process-line {
+    position: absolute; top: 28px; left: 8%; right: 8%; height: 1px;
+    background: var(--border-light);
+  }
+  .process-line .fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--ink-600);
+    width: 0%; transition: width 600ms var(--ease);
+  }
+  .step { position: relative; }
+  .step .num {
+    font-size: 56px; font-weight: 300; color: var(--ink-600);
+    line-height: 1; letter-spacing: -0.04em;
+    background: var(--bone); padding-right: 14px; display: inline-block;
+  }
+  .step h3 { margin-top: 18px; font-weight: 600; }
+  .step p  { margin-top: 6px; color: var(--muted); font-size: 15px; }
+
+  /* ---------- Gallery ---------- */
+  .gallery {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .g-item {
+    position: relative; overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-dark);
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgba(123,167,225,0.22), transparent 60%),
+      linear-gradient(135deg, #0E2350 0%, #1B3A7E 100%);
+    cursor: pointer;
+  }
+  .g-item .ph {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.55);
+    transition: transform 600ms var(--ease), opacity var(--t) var(--ease);
+  }
+  .g-item:hover .ph { transform: scale(1.04); }
+  .g-item .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,27,61,0.85) 0%, transparent 60%);
+    opacity: 0; transition: opacity var(--t) var(--ease);
+    display: flex; align-items: flex-end; padding: 22px;
+    color: white;
+  }
+  .g-item:hover .overlay { opacity: 1; }
+  .g-item .overlay .label { font-weight: 500; font-size: 15px; }
+  .g-item .overlay .sub { font-size: 12px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; }
+  .g-tall { grid-row: span 2; aspect-ratio: 4 / 5; }
+  .g-wide { aspect-ratio: 16 / 9; }
+  .g-square { aspect-ratio: 1 / 1; }
+
+  .gallery-row2 {
+    margin-top: 16px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  }
+
+  /* ---------- Network constellation ---------- */
+  .network-wrap {
+    margin-top: 56px;
+    position: relative;
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    aspect-ratio: 16/8;
+    overflow: hidden;
+  }
+  .network-wrap svg { width: 100%; height: 100%; }
+  .net-star { cursor: pointer; transition: r var(--t) var(--ease); }
+  .net-star:hover { r: 8; }
+  .tooltip {
+    position: absolute; pointer-events: none; opacity: 0;
+    transform: translate(-50%, calc(-100% - 12px));
+    background: var(--ink-900); color: white;
+    padding: 6px 10px; border-radius: 6px;
+    font-size: 12px; white-space: nowrap;
+    transition: opacity var(--t) var(--ease);
+    z-index: 3;
+  }
+  .tooltip::after {
+    content: ""; position: absolute; left: 50%; bottom: -4px;
+    width: 8px; height: 8px; background: var(--ink-900);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .testimonials {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .quote {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .quote .mark { font-size: 32px; color: var(--ink-600); line-height: 0.6; }
+  .quote p { margin-top: 14px; font-size: 16px; color: var(--text); }
+  .quote footer { margin-top: 20px; font-size: 13px; color: var(--muted); }
+  .quote footer strong { color: var(--text); font-weight: 600; display: block; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid {
+    margin-top: 56px;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .contact-list { display: grid; gap: 28px; }
+  .c-item {
+    display: grid; grid-template-columns: 28px 1fr; gap: 16px; align-items: start;
+  }
+  .c-item .icon { color: var(--ink-300); padding-top: 4px; }
+  .c-item .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .c-item .val { font-size: 18px; font-weight: 500; margin-top: 4px; transition: color var(--t) var(--ease); }
+  .c-item a:hover .val { color: var(--ink-300); }
+
+  .form { display: grid; gap: 22px; }
+  .field { display: grid; gap: 8px; }
+  .field label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .field input, .field textarea {
+    background: transparent;
+    border: 0; border-bottom: 1px solid rgba(255,255,255,0.25);
+    color: white; font: inherit; font-size: 16px;
+    padding: 10px 0;
+    transition: border-color var(--t) var(--ease);
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none; border-bottom-color: white;
+  }
+  .field textarea { min-height: 90px; resize: vertical; }
+  .form .btn-primary { justify-self: start; margin-top: 6px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { margin-top: 48px; max-width: 880px; }
+  .faq-item { border-bottom: 1px solid var(--border-light); }
+  .faq-q {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 0; text-align: left;
+    font-size: clamp(17px, 1.5vw, 19px); font-weight: 500; color: var(--text);
+    transition: color var(--t) var(--ease);
+  }
+  .faq-q:hover { color: var(--ink-800); }
+  .faq-q .plus {
+    width: 24px; height: 24px; position: relative;
+    transition: transform var(--t) var(--ease);
+    flex-shrink: 0;
+  }
+  .faq-q .plus::before, .faq-q .plus::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 14px; height: 1.5px; background: var(--ink-800);
+    transform: translate(-50%, -50%);
+  }
+  .faq-q .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform var(--t) var(--ease); }
+  .faq-item.open .plus { transform: rotate(45deg); }
+  .faq-a {
+    overflow: hidden; max-height: 0;
+    transition: max-height 400ms var(--ease);
+  }
+  .faq-a-inner {
+    padding: 0 0 24px 0; padding-right: 60px;
+    color: var(--muted); font-size: 16px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    background: var(--ink-900); color: rgba(255,255,255,0.7);
+    padding: 80px 0 32px;
+    border-top: 1px solid var(--border-dark);
+  }
+  .foot-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 60px;
+  }
+  .foot-grid h4 {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 18px;
+  }
+  .foot-grid .logo { color: white; }
+  .foot-grid p.tag { margin-top: 16px; max-width: 28ch; color: rgba(255,255,255,0.6); font-size: 15px; }
+  .foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .foot-grid a { font-size: 15px; transition: color var(--t) var(--ease); }
+  .foot-grid a:hover { color: white; }
+  .socials { margin-top: 20px; display: flex; gap: 10px; }
+  .socials a {
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px solid var(--border-dark-2);
+    display: grid; place-items: center;
+    transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
+  }
+  .socials a:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.4); }
+  .foot-bottom {
+    margin-top: 72px; padding-top: 24px;
+    border-top: 1px solid var(--border-dark);
+    display: flex; justify-content: space-between; gap: 20px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    flex-wrap: wrap;
+  }
+
+  /* ---------- Labucalzinho ---------- */
+  .lz-btn {
+    position: fixed; right: 22px; bottom: 22px; z-index: 70;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--ink-900);
+    border: 1px solid var(--ink-300);
+    color: white;
+    display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(10,27,61,0.35);
+    transform: scale(0); opacity: 0;
+    transition: transform 600ms cubic-bezier(.34,1.56,.64,1), opacity 300ms;
+  }
+  .lz-btn.in { transform: scale(1); opacity: 1; }
+  .lz-btn:hover { background: var(--ink-800); }
+  .lz-btn .badge {
+    position: absolute; top: -2px; right: -2px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--ink-300);
+    border: 2px solid var(--ink-900);
+  }
+
+  .lz-panel {
+    position: fixed; right: 22px; bottom: 96px; z-index: 70;
+    width: 340px; max-width: calc(100vw - 32px);
+    max-height: 540px;
+    background: var(--ink-900); color: white;
+    border: 1px solid var(--border-dark-2);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    transform: translateY(10px) scale(0.98); opacity: 0; pointer-events: none;
+    transition: transform var(--t) var(--ease), opacity var(--t) var(--ease);
+  }
+  .lz-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+  .lz-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .lz-head .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--ink-800); border: 1px solid var(--border-dark-2);
+    display: grid; place-items: center;
+  }
+  .lz-head .name { font-weight: 600; font-size: 15px; }
+  .lz-head .status { font-size: 11px; color: var(--ink-300); display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+  .lz-head .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-300); display: inline-block; }
+  .lz-close { margin-left: auto; opacity: 0.6; transition: opacity var(--t); padding: 6px; }
+  .lz-close:hover { opacity: 1; }
+
+  .lz-body {
+    flex: 1; overflow-y: auto;
+    padding: 18px;
+    display: flex; flex-direction: column; gap: 12px;
+    background: linear-gradient(180deg, rgba(123,167,225,0.04), transparent 200px);
+  }
+  .msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px; line-height: 1.5;
+  }
+  .msg.bot { background: var(--ink-800); border-bottom-left-radius: 4px; }
+  .msg.me  { background: var(--ink-300); color: var(--ink-900); align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+
+  .quick {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 4px;
+  }
+  .quick button {
+    font-size: 12px; padding: 7px 12px; border-radius: 999px;
+    border: 1px solid var(--border-dark-2); color: rgba(255,255,255,0.85);
+    transition: background var(--t), border-color var(--t);
+  }
+  .quick button:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.4); }
+
+  .lz-input {
+    border-top: 1px solid var(--border-dark);
+    padding: 12px 14px;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .lz-input input {
+    flex: 1; background: transparent; border: 0; color: white; font: inherit;
+    font-size: 14px; padding: 8px 4px;
+  }
+  .lz-input input:focus { outline: none; }
+  .lz-send {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--ink-300); color: var(--ink-900);
+    display: grid; place-items: center;
+    transition: transform var(--t);
+  }
+  .lz-send:hover { transform: translateX(2px); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .pillars { grid-template-columns: 1fr; }
+    .process-track { grid-template-columns: 1fr; gap: 18px; }
+    .process-line { display: none; }
+    .step .num { font-size: 44px; }
+    .testimonials { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .network-wrap { aspect-ratio: 4/3; }
+  }
+  @media (max-width: 768px) {
+    .nav-links, .nav .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { min-height: 100vh; min-height: 100svh; }
+    .hero-grid { position: relative; top: auto; grid-template-columns: 1fr; gap: 48px; min-height: auto; padding-top: 24px; }
+    .section-prosthesis { display: none; }
+    .constellation-wrap { max-width: 420px; margin: 0 auto; }
+    .services-grid { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
+    .g-tall { aspect-ratio: 4/5; grid-row: auto; }
+    .gallery-row2 { grid-template-columns: 1fr 1fr; }
+    .foot-grid { grid-template-columns: 1fr; gap: 40px; }
+    .scroll-cue { display: none; }
+  }
+  @media (max-width: 420px) {
+    .lz-panel { right: 12px; bottom: 88px; }
+    .lz-btn { right: 14px; bottom: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo" aria-label="Labucal — início">
+      <img class="logo-img" src="assets/brand/labucal-logo-96.png" alt="" width="42" height="42" />
+      <span>Labucal</span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Processo</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="#contato" class="nav-cta">Agendar consulta</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu principal">
+  <button class="mobile-close" id="mobileClose" aria-label="Fechar menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="#servicos" data-mclose>Serviços</a>
+  <a href="#processo" data-mclose>Processo</a>
+  <a href="#galeria" data-mclose>Galeria</a>
+  <a href="#rede" data-mclose>Rede</a>
+  <a href="#contato" data-mclose>Contato</a>
+  <a href="#contato" class="nav-cta" data-mclose>Agendar consulta</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero dark" id="top" aria-labelledby="hero-h">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="overline">Laboratório de próteses dentárias</span>
+      <h1 id="hero-h">Próteses que <em>conectam</em><br/>profissionais e pacientes.</h1>
+      <p class="lead">Precisão milimétrica, prazos cumpridos e parceria de longo prazo. Trabalhamos lado a lado com dentistas e clínicas para entregar resultados consistentes em cada caso.</p>
+      <div class="hero-ctas">
+        <a href="#contato" class="btn btn-primary">
+          Agendar consulta
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#processo" class="btn btn-ghost">Conhecer o processo</a>
+      </div>
+    </div>
+
+    <div class="constellation-wrap" aria-hidden="true">
+      <svg viewBox="0 0 500 520" id="heroSvg">
+        <!-- lines -->
+        <g stroke="rgba(123,167,225,0.4)" stroke-width="1" fill="none"></g>
+        <!-- stars + center filled by JS -->
+      </svg>
+      <div class="prosthesis assembly" id="prosthesisAssembly">
+        <img class="prosthesis-part upper"
+             src="assets/labucal-images/prosthesis-part-01-upper.png"
+             alt="Parte superior de prótese dentária" />
+        <img class="prosthesis-part lower"
+             src="assets/labucal-images/prosthesis-part-02-lower.png"
+             alt="Parte inferior de prótese dentária" />
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>rolar</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ============ VALUE PROP ============ -->
+<section class="light pad with-prosthesis" id="sobre" aria-labelledby="valor-h">
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Sobre o Labucal</span>
+      <h2 id="valor-h">Precisão técnica, entrega no prazo, parceria de longo prazo.</h2>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+        </div>
+        <h3>Precisão milimétrica</h3>
+        <p class="muted">Cada peça passa por verificações dimensionais antes de sair do laboratório.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Prazos cumpridos</h3>
+        <p class="muted">Cronograma combinado caso a caso. Você sabe quando recebe, do início ao fim.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 21v-1a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v1"/><circle cx="12" cy="7" r="3"/></svg>
+        </div>
+        <h3>Acompanhamento próximo</h3>
+        <p class="muted">Comunicação direta com o técnico responsável pelo seu caso, sem intermediários.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="dark pad with-prosthesis" id="servicos" aria-labelledby="serv-h">
+  <img class="section-prosthesis decor-left decor-low" data-scroll-decor="left" src="assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-high" data-scroll-decor="right" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">O que fazemos</span>
+      <h2 id="serv-h">Nossos serviços.</h2>
+    </div>
+    <div class="services-grid">
+      <article class="service reveal" tabindex="0">
+        <div class="service-thumb">
+          <img src="assets/labucal-images/service-parcial.jpg" alt="PrÃ³tese parcial em bancada de laboratÃ³rio" loading="lazy" />
+        </div>
+        <h3>Prótese parcial</h3>
+        <p>Reposição de dentes ausentes mantendo a estrutura natural remanescente.</p>
+        <a href="#" class="more" data-service="parcial">Saber mais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+      <article class="service reveal" tabindex="0">
+        <div class="service-thumb">
+          <img src="assets/labucal-images/service-total.jpg" alt="PrÃ³tese total com acabamento natural" loading="lazy" />
+        </div>
+        <h3>Prótese total</h3>
+        <p>Restauração completa da arcada, com ajuste anatômico e estética cuidada.</p>
+        <a href="#" class="more" data-service="total">Saber mais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+      <article class="service reveal" tabindex="0">
+        <div class="service-thumb">
+          <img src="assets/labucal-images/service-fixa.jpg" alt="PrÃ³tese fixa sobre estrutura de implantes" loading="lazy" />
+        </div>
+        <h3>Prótese fixa</h3>
+        <p>Soluções sobre dentes naturais ou implantes, com encaixe preciso e durabilidade.</p>
+        <a href="#" class="more" data-service="fixa">Saber mais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+      <article class="service reveal" tabindex="0">
+        <div class="service-thumb">
+          <img src="assets/labucal-images/service-coroas.jpg" alt="Coroas e facetas cerÃ¢micas em bancada" loading="lazy" />
+        </div>
+        <h3>Coroas e facetas</h3>
+        <p>Estética e função em harmonia. Cerâmicas e resinas trabalhadas com refinamento.</p>
+        <a href="#" class="more" data-service="coroas">Saber mais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="light pad with-prosthesis" id="processo" aria-labelledby="proc-h">
+  <img class="section-prosthesis decor-right decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Como trabalhamos</span>
+      <h2 id="proc-h">Um processo claro, do pedido à entrega.</h2>
+    </div>
+
+    <div class="process reveal" id="processSection">
+      <div class="process-line" aria-hidden="true"><div class="fill" id="processFill"></div></div>
+      <div class="process-track">
+        <div class="step">
+          <span class="num">1</span>
+          <h3>Solicitação</h3>
+          <p class="muted">Recebemos o caso do dentista com modelo e diretrizes.</p>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <h3>Análise técnica</h3>
+          <p class="muted">Avaliamos viabilidade, materiais e cronograma.</p>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h3>Modelagem</h3>
+          <p class="muted">Produção da peça com aferição em cada etapa.</p>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <h3>Controle</h3>
+          <p class="muted">Conferência dimensional, estética e funcional.</p>
+        </div>
+        <div class="step">
+          <span class="num">5</span>
+          <h3>Entrega</h3>
+          <p class="muted">Embalagem identificada e envio no prazo combinado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="dark pad with-prosthesis" id="galeria" aria-labelledby="gal-h">
+  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Galeria</span>
+      <h2 id="gal-h">Trabalhos recentes.</h2>
+    </div>
+
+    <div class="gallery reveal">
+      <div class="g-item g-tall">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-01.jpg" alt="ReabilitaÃ§Ã£o superior com coroas em zircÃ´nia" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 01</div>
+            <div class="label">Reabilitação superior · coroas em zircônia</div>
+          </div>
+        </div>
+      </div>
+      <div class="g-item g-wide">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-02.jpg" alt="PrÃ³tese total com acabamento natural" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 02</div>
+            <div class="label">Prótese total · acabamento natural</div>
+          </div>
+        </div>
+      </div>
+      <div class="g-item g-wide">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-03.jpg" alt="Facetas em dissilicato para arcada anterior" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 03</div>
+            <div class="label">Facetas em dissilicato · arcada anterior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-row2 reveal">
+      <div class="g-item g-square">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-04.jpg" alt="PrÃ³tese parcial removÃ­vel" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 04</div>
+            <div class="label">Prótese parcial removível</div>
+          </div>
+        </div>
+      </div>
+      <div class="g-item g-square">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-05.jpg" alt="Coroa unitÃ¡ria sobre implante" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 05</div>
+            <div class="label">Coroa unitária sobre implante</div>
+          </div>
+        </div>
+      </div>
+      <div class="g-item g-square">
+        <div class="ph">
+          <img src="assets/labucal-images/gallery-06.jpg" alt="Ponte fixa para arcada inferior" loading="lazy" />
+        </div>
+        <div class="overlay">
+          <div>
+            <div class="sub">caso 06</div>
+            <div class="label">Ponte fixa · arcada inferior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NETWORK / CONSTELLATION ============ -->
+<section class="light pad with-prosthesis" id="rede" aria-labelledby="rede-h">
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="left" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Rede</span>
+      <h2 id="rede-h">Uma rede de profissionais que confiam no nosso trabalho.</h2>
+    </div>
+
+    <div class="network-wrap reveal" id="networkWrap">
+      <svg viewBox="0 0 1000 500" id="networkSvg" aria-hidden="true"></svg>
+      <div class="tooltip" id="netTooltip"></div>
+    </div>
+
+    <div class="testimonials reveal">
+      <figure class="quote">
+        <div class="mark">"</div>
+        <p>Os ajustes chegam praticamente prontos. Economizo tempo em cadeira e o paciente sai satisfeito no mesmo dia.</p>
+        <footer>
+          <strong>Dra. Camila Andrade</strong>
+          Clínica Andrade Odontologia · São Paulo
+        </footer>
+      </figure>
+      <figure class="quote">
+        <div class="mark">"</div>
+        <p>Prazo é prazo. Em três anos de parceria, nunca tive uma entrega atrasada. Isso muda como eu planejo a agenda.</p>
+        <footer>
+          <strong>Dr. Rafael Moreira</strong>
+          Espaço Odonto · Campinas
+        </footer>
+      </figure>
+      <figure class="quote">
+        <div class="mark">"</div>
+        <p>O contato direto com o técnico faz diferença em casos complexos. Resolve dúvidas antes de virar problema.</p>
+        <footer>
+          <strong>Dra. Beatriz Salles</strong>
+          Salles Estética Dental · Belo Horizonte
+        </footer>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="dark pad with-prosthesis" id="contato" aria-labelledby="ctt-h">
+  <img class="section-prosthesis decor-left decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Contato</span>
+      <h2 id="ctt-h">Vamos conversar sobre seu próximo trabalho?</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-list reveal">
+        <a href="https://wa.me/5511999999999" class="c-item">
+          <span class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </span>
+          <div>
+            <div class="label">WhatsApp</div>
+            <div class="val">+55 (11) 99999-9999</div>
+          </div>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#92f1fdfce6f3e6fdd2fef3f0e7f1f3febcf1fdffbcf0e0" class="c-item">
+          <span class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </span>
+          <div>
+            <div class="label">E-mail</div>
+            <div class="val"><span class="__cf_email__" data-cfemail="c6a5a9a8b2a7b2a986aaa7a4b3a5a7aae8a5a9abe8a4b4">[email&#160;protected]</span></div>
+          </div>
+        </a>
+        <div class="c-item">
+          <span class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <div class="label">Endereço</div>
+            <div class="val">Rua das Acácias, 240 · sala 12<br/>São Paulo, SP</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <span class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <div>
+            <div class="label">Horário</div>
+            <div class="val">Seg a sex · 08h às 18h</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="f-nome">Nome</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="f-clin">Clínica</label>
+          <input id="f-clin" name="clinica" type="text" autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label for="f-cont">E-mail ou WhatsApp</label>
+          <input id="f-cont" name="contato" type="text" required />
+        </div>
+        <div class="field">
+          <label for="f-msg">Mensagem</label>
+          <textarea id="f-msg" name="mensagem" rows="3" placeholder="Conte um pouco sobre o caso ou o que precisa."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Enviar
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="light pad" id="faq" aria-labelledby="faq-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">FAQ</span>
+      <h2 id="faq-h">Perguntas frequentes.</h2>
+    </div>
+
+    <div class="faq reveal" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quais são os prazos de entrega?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">O prazo depende do tipo de prótese. Coroas unitárias saem em 5 a 7 dias úteis; reabilitações completas, entre 15 e 25 dias. O cronograma é combinado caso a caso na abertura do pedido.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Vocês atendem clínicas de outras cidades?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. Atendemos todo o estado de São Paulo e demais capitais por logística rastreada, com seguro e prazo de envio acordado.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Como funciona o orçamento?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Após o envio do caso, retornamos em até 24h com proposta detalhada: material, etapas, prazo e valor. Sem custo de avaliação.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Trabalham com quais materiais?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Como é feita a entrega das próteses?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Embalagem identificada com etiqueta do caso, transportadora parceira e código de rastreio enviado por WhatsApp. Em São Paulo capital, entrega própria sob demanda.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Posso visitar o laboratório?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Claro. Recebemos profissionais com agendamento prévio para conhecer o espaço, os equipamentos e a equipe técnica.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">
+          <img class="logo-img" src="assets/brand/labucal-logo-96.png" alt="" width="42" height="42" loading="lazy" />
+          <span>Labucal</span>
+        </a>
+        <p class="tag">Laboratório de próteses dentárias. Precisão, prazo e parceria para dentistas e clínicas.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Processo</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#rede">Rede</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511999999999">+55 (11) 99999-9999</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#fb9894958f9a8f94bb979a998e989a97d5989496d59989"><span class="__cf_email__" data-cfemail="43202c2d3722372c032f22213620222f6d202c2e6d2131">[email&#160;protected]</span></a></li>
+          <li>Rua das Acácias, 240 · São Paulo</li>
+          <li>Seg a sex · 08h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Labucal · Todos os direitos reservados.</span>
+      <span>CNPJ 00.000.000/0001-00</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LABUCALZINHO ============ -->
+<button class="lz-btn" id="lzBtn" aria-label="Falar com o Labucalzinho">
+  <!-- Mascot tooth -->
+  <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z" fill="rgba(255,255,255,0.04)"/>
+    <!-- eyes -->
+    <circle cx="12.5" cy="14" r="0.9" fill="currentColor" stroke="none"/>
+    <circle cx="19.5" cy="14" r="0.9" fill="currentColor" stroke="none"/>
+    <!-- smile -->
+    <path d="M13 17.5 Q 16 19.5 19 17.5" stroke-width="1.2"/>
+  </svg>
+  <span class="badge" aria-hidden="true"></span>
+</button>
+
+<aside class="lz-panel" id="lzPanel" role="dialog" aria-label="Chat com Labucalzinho">
+  <div class="lz-head">
+    <div class="avatar">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round">
+        <path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z"/>
+        <circle cx="12.5" cy="14" r="0.9" fill="white" stroke="none"/>
+        <circle cx="19.5" cy="14" r="0.9" fill="white" stroke="none"/>
+        <path d="M13 17.5 Q 16 19.5 19 17.5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="name">Labucalzinho</div>
+      <div class="status">online agora</div>
+    </div>
+    <button class="lz-close" id="lzClose" aria-label="Fechar chat">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="lz-body" id="lzBody">
+    <div class="msg bot">Olá! Sou o Labucalzinho. Posso te ajudar com orçamentos, prazos ou agendamentos. Por onde começamos?</div>
+    <div class="quick">
+      <button data-q="orcamento">Pedir orçamento</button>
+      <button data-q="prazo">Ver prazos</button>
+      <button data-q="agendar">Agendar visita</button>
+    </div>
+  </div>
+  <form class="lz-input" id="lzForm">
+    <input type="text" id="lzInput" placeholder="Escrever mensagem…" autocomplete="off" />
+    <button type="submit" class="lz-send" aria-label="Enviar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+</aside>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  // ---------- Nav scroll ----------
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 80);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu
+  const ham = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('[data-mclose]').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // ---------- Hero constellation ----------
+  (function buildHero(){
+    const svg = document.getElementById('heroSvg');
+    if (!svg) return;
+    const W = 500, H = 520, CX = W/2, CY = H/2;
+    // Points in a soft ring around the prosthesis center
+    const points = [
+      // outer ring
+      [80, 80], [180, 50], [300, 60], [420, 95], [460, 200],
+      [445, 320], [380, 420], [270, 460], [150, 445], [60, 360],
+      [40, 230],
+      // closer to center
+      [140, 160], [360, 170], [370, 360], [130, 360],
+      // far outliers
+      [20, 100], [480, 470], [250, 20]
+    ];
+
+    // Connections: hand-picked indices to feel like a real network
+    const conns = [
+      [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,0],
+      [0,11],[2,12],[6,13],[8,14],[3,12],[5,13],[9,14],[11,14],
+      [11,1],[12,4],[13,7],[14,9],[0,15],[3,17],[6,16]
+    ];
+
+    const linesGroup = svg.querySelector('g');
+    conns.forEach((c, i) => {
+      const [a,b] = c;
+      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      ln.setAttribute('x1', points[a][0]); ln.setAttribute('y1', points[a][1]);
+      ln.setAttribute('x2', points[b][0]); ln.setAttribute('y2', points[b][1]);
+      ln.classList.add('link');
+      ln.style.animationDelay = (i * 0.25) + 's';
+      ln.style.opacity = 0.25;
+      linesGroup.appendChild(ln);
+    });
+
+    points.forEach((p, i) => {
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]);
+      c.setAttribute('r', 3);
+      c.setAttribute('fill', '#7BA7E1');
+      c.classList.add('star');
+      c.style.animationDelay = (i * 0.3) + 's';
+      svg.appendChild(c);
+    });
+  })();
+
+  // ---------- Prosthesis assembly on scroll ----------
+  (function prosthesisAssembly(){
+    const assembly = document.getElementById('prosthesisAssembly');
+    const hero = document.getElementById('top');
+    if (!assembly || !hero) return;
+    const update = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const raw = window.scrollY / Math.min(760, vh * 0.82);
+      const p = Math.min(1, Math.max(0, raw));
+      const eased = p * p * (3 - (2 * p));
+      const upperY = -150 + (eased * 110);
+      const lowerY = 170 - (eased * 115);
+      const scale = 0.86 + (eased * 0.12);
+      assembly.style.setProperty('--prosthesis-progress', p.toFixed(3));
+      assembly.style.setProperty('--prosthesis-upper-y', `${upperY.toFixed(1)}px`);
+      assembly.style.setProperty('--prosthesis-lower-y', `${lowerY.toFixed(1)}px`);
+      assembly.style.setProperty('--prosthesis-scale', scale.toFixed(3));
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // ---------- Network constellation ----------
+  (function buildNetwork(){
+    const svg = document.getElementById('networkSvg');
+    const wrap = document.getElementById('networkWrap');
+    const tip = document.getElementById('netTooltip');
+    if (!svg) return;
+    const W = 1000, H = 500;
+    const clinics = [
+      {x: 80,  y: 120, name: 'Andrade Odontologia', city: 'São Paulo', size: 6},
+      {x: 200, y: 80,  name: 'Espaço Odonto',       city: 'Campinas',  size: 5},
+      {x: 320, y: 160, name: 'Salles Estética',     city: 'BH',        size: 7},
+      {x: 460, y: 90,  name: 'Clínica Vértice',     city: 'Santos',    size: 4},
+      {x: 580, y: 200, name: 'Núcleo Sorriso',      city: 'Ribeirão',  size: 5},
+      {x: 720, y: 110, name: 'Odonto Premium',      city: 'Curitiba',  size: 6},
+      {x: 860, y: 220, name: 'Studio Dental',       city: 'POA',       size: 4},
+      {x: 940, y: 360, name: 'Clínica Norte',       city: 'Brasília',  size: 5},
+      {x: 780, y: 410, name: 'Espaço Vida',         city: 'Goiânia',   size: 4},
+      {x: 600, y: 360, name: 'Centro Odonto',       city: 'Sorocaba',  size: 5},
+      {x: 440, y: 410, name: 'Sorriso Real',        city: 'Bauru',     size: 4},
+      {x: 280, y: 380, name: 'Mais Dental',         city: 'Santo André', size: 5},
+      {x: 130, y: 320, name: 'Clínica Aurora',      city: 'Guarulhos', size: 4},
+      {x: 380, y: 260, name: 'Odonto Lab',          city: 'São Paulo', size: 6},
+      {x: 660, y: 280, name: 'Núcleo Excelência',   city: 'Jundiaí',   size: 5},
+      {x: 540, y: 60,  name: 'Clínica Plenitude',   city: 'Osasco',    size: 4},
+    ];
+
+    const conns = [
+      [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,0],
+      [13,2],[13,4],[13,11],[13,10],[14,4],[14,5],[14,9],[14,7],[15,3],[15,5],[2,11],[5,9]
+    ];
+
+    // build lines
+    conns.forEach((c, i) => {
+      const a = clinics[c[0]], b = clinics[c[1]];
+      const ln = document.createElementNS('http://www.w3.org/2000/svg','line');
+      ln.setAttribute('x1', a.x); ln.setAttribute('y1', a.y);
+      ln.setAttribute('x2', b.x); ln.setAttribute('y2', b.y);
+      ln.setAttribute('stroke', 'rgba(46,74,140,0.28)');
+      ln.setAttribute('stroke-width', 1);
+      svg.appendChild(ln);
+    });
+
+    clinics.forEach((c, i) => {
+      const circ = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      circ.setAttribute('cx', c.x); circ.setAttribute('cy', c.y);
+      circ.setAttribute('r', c.size);
+      circ.setAttribute('fill', '#142A5C');
+      circ.classList.add('net-star');
+      circ.addEventListener('mouseenter', (e) => {
+        tip.textContent = `${c.name} · ${c.city}`;
+        const rect = wrap.getBoundingClientRect();
+        const px = (c.x / W) * rect.width;
+        const py = (c.y / H) * rect.height;
+        tip.style.left = px + 'px';
+        tip.style.top  = py + 'px';
+        tip.style.opacity = 1;
+      });
+      circ.addEventListener('mouseleave', () => { tip.style.opacity = 0; });
+      svg.appendChild(circ);
+
+      // subtle pulse aura
+      const aura = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      aura.setAttribute('cx', c.x); aura.setAttribute('cy', c.y);
+      aura.setAttribute('r', c.size + 4);
+      aura.setAttribute('fill', 'none');
+      aura.setAttribute('stroke', 'rgba(46,74,140,0.18)');
+      svg.appendChild(aura);
+    });
+  })();
+
+  // ---------- Process line fill on scroll ----------
+  (function processFill(){
+    const section = document.getElementById('processSection');
+    const fill = document.getElementById('processFill');
+    if (!section || !fill) return;
+    const update = () => {
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.85;
+      const end   = vh * 0.2;
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
+      fill.style.width = (p * 100) + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  // ---------- FAQ ----------
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  // ---------- Reveal on scroll ----------
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => io.observe(r));
+  } else {
+    reveals.forEach(r => r.classList.add('in'));
+  }
+
+  const prosthesisDecor = document.querySelectorAll('.section-prosthesis');
+  if ('IntersectionObserver' in window) {
+    const decorIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+        }
+      });
+    }, { rootMargin: '-8% 0px -12%', threshold: 0.1 });
+    prosthesisDecor.forEach(item => decorIo.observe(item));
+  } else {
+    prosthesisDecor.forEach(item => item.classList.add('in'));
+  }
+
+  const updateDecorScroll = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    prosthesisDecor.forEach(item => {
+      const section = item.closest('section');
+      if (!section) return;
+      const r = section.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      const t = (p - 0.5) * 2;
+      const mode = item.dataset.scrollDecor || 'right';
+      let x = 0, y = t * 46, rot = t * 7, scale = 0.96 + (p * 0.05);
+      if (mode === 'right') {
+        x = 58 - (p * 118);
+        rot = 10 - (p * 20);
+      } else if (mode === 'left') {
+        x = -58 + (p * 118);
+        rot = -10 + (p * 20);
+      } else {
+        x = Math.sin(p * Math.PI) * 30;
+        y = -42 + (p * 84);
+        rot = -14 + (p * 28);
+        scale = 0.92 + (Math.sin(p * Math.PI) * 0.1);
+      }
+      item.style.setProperty('--scroll-x', `${x.toFixed(1)}px`);
+      item.style.setProperty('--scroll-y', `${y.toFixed(1)}px`);
+      item.style.setProperty('--scroll-rot', `${rot.toFixed(2)}deg`);
+      item.style.setProperty('--scroll-scale', scale.toFixed(3));
+    });
+  };
+  window.addEventListener('scroll', updateDecorScroll, { passive: true });
+  window.addEventListener('resize', updateDecorScroll);
+  updateDecorScroll();
+
+  // ---------- Form ----------
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.currentTarget.querySelector('button');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Enviado ✓';
+    btn.style.background = '#7BA7E1';
+    setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; e.currentTarget.reset(); }, 2400);
+  });
+
+  // ---------- Labucalzinho ----------
+  const lzBtn   = document.getElementById('lzBtn');
+  const lzPanel = document.getElementById('lzPanel');
+  const lzBody  = document.getElementById('lzBody');
+  const lzClose = document.getElementById('lzClose');
+  const lzForm  = document.getElementById('lzForm');
+  const lzInput = document.getElementById('lzInput');
+
+  setTimeout(() => lzBtn.classList.add('in'), 1800);
+
+  const togglePanel = (force) => {
+    const willOpen = force ?? !lzPanel.classList.contains('open');
+    lzPanel.classList.toggle('open', willOpen);
+  };
+  lzBtn.addEventListener('click', () => togglePanel());
+  lzClose.addEventListener('click', () => togglePanel(false));
+
+  const addMsg = (text, who) => {
+    const d = document.createElement('div');
+    d.className = 'msg ' + who;
+    d.textContent = text;
+    lzBody.appendChild(d);
+    lzBody.scrollTop = lzBody.scrollHeight;
+    return d;
+  };
+
+  const botReplies = {
+    orcamento: "Perfeito. Me conta o tipo de prótese e a quantidade de peças. Em até 24h te envio uma proposta detalhada.",
+    prazo:     "Coroas unitárias: 5 a 7 dias úteis. Reabilitações maiores: 15 a 25 dias. Posso confirmar para o seu caso específico se quiser.",
+    agendar:   "Ótimo. Você prefere visitar o laboratório ou marcar uma call? Posso te encaixar ainda esta semana.",
+    default:   "Entendi. Vou te conectar com a equipe técnica para responder isso com precisão. Pode me deixar seu WhatsApp?"
+  };
+
+  lzBody.addEventListener('click', (e) => {
+    const btn = e.target.closest('.quick button');
+    if (!btn) return;
+    const key = btn.dataset.q;
+    const label = btn.textContent;
+    // remove quick chips
+    btn.parentElement.remove();
+    addMsg(label, 'me');
+    setTimeout(() => addMsg(botReplies[key] || botReplies.default, 'bot'), 600);
+  });
+
+  lzForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = lzInput.value.trim();
+    if (!v) return;
+    addMsg(v, 'me');
+    lzInput.value = '';
+    setTimeout(() => {
+      const lower = v.toLowerCase();
+      let key = 'default';
+      if (lower.includes('prazo') || lower.includes('tempo')) key = 'prazo';
+      else if (lower.includes('orçament') || lower.includes('valor') || lower.includes('preço')) key = 'orcamento';
+      else if (lower.includes('visit') || lower.includes('agend') || lower.includes('reun')) key = 'agendar';
+      addMsg(botReplies[key], 'bot');
+    }, 700);
+  });
+
+  // Smooth scroll for nav anchors (extra reliability across browsers)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

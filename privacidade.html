@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Política de Privacidade — Labucal</title>
+<meta name="description" content="Como o Labucal coleta, utiliza e protege os seus dados pessoais em conformidade com a LGPD." />
+<meta name="robots" content="index,follow" />
+
+<link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink-900: #0A1B3D;
+    --ink-800: #142A5C;
+    --ink-600: #2E4A8C;
+    --ink-300: #7BA7E1;
+    --bone:    #F8F7F4;
+    --white:   #FFFFFF;
+    --text:    #1A1A1A;
+    --muted:   #6B6B6B;
+    --border-light: rgba(10,27,61,0.10);
+    --border-dark:  rgba(255,255,255,0.10);
+    --container: 880px;
+    --gutter: clamp(20px, 4vw, 56px);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --t: 240ms;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--bone);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--ink-800); text-decoration: underline; text-underline-offset: 3px; transition: color var(--t) var(--ease); }
+  a:hover { color: var(--ink-600); }
+  img { display: block; max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--ink-300); outline-offset: 2px; border-radius: 4px; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* ---------- Header ---------- */
+  header.page {
+    background: var(--ink-900);
+    color: white;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  header.page .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1240px; margin: 0 auto;
+    padding-left: var(--gutter); padding-right: var(--gutter);
+  }
+  header.page .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: white; text-decoration: none; font-weight: 600; font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  header.page .logo img {
+    width: 36px; height: 36px; border-radius: 6px;
+  }
+  header.page .back {
+    color: rgba(255,255,255,0.78);
+    text-decoration: none; font-size: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color var(--t) var(--ease);
+  }
+  header.page .back:hover { color: white; }
+  header.page .back svg { transition: transform var(--t) var(--ease); }
+  header.page .back:hover svg { transform: translateX(-3px); }
+
+  /* ---------- Hero del documento ---------- */
+  .doc-hero {
+    background: var(--ink-900);
+    color: white;
+    padding: clamp(56px, 9vw, 96px) 0 clamp(40px, 6vw, 64px);
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-hero::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 80% 30%, rgba(46,74,140,0.30), transparent 70%),
+      radial-gradient(40% 40% at 10% 80%, rgba(46,74,140,0.15), transparent 70%);
+  }
+  .doc-hero > .container { position: relative; z-index: 1; }
+  .doc-hero .overline {
+    display: inline-block;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-300);
+  }
+  .doc-hero h1 {
+    margin: 16px 0 14px;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600; line-height: 1.1; letter-spacing: -0.02em;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  .doc-hero p.meta {
+    color: rgba(255,255,255,0.62);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* ---------- Artículo ---------- */
+  article.doc {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(64px, 9vw, 120px);
+  }
+  article.doc p, article.doc ul { margin: 0; }
+  article.doc > .container > * + * { margin-top: 14px; }
+  article.doc h2 {
+    margin: 56px 0 14px;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--ink-900);
+    scroll-margin-top: 24px;
+  }
+  article.doc h2:first-of-type { margin-top: 0; }
+  article.doc h3 {
+    margin: 28px 0 8px;
+    font-size: 17px; font-weight: 600;
+    color: var(--ink-800);
+  }
+  article.doc ul {
+    padding-left: 22px;
+    list-style: disc;
+  }
+  article.doc ul li { margin: 6px 0; }
+  article.doc .lead {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  article.doc .info-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  article.doc .info-card p { margin: 4px 0; font-size: 15px; }
+  article.doc .info-card strong { color: var(--ink-900); font-weight: 600; }
+  article.doc em { color: var(--ink-800); font-style: normal; font-weight: 500; }
+
+  /* ---------- Footer ---------- */
+  footer.page {
+    background: var(--ink-900);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 0;
+    border-top: 1px solid var(--border-dark);
+  }
+  footer.page .inner {
+    max-width: 1240px; margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    font-size: 13px;
+  }
+  footer.page a { color: rgba(255,255,255,0.85); text-decoration: none; transition: color var(--t) var(--ease); }
+  footer.page a:hover { color: white; text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    header.page .back span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <div class="inner">
+    <a href="index.html" class="logo" aria-label="Labucal — início">
+      <img src="assets/brand/labucal-logo-96.png" alt="" width="36" height="36" />
+      <span>Labucal</span>
+    </a>
+    <a href="index.html" class="back" aria-label="Voltar ao site">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span>Voltar ao site</span>
+    </a>
+  </div>
+</header>
+
+<section class="doc-hero">
+  <div class="container">
+    <span class="overline">Política de Privacidade</span>
+    <h1>Como tratamos os seus dados.</h1>
+    <p class="meta">Última atualização: 24 de maio de 2026</p>
+  </div>
+</section>
+
+<article class="doc">
+  <div class="container">
+    <p class="lead">
+      Esta Política de Privacidade descreve como o Labucal coleta, utiliza, armazena e protege os dados pessoais relacionados a você quando entra em contato conosco, visita o nosso site ou estabelece relação profissional com o nosso laboratório, em conformidade com a Lei Geral de Proteção de Dados Pessoais — Lei nº 13.709/2018 (LGPD).
+    </p>
+
+    <h2>1. Quem é o controlador dos seus dados</h2>
+    <p>O Labucal é um laboratório de próteses dentárias com sede em Sorocaba, SP, e atua como controlador dos dados pessoais tratados em suas atividades.</p>
+    <div class="info-card">
+      <p><strong>Razão social:</strong> Labucal</p>
+      <p><strong>CNPJ:</strong> 12.720.218/0001-08</p>
+      <p><strong>Endereço:</strong> Rua Cônego Januário Barbosa, 225 — Jardim Vergueiro, Sorocaba, SP</p>
+      <p><strong>E-mail:</strong> <a href="mailto:contato@labucal.com.br">contato@labucal.com.br</a></p>
+      <p><strong>Telefone:</strong> <a href="tel:+551534186119">(15) 3418-6119</a></p>
+    </div>
+
+    <h2>2. Dados que coletamos</h2>
+    <h3>Dados fornecidos por você</h3>
+    <ul>
+      <li>nome, e-mail, telefone ou WhatsApp e nome da clínica, quando você preenche o formulário do site ou nos envia mensagem;</li>
+      <li>conteúdo das mensagens trocadas com a nossa equipe pelos canais oficiais.</li>
+    </ul>
+    <h3>Dados de profissionais e clínicas parceiras</h3>
+    <ul>
+      <li>identificação do dentista responsável, contato profissional e descrição clínica do caso;</li>
+      <li>modelos, registros e referências enviados para a confecção da prótese.</li>
+    </ul>
+    <h3>Dados coletados automaticamente</h3>
+    <ul>
+      <li>informações técnicas básicas de navegação, como tipo de navegador, sistema operacional e data e hora de acesso, necessárias ao funcionamento e à segurança do site.</li>
+    </ul>
+    <p>Não coletamos intencionalmente dados sensíveis de pacientes finais por meio do site. Quando dados de pacientes nos chegam através do dentista responsável, são tratados como informação confidencial e usados apenas para a execução do serviço solicitado.</p>
+
+    <h2>3. Finalidades do tratamento</h2>
+    <p>Utilizamos os seus dados para:</p>
+    <ul>
+      <li>responder a contatos, pedidos de orçamento e dúvidas;</li>
+      <li>elaborar propostas e executar os serviços contratados;</li>
+      <li>emitir documentos fiscais e cumprir obrigações legais e regulatórias;</li>
+      <li>aprimorar a comunicação com clínicas e dentistas parceiros;</li>
+      <li>manter o histórico técnico dos casos para fins de garantia, suporte e rastreabilidade.</li>
+    </ul>
+
+    <h2>4. Bases legais</h2>
+    <p>O tratamento dos seus dados se apoia, conforme o caso, nas seguintes bases legais previstas na LGPD:</p>
+    <ul>
+      <li>execução de contrato ou de procedimentos preliminares relacionados a contrato (art. 7º, V);</li>
+      <li>cumprimento de obrigação legal ou regulatória pelo controlador (art. 7º, II);</li>
+      <li>legítimo interesse, observados os direitos e liberdades do titular (art. 7º, IX);</li>
+      <li>consentimento, quando aplicável e nos termos do art. 7º, I.</li>
+    </ul>
+
+    <h2>5. Compartilhamento de dados</h2>
+    <p>O Labucal não vende dados pessoais. Podemos compartilhar dados apenas nas seguintes situações:</p>
+    <ul>
+      <li>com prestadores de serviço essenciais à operação, como contabilidade, transportadoras e provedores de hospedagem de e-mail, sempre sob acordo de confidencialidade;</li>
+      <li>com o dentista ou clínica que originou o caso, para o devido alinhamento técnico;</li>
+      <li>quando exigido por autoridade pública competente ou por decisão judicial.</li>
+    </ul>
+
+    <h2>6. Cookies e tecnologias de navegação</h2>
+    <p>O nosso site utiliza apenas tecnologias estritamente necessárias ao seu funcionamento. Não usamos cookies de rastreamento publicitário nem ferramentas que criem perfis comportamentais. Recursos externos como fontes tipográficas podem ser carregados por seus respectivos provedores, sob suas próprias políticas.</p>
+
+    <h2>7. Retenção dos dados</h2>
+    <p>Mantemos os seus dados pelo tempo necessário para cumprir as finalidades descritas nesta política, respeitando os prazos legais aplicáveis, como prazos fiscais e prescricionais. Encerrada a relação, os dados são eliminados ou anonimizados de forma segura.</p>
+
+    <h2>8. Segurança</h2>
+    <p>Adotamos medidas técnicas e administrativas adequadas para proteger os dados contra acesso não autorizado, perda, alteração ou destruição. O acesso interno é restrito à equipe envolvida nos processos relevantes.</p>
+    <p>Apesar dos nossos esforços, nenhum sistema é totalmente livre de riscos. Em caso de incidente de segurança que possa causar risco relevante aos titulares, comunicaremos o ocorrido nos prazos e na forma exigidos pela LGPD e pela Autoridade Nacional de Proteção de Dados — ANPD.</p>
+
+    <h2>9. Seus direitos como titular</h2>
+    <p>Nos termos do art. 18 da LGPD, você pode solicitar a qualquer momento:</p>
+    <ul>
+      <li>a confirmação da existência de tratamento dos seus dados;</li>
+      <li>o acesso aos dados pessoais que mantemos sobre você;</li>
+      <li>a correção de dados incompletos, inexatos ou desatualizados;</li>
+      <li>a anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a lei;</li>
+      <li>a portabilidade dos dados a outro fornecedor de serviço, conforme regulamentação;</li>
+      <li>a eliminação dos dados tratados com base no consentimento;</li>
+      <li>informação sobre o compartilhamento dos seus dados;</li>
+      <li>a revogação do consentimento.</li>
+    </ul>
+
+    <h2>10. Como exercer seus direitos</h2>
+    <p>Para exercer qualquer dos direitos acima, envie a sua solicitação para <a href="mailto:contato@labucal.com.br">contato@labucal.com.br</a> com o assunto <em>"LGPD — Solicitação do Titular"</em> e descreva o pedido. Responderemos no menor prazo possível, observados os prazos legais.</p>
+
+    <h2>11. Crianças e adolescentes</h2>
+    <p>Os nossos serviços são direcionados a profissionais e clínicas. Não tratamos diretamente dados de crianças e adolescentes por meio deste site.</p>
+
+    <h2>12. Atualizações desta política</h2>
+    <p>Esta política pode ser atualizada para refletir mudanças legais, técnicas ou operacionais. A data da última revisão estará sempre indicada no início deste documento. Recomendamos consulta periódica.</p>
+
+    <h2>13. Encarregado pelo tratamento de dados</h2>
+    <p>Para dúvidas relativas à privacidade e à proteção dos seus dados pessoais, entre em contato pelo e-mail <a href="mailto:contato@labucal.com.br">contato@labucal.com.br</a>.</p>
+
+    <h2>14. Foro</h2>
+    <p>Fica eleito o foro da Comarca de Sorocaba, SP, para dirimir eventuais conflitos oriundos desta Política de Privacidade.</p>
+  </div>
+</article>
+
+<footer class="page">
+  <div class="inner">
+    <span>© 2026 Labucal · CNPJ 12.720.218/0001-08</span>
+    <a href="index.html">Voltar ao site</a>
+  </div>
+</footer>
+
+</body>
+</html>

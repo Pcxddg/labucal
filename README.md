@@ -15,6 +15,7 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 .
 |-- index.html
 |-- Labucal.html
+|-- privacidade.html
 |-- assets/
 |   |-- brand/
 |   |-- decor/
@@ -26,6 +27,7 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 
 - `index.html`: archivo de entrada publicado por GitHub Pages. Es el archivo que abre el navegador en produccion.
 - `Labucal.html`: copia de trabajo historica del sitio. Debe mantenerse sincronizada con `index.html`.
+- `privacidade.html`: pagina de Politica de Privacidade en cumplimiento de la LGPD. Enlazada desde el footer del sitio principal.
 - `assets/brand/`: logo optimizado, favicon y apple touch icon.
 - `assets/decor/`: protesis transparentes decorativas usadas en animaciones por scroll.
 - `assets/labucal-images/`: fotos, fondo del hero, protesis principales y galeria.

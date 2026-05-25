@@ -289,6 +289,36 @@ A partir de ahi, el workflow corre solo cada 6 horas. Cada vez que un cliente de
 
 Con 4 llamadas al dia (~120 al mes) usando el FieldMask actual (Pro + Atmosphere por incluir `reviews`), el costo mensual estimado es menor a USD 1, totalmente absorbido por el credito gratuito de USD 200 que Google da cada mes.
 
+## Componentes flotantes
+
+El sitio tiene tres elementos UI fijos que viven sobre el contenido principal. Todos respetan la paleta y la tipografia del sitio.
+
+### Aviso de cookies
+
+- HTML: `<div class="cookie-notice" id="cookieNotice">` antes del `<script>` final.
+- Posicion: esquina inferior izquierda en desktop, barra full-width en mobile.
+- Aparece 700 ms despues de cargar la pagina, solo en la primera visita.
+- Al hacer clic en "Entendi" persiste `localStorage.labucal_cookies_accepted = '1'` y no vuelve a aparecer.
+- Para resetear durante pruebas: DevTools > Application > Local Storage > borrar la clave.
+
+### Popup de avaliacoes do Google
+
+- HTML: `<div class="gr-popup" id="grPopup">` antes del aviso de cookies.
+- Posicion: misma esquina inferior izquierda. Cuando el aviso de cookies esta visible sube automaticamente via regla CSS `body:has(.cookie-notice.in) .gr-popup { bottom: 220px; }`.
+- Trigger: aparece cuando el scroll de la pagina pasa el 45 % del documento.
+- Persistencia: `sessionStorage.labucal_reviews_dismissed = '1'` al cerrar o clicar el CTA. Vuelve a aparecer en una pestana nueva.
+- Datos: hidratados desde `data/reviews.json` (ver seccion "Avaliacoes do Google" arriba). Si el JSON aun no existe, el popup queda con el conteudo estatico (5 estrellas, texto generico).
+- Estrellas: soportan medias estrellas. Un rating 4,5 muestra 4 llenas + 1 mitad; un 4,8 redondea a 5 llenas. La logica esta en el IIFE `reviewsPopup` dentro del bloque `hydrate`.
+- Para resetear durante pruebas: DevTools > Application > Session Storage > borrar la clave.
+
+### Map overlay (anti scroll-capture)
+
+- HTML: `<div class="map-overlay" id="mapOverlay">` entre el `<iframe>` del mapa y el `.map-info`.
+- Proposito: impedir que la rueda del mouse haga zoom en el mapa cuando el usuario esta rodando la pagina y el cursor pasa por encima del iframe.
+- Comportamiento: la capa esta encima del iframe e intercepta los eventos de puntero por defecto. Al recibir un clic se anade la clase `.inactive` que la convierte en transparente para eventos (`pointer-events: none`), liberando el mapa. Cuando el cursor sale del `.map-card` (mouseleave) se restaura.
+- Hint: el pseudo-elemento `::after` muestra "Clique no mapa para interagir" arriba a la izquierda al hacer hover, y siempre visible en touch (`@media (hover: none)`).
+- No afecta al link "Abrir rota no Google Maps" porque `.map-info` queda por encima en el stacking.
+
 ## Publicacion
 
 El sitio se publica desde la rama `main` con GitHub Pages.

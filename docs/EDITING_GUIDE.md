@@ -300,6 +300,8 @@ gh api repos/Pcxddg/labucal/pages
 - Cambiar ids de secciones sin actualizar enlaces.
 - Editar `data/reviews.json` a mano. Es auto-generado por el workflow de GitHub Actions cada 6 horas — cualquier edicion manual sera sobreescrita en la siguiente corrida.
 - Olvidar reemplazar `REPLACE_WITH_PLACE_ID` en `.github/workflows/update-reviews.yml`. Sin eso el workflow falla y el popup de avaliacoes queda con datos estaticos. Ver seccion "Avaliacoes do Google" del README.
+- "El aviso de cookies / popup de avaliacoes no aparece al recargar". Es esperado: el aviso de cookies persiste en `localStorage.labucal_cookies_accepted` y el popup en `sessionStorage.labucal_reviews_dismissed`. Para forzar reaparicion durante pruebas, borrar la clave en DevTools > Application > Storage.
+- Quitar `aria-hidden="true"` del `.map-overlay` o del Place ID en `.gr-popup`. Esas capas son decorativas/funcionales sin contenido relevante para lectores de pantalla.
 
 ## Checklist de handoff
 

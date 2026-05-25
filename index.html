@@ -862,7 +862,7 @@
   /* ---------- Google reviews popup ---------- */
   .gr-popup {
     position: fixed;
-    top: 100px; right: 22px;
+    left: 22px; bottom: 22px;
     z-index: 65;
     width: 320px;
     max-width: calc(100vw - 44px);
@@ -872,15 +872,19 @@
     border-radius: 14px;
     padding: 18px 20px 16px;
     box-shadow: 0 20px 50px rgba(10,27,61,0.18);
-    transform: translateX(20px);
+    transform: translateY(20px);
     opacity: 0;
     pointer-events: none;
-    transition: transform 500ms var(--ease), opacity 500ms var(--ease);
+    transition: transform 500ms var(--ease), opacity 500ms var(--ease), bottom 400ms var(--ease);
   }
   .gr-popup.in {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+  }
+  /* Se o aviso de cookies estiver visível, sobe o popup para não se sobrepor */
+  body:has(.cookie-notice.in) .gr-popup {
+    bottom: 220px;
   }
   .gr-popup[hidden] { display: none; }
   .gr-head {
@@ -965,9 +969,13 @@
       padding: 14px 16px;
     }
     .gr-popup {
-      top: 90px;
+      top: auto;
+      bottom: 90px;
       left: 12px; right: 12px;
       width: auto;
+    }
+    body:has(.cookie-notice.in) .gr-popup {
+      bottom: 280px;
     }
   }
   @media (max-width: 420px) {

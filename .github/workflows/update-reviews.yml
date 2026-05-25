@@ -16,7 +16,7 @@ jobs:
       # Place ID público do Labucal no Google Maps.
       # Para obtê-lo: https://developers.google.com/maps/documentation/javascript/place-id#find-id
       # Substituir o valor abaixo pelo ID real (começa com "ChIJ...").
-      GOOGLE_PLACE_ID: REPLACE_WITH_PLACE_ID
+      GOOGLE_PLACE_ID: ChIJ6f3VvLmLxZQRdLE0dLMATaI
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

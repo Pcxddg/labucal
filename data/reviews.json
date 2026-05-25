@@ -1,0 +1,25 @@
+{
+  "updatedAt": "2026-05-25T00:55:28.604Z",
+  "name": "Labucal",
+  "rating": 5,
+  "userRatingCount": 2,
+  "googleMapsUri": "https://maps.google.com/?cid=11695004578099802484&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+  "reviews": [
+    {
+      "author": "Diego Silva Feitosa",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocKcpJg4RljeO4CRFz4B1f74DRuauuy5V3YW-1ic6g-tgFvslw=s128-c0x00000000-cc-rp-mo-ba2",
+      "rating": 5,
+      "text": "Excelente atendimento cumpri prazo de entrega super indico.",
+      "relativeTime": "4 anos atrás",
+      "publishTime": "2021-11-08T18:17:50.310232Z"
+    },
+    {
+      "author": "Reginaldo Lojudice",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocLktvUK0hI0rbp8ep9uoLuJIZLewOaVftFDx1awOT8gC5oa0w=s128-c0x00000000-cc-rp-mo-ba3",
+      "rating": 5,
+      "text": "",
+      "relativeTime": "um ano atrás",
+      "publishTime": "2025-02-08T20:10:18.600299Z"
+    }
+  ]
+}

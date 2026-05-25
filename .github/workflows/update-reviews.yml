@@ -1,0 +1,44 @@
+name: Update Google Reviews
+
+on:
+  schedule:
+    # A cada 6 horas (00, 06, 12, 18 UTC = 21, 03, 09, 15 BRT)
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-reviews:
+    runs-on: ubuntu-latest
+    env:
+      # Place ID público do Labucal no Google Maps.
+      # Para obtê-lo: https://developers.google.com/maps/documentation/javascript/place-id#find-id
+      # Substituir o valor abaixo pelo ID real (começa com "ChIJ...").
+      GOOGLE_PLACE_ID: REPLACE_WITH_PLACE_ID
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch reviews from Google Places API
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: node scripts/fetch-reviews.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/reviews.json
+          if git diff --staged --quiet; then
+            echo "Sem mudanças nas avaliações."
+          else
+            git commit -m "chore: atualizar avaliações do Google [skip ci]"
+            git push
+          fi

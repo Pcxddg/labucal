@@ -16,6 +16,13 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 |-- index.html
 |-- Labucal.html
 |-- privacidade.html
+|-- .github/
+|   `-- workflows/
+|       `-- update-reviews.yml
+|-- scripts/
+|   `-- fetch-reviews.js
+|-- data/
+|   `-- reviews.json   (auto-generado, no editar a mano)
 |-- assets/
 |   |-- brand/
 |   |-- decor/
@@ -28,6 +35,9 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 - `index.html`: archivo de entrada publicado por GitHub Pages. Es el archivo que abre el navegador en produccion.
 - `Labucal.html`: copia de trabajo historica del sitio. Debe mantenerse sincronizada con `index.html`.
 - `privacidade.html`: pagina de Politica de Privacidade en cumplimiento de la LGPD. Enlazada desde el footer del sitio principal.
+- `.github/workflows/update-reviews.yml`: workflow que cada 6 h consulta Google Places y actualiza `data/reviews.json`. Ver seccion "Avaliacoes do Google" mas abajo.
+- `scripts/fetch-reviews.js`: script Node ejecutado por el workflow. Llama a la Places API (New) y graba el JSON.
+- `data/reviews.json`: datos de avaliacoes del Google (rating, conteo, link al perfil, hasta 5 reviews con texto). **Auto-generado por el workflow — no editar a mano**. El sitio lo lee desde el navegador para hidratar el popup de avaliacoes.
 - `assets/brand/`: logo optimizado, favicon y apple touch icon.
 - `assets/decor/`: protesis transparentes decorativas usadas en animaciones por scroll.
 - `assets/labucal-images/`: fotos, fondo del hero, protesis principales y galeria.
@@ -239,6 +249,45 @@ Tambien hay un enlace a Google Maps para abrir ruta. Si cambia la direccion, act
 - Texto visible en footer.
 - URL del iframe OpenStreetMap.
 - URL de Google Maps.
+
+## Avaliacoes do Google (live data)
+
+El popup de avaliacoes en la esquina inferior izquierda se hidrata con datos reales del Google Business del laboratorio. El flujo:
+
+1. Un workflow `.github/workflows/update-reviews.yml` corre cada 6 horas.
+2. Ejecuta `scripts/fetch-reviews.js` que consulta la Places API (New) de Google.
+3. Graba `data/reviews.json` y lo commitea al `main` (solo si hubo cambios reales).
+4. El JS del sitio en el navegador hace `fetch('data/reviews.json')` al cargar la pagina y actualiza estrellas, rating y enlace del popup. Si el archivo todavia no existe, el popup queda con el conteudo estatico.
+
+### Setup inicial (una sola vez)
+
+1. **Crear un proyecto en Google Cloud Console**: <https://console.cloud.google.com/>
+2. **Habilitar Places API (New)** en el proyecto.
+3. **Crear una API key**: APIs & Services > Credentials > Create Credentials > API key. Restringir la key a "Places API (New)" en API restrictions.
+4. **Activar facturacion** en el proyecto (sin esto la API no responde). El plan free incluye USD 200 de credito mensual, mas que suficiente para 4 llamadas al dia.
+5. **Obtener el Place ID** del Labucal en Google Maps: <https://developers.google.com/maps/documentation/javascript/place-id#find-id>. Buscar "Labucal Sorocaba" y copiar el ID (empieza con `ChIJ...`).
+6. **Editar `.github/workflows/update-reviews.yml`** y reemplazar `REPLACE_WITH_PLACE_ID` por el Place ID real.
+7. **Crear el Secret en GitHub**: en <https://github.com/Pcxddg/labucal/settings/secrets/actions> > New repository secret > nombre `GOOGLE_PLACES_API_KEY` > valor la API key del paso 3.
+8. **Ejecutar el workflow manualmente la primera vez**: en la pestana Actions del repo > "Update Google Reviews" > Run workflow. Eso genera `data/reviews.json` por primera vez.
+
+A partir de ahi, el workflow corre solo cada 6 horas. Cada vez que un cliente deja una resena nueva en Google, en maximo 6 horas el sitio refleja el cambio.
+
+### Estructura del JSON
+
+```json
+{
+  "updatedAt": "2026-05-24T15:00:00.000Z",
+  "name": "Labucal",
+  "rating": 4.9,
+  "userRatingCount": 50,
+  "googleMapsUri": "https://maps.google.com/?cid=...",
+  "reviews": [ { "author": "...", "rating": 5, "text": "...", "relativeTime": "..." } ]
+}
+```
+
+### Costos
+
+Con 4 llamadas al dia (~120 al mes) usando el FieldMask actual (Pro + Atmosphere por incluir `reviews`), el costo mensual estimado es menor a USD 1, totalmente absorbido por el credito gratuito de USD 200 que Google da cada mes.
 
 ## Publicacion
 

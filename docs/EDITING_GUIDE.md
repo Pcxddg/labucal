@@ -298,6 +298,8 @@ gh api repos/Pcxddg/labucal/pages
 - Cambiar el color azul principal solo en una seccion.
 - Eliminar `loading="lazy"` en imagenes que estan debajo del hero.
 - Cambiar ids de secciones sin actualizar enlaces.
+- Editar `data/reviews.json` a mano. Es auto-generado por el workflow de GitHub Actions cada 6 horas — cualquier edicion manual sera sobreescrita en la siguiente corrida.
+- Olvidar reemplazar `REPLACE_WITH_PLACE_ID` en `.github/workflows/update-reviews.yml`. Sin eso el workflow falla y el popup de avaliacoes queda con datos estaticos. Ver seccion "Avaliacoes do Google" del README.
 
 ## Checklist de handoff
 

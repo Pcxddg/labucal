@@ -647,6 +647,35 @@
     font-size: 13px;
     font-weight: 600;
   }
+  /* Captura o scroll para não roubar a rolagem da página.
+     Libera com um clique do usuário; volta a capturar quando o mouse sai. */
+  .map-overlay {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: transparent;
+  }
+  .map-overlay::after {
+    content: "Clique no mapa para interagir";
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(10,27,61,0.85);
+    color: white;
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 12px; font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t) var(--ease);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .map-overlay:hover::after { opacity: 1; }
+  @media (hover: none) {
+    .map-overlay::after { opacity: 1; }
+  }
+  .map-overlay.inactive { pointer-events: none; }
+  .map-overlay.inactive::after { display: none; }
 
   /* ---------- FAQ ---------- */
   .faq { margin-top: 48px; max-width: 880px; }
@@ -1415,6 +1444,7 @@
         referrerpolicy="no-referrer-when-downgrade"
         src="https://www.openstreetmap.org/export/embed.html?bbox=-47.4634548%2C-23.5114267%2C-47.4534548%2C-23.5054267&amp;layer=mapnik&amp;marker=-23.5084267%2C-47.4584548">
       </iframe>
+      <div class="map-overlay" id="mapOverlay" aria-hidden="true"></div>
       <div class="map-info">
         <strong>Laboratório de prótese dentária</strong>
         <p>Rua Cônego Januário Barbosa, 225 · Jardim Vergueiro · Sorocaba, Brazil</p>
@@ -1932,6 +1962,15 @@
       }
     });
   });
+
+  // ---------- Map overlay: evita que a roda do mouse roube o scroll ----------
+  (function mapOverlay(){
+    const overlay = document.getElementById('mapOverlay');
+    const card = overlay && overlay.closest('.map-card');
+    if (!overlay || !card) return;
+    overlay.addEventListener('click', () => overlay.classList.add('inactive'));
+    card.addEventListener('mouseleave', () => overlay.classList.remove('inactive'));
+  })();
 
   // ---------- Cookie notice ----------
   (function cookieNotice(){

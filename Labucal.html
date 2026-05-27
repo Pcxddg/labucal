@@ -2082,10 +2082,17 @@ REGRAS DE RESPOSTA:
           }
         })
       });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) {
+        const errBody = await res.text();
+        console.error('[Labucalzinho] Gemini HTTP', res.status, errBody);
+        throw new Error('HTTP ' + res.status);
+      }
       const data = await res.json();
       const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-      if (!reply) throw new Error('empty');
+      if (!reply) {
+        console.error('[Labucalzinho] Resposta vazia ou bloqueada:', JSON.stringify(data));
+        throw new Error('empty');
+      }
       history.push({ role: 'model', parts: [{ text: reply }] });
       // Limita histórico a 12 turnos para não estourar tokens
       if (history.length > 12) history.splice(0, history.length - 12);

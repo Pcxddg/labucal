@@ -807,6 +807,25 @@
   }
   .msg.bot { background: var(--ink-800); border-bottom-left-radius: 4px; }
   .msg.me  { background: var(--ink-300); color: var(--ink-900); align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+  .msg.typing {
+    display: inline-flex; gap: 4px; align-items: center;
+    padding: 14px;
+    background: var(--ink-800);
+    border-bottom-left-radius: 4px;
+  }
+  .msg.typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    animation: lzTyping 1.4s var(--ease) infinite;
+  }
+  .msg.typing span:nth-child(2) { animation-delay: 0.18s; }
+  .msg.typing span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes lzTyping {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30%           { opacity: 1;   transform: translateY(-4px); }
+  }
+  .lz-input input:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .quick {
     display: flex; flex-wrap: wrap; gap: 6px;
@@ -1889,7 +1908,7 @@
     setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; e.currentTarget.reset(); }, 2400);
   });
 
-  // ---------- Labucalzinho ----------
+  // ---------- Labucalzinho (powered by Gemini) ----------
   const lzBtn   = document.getElementById('lzBtn');
   const lzPanel = document.getElementById('lzPanel');
   const lzBody  = document.getElementById('lzBody');
@@ -1914,39 +1933,164 @@
     lzBody.scrollTop = lzBody.scrollHeight;
     return d;
   };
+  const addTyping = () => {
+    const d = document.createElement('div');
+    d.className = 'msg bot typing';
+    d.setAttribute('aria-label', 'Labucalzinho está digitando');
+    d.innerHTML = '<span></span><span></span><span></span>';
+    lzBody.appendChild(d);
+    lzBody.scrollTop = lzBody.scrollHeight;
+    return d;
+  };
 
-  const botReplies = {
-    orcamento: "Perfeito. Me conta o tipo de prótese e a quantidade de peças. Em até 24h te envio uma proposta detalhada.",
-    prazo:     "Coroas unitárias: 5 a 7 dias úteis. Reabilitações maiores: 15 a 25 dias. Posso confirmar para o seu caso específico se quiser.",
-    agendar:   "Ótimo. Você prefere visitar o laboratório ou marcar uma call? Posso te encaixar ainda esta semana.",
-    default:   "Entendi. Vou te conectar com a equipe técnica para responder isso com precisão. Pode me deixar seu WhatsApp?"
+  // Gemini config. A chave deve estar restrita a https://pcxddg.github.io/* em Google Cloud.
+  const GEMINI_KEY = 'AIzaSyDioB6PR8THLbiP4II7XrFAabwDIv-TWTs';
+  const GEMINI_MODEL = 'gemini-2.5-flash';
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_KEY}`;
+
+  // Carrega contexto dinâmico (rating real) de data/reviews.json se disponível.
+  let liveContext = '';
+  (async function loadLive(){
+    try {
+      const r = await fetch('data/reviews.json', { cache: 'no-cache' });
+      if (!r.ok) return;
+      const d = await r.json();
+      if (d.rating && d.userRatingCount) {
+        const rs = Number(d.rating).toFixed(1).replace('.', ',');
+        liveContext = `\n\nAVALIAÇÕES ATUAIS NO GOOGLE: ${rs} estrelas em ${d.userRatingCount} avaliações.`;
+      }
+    } catch (e) {}
+  })();
+
+  const SYSTEM_PROMPT = `Você é o Labucalzinho, o assistente virtual do Labucal — laboratório de próteses dentárias em Sorocaba, SP. Você ajuda dentistas e clínicas com dúvidas sobre nossos serviços.
+
+CONTEXTO DO LABORATÓRIO:
+- Endereço: Rua Cônego Januário Barbosa, 225, Jardim Vergueiro, Sorocaba, SP
+- Telefone / WhatsApp: (15) 3418-6119
+- E-mail: contato@labucal.com.br
+- Instagram: @labucalprotese
+- Facebook: facebook.com/labucalprotese
+- Horário de atendimento: segunda a sexta, 8h às 18h
+- CNPJ: 12.720.218/0001-08
+
+SERVIÇOS:
+- Prótese parcial — reposição de dentes ausentes mantendo a estrutura natural remanescente.
+- Prótese total — restauração completa da arcada, com ajuste anatômico e estética cuidada.
+- Prótese fixa — soluções sobre dentes naturais ou implantes, com encaixe preciso e durabilidade.
+- Coroas e facetas — cerâmicas e resinas trabalhadas com refinamento.
+
+MATERIAIS COM QUE TRABALHAMOS:
+zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance, ligas metálicas certificadas. Indicamos o ideal para cada caso.
+
+PROCESSO (5 etapas):
+1. Solicitação — recebemos o caso do dentista com modelo e diretrizes.
+2. Análise técnica — viabilidade, materiais, cronograma.
+3. Modelagem — produção da peça com aferição em cada etapa.
+4. Controle — conferência dimensional, estética e funcional.
+5. Entrega — embalagem identificada e envio no prazo combinado.
+
+PRAZOS:
+- Coroas unitárias: 5 a 7 dias úteis.
+- Reabilitações completas: 15 a 25 dias.
+- O cronograma é sempre combinado caso a caso na abertura do pedido.
+
+LOGÍSTICA:
+- Atendemos todo o estado de São Paulo e demais capitais por logística rastreada com seguro.
+- Em Sorocaba e região, entrega própria sob demanda.
+- Código de rastreio enviado por WhatsApp.
+
+ORÇAMENTOS:
+- Resposta em até 24h após o envio do caso.
+- Sem custo de avaliação.
+
+REGRAS DE RESPOSTA:
+- Use português brasileiro, tom profissional, próximo e direto.
+- Respostas curtas: máximo 3 frases. Se a dúvida é técnica e complexa, direcione para WhatsApp (15) 3418-6119 ou e-mail contato@labucal.com.br.
+- Nunca invente valores em reais, prazos específicos para casos individuais ou materiais fora da lista acima.
+- Para orçamentos formais, sempre direcione para o WhatsApp ou e-mail.
+- Se a pergunta for fora do escopo do laboratório (clima, política, etc.), redirecione gentilmente para o tema "próteses dentárias e parceria com o Labucal".
+- Não responda perguntas pessoais sobre você (você é um assistente, não tem vida pessoal nem opiniões próprias).
+- Sem emojis, ou no máximo 1 por resposta se fizer sentido.`;
+
+  const FALLBACK = {
+    prazo:     "Coroas unitárias: 5 a 7 dias úteis. Reabilitações maiores: 15 a 25 dias. Posso confirmar para o seu caso pelo WhatsApp (15) 3418-6119.",
+    orcamento: "Para orçamento detalhado, mande os dados do caso pelo WhatsApp (15) 3418-6119 ou e-mail contato@labucal.com.br. Resposta em até 24h.",
+    agendar:   "Você pode nos visitar de segunda a sexta, 8h às 18h, em Sorocaba. Para agendar, mande mensagem no WhatsApp (15) 3418-6119.",
+    default:   "Posso te conectar com a equipe técnica pelo WhatsApp (15) 3418-6119 ou e-mail contato@labucal.com.br."
+  };
+  const fallbackFor = (text) => {
+    const lower = text.toLowerCase();
+    if (/prazo|tempo|quando|dias|demora/.test(lower)) return FALLBACK.prazo;
+    if (/or[çc]ament|valor|pre[çc]o|custo|quanto/.test(lower)) return FALLBACK.orcamento;
+    if (/visit|agend|reun|conhecer|hor[áa]rio/.test(lower)) return FALLBACK.agendar;
+    return FALLBACK.default;
+  };
+
+  const history = [];
+  let pending = false;
+
+  const askGemini = async (userMessage) => {
+    history.push({ role: 'user', parts: [{ text: userMessage }] });
+    try {
+      const res = await fetch(GEMINI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT + liveContext }] },
+          contents: history,
+          generationConfig: {
+            temperature: 0.6,
+            maxOutputTokens: 300,
+            candidateCount: 1
+          }
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+      if (!reply) throw new Error('empty');
+      history.push({ role: 'model', parts: [{ text: reply }] });
+      // Limita histórico a 12 turnos para não estourar tokens
+      if (history.length > 12) history.splice(0, history.length - 12);
+      return reply;
+    } catch (e) {
+      console.warn('Gemini fallback:', e.message);
+      history.pop();
+      return fallbackFor(userMessage);
+    }
+  };
+
+  const handleUserInput = async (text) => {
+    if (pending || !text) return;
+    pending = true;
+    addMsg(text, 'me');
+    const typing = addTyping();
+    lzInput.disabled = true;
+    try {
+      const reply = await askGemini(text);
+      typing.remove();
+      addMsg(reply, 'bot');
+    } finally {
+      pending = false;
+      lzInput.disabled = false;
+      if (lzPanel.classList.contains('open')) lzInput.focus();
+    }
   };
 
   lzBody.addEventListener('click', (e) => {
     const btn = e.target.closest('.quick button');
     if (!btn) return;
-    const key = btn.dataset.q;
     const label = btn.textContent;
-    // remove quick chips
     btn.parentElement.remove();
-    addMsg(label, 'me');
-    setTimeout(() => addMsg(botReplies[key] || botReplies.default, 'bot'), 600);
+    handleUserInput(label);
   });
 
   lzForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const v = lzInput.value.trim();
     if (!v) return;
-    addMsg(v, 'me');
     lzInput.value = '';
-    setTimeout(() => {
-      const lower = v.toLowerCase();
-      let key = 'default';
-      if (lower.includes('prazo') || lower.includes('tempo')) key = 'prazo';
-      else if (lower.includes('orçament') || lower.includes('valor') || lower.includes('preço')) key = 'orcamento';
-      else if (lower.includes('visit') || lower.includes('agend') || lower.includes('reun')) key = 'agendar';
-      addMsg(botReplies[key], 'bot');
-    }, 700);
+    handleUserInput(v);
   });
 
   // Smooth scroll for nav anchors (extra reliability across browsers)

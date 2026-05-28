@@ -202,7 +202,7 @@ No usar animaciones CSS infinitas para estas protesis. La intencion es que respo
 Datos oficiales actuales:
 
 ```text
-Telefone: (15) 3418-6119
+Telefone / WhatsApp: (15) 99110-7117
 E-mail: contato@labucal.com.br
 Facebook: https://www.facebook.com/labucalprotese
 Instagram: https://www.instagram.com/labucalprotese/
@@ -212,7 +212,7 @@ Endereco: Rua Conego Januario Barbosa, 225, Jardim Vergueiro, Sorocaba, Brazil
 Cuando se cambie un dato, buscarlo en todo el proyecto:
 
 ```powershell
-rg "3418|contato@|labucalprotese|Conego" .
+rg "99110|contato@|labucalprotese|Conego" .
 ```
 
 ## Mapa

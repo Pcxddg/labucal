@@ -231,7 +231,7 @@ Evitar poner decoraciones encima de formularios, botones o texto principal. Siem
 
 Datos actuales:
 
-- Telefono: `(15) 3418-6119`
+- Telefono / WhatsApp: `(15) 99110-7117`
 - E-mail: `contato@labucal.com.br`
 - Facebook: <https://www.facebook.com/labucalprotese>
 - Instagram: <https://www.instagram.com/labucalprotese/>

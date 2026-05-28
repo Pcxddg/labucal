@@ -455,6 +455,53 @@
   }
   .service:hover .more { gap: 12px; }
 
+  /* ---------- Servicios secundarios ---------- */
+  .services-secondary { margin-top: 56px; }
+  .services-sec-title {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 20px;
+  }
+  .services-sec-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .service-sm {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+    transition: transform var(--t) var(--ease), background var(--t) var(--ease), border-color var(--t) var(--ease);
+  }
+  .service-sm:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(123,167,225,0.35);
+    transform: translateY(-2px);
+  }
+  .service-sm-icon {
+    width: 36px; height: 36px;
+    color: var(--ink-300);
+    display: grid; place-items: center;
+  }
+  .service-sm-icon svg { width: 100%; height: 100%; }
+  .service-sm h4 {
+    margin: 0 0 4px;
+    font-size: 14px; font-weight: 600;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .service-sm p {
+    margin: 0;
+    font-size: 13px; line-height: 1.5;
+    color: rgba(255,255,255,0.65);
+  }
+
   /* ---------- Process ---------- */
   .process {
     margin-top: 72px;
@@ -1001,6 +1048,7 @@
   /* ---------- Responsive ---------- */
   @media (max-width: 1024px) {
     .pillars { grid-template-columns: 1fr; }
+    .services-sec-grid { grid-template-columns: repeat(2, 1fr); }
     .process-track { grid-template-columns: 1fr; gap: 18px; }
     .process-line { display: none; }
     .step .num { font-size: 44px; }
@@ -1017,6 +1065,7 @@
     .section-prosthesis { display: none; }
     .constellation-wrap { max-width: 420px; margin: 0 auto; }
     .services-grid { grid-template-columns: 1fr; }
+    .services-sec-grid { grid-template-columns: 1fr; }
     .gallery { grid-template-columns: 1fr; }
     .g-tall { aspect-ratio: 4/5; grid-row: auto; }
     .gallery-row2 { grid-template-columns: 1fr 1fr; }
@@ -1234,6 +1283,70 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </article>
+    </div>
+
+    <div class="services-secondary reveal">
+      <h3 class="services-sec-title">Também trabalhamos com</h3>
+      <div class="services-sec-grid">
+        <article class="service-sm" tabindex="0">
+          <div class="service-sm-icon">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+              <rect x="5" y="7" width="26" height="17" rx="1.5"/>
+              <path d="M14 24 L 14 27 M22 24 L 22 27 M10 27 L 26 27"/>
+              <path d="M14 12 C 15 10, 17 9, 18 9 C 19 9, 21 10, 22 12 C 21 16, 19 18, 18 18 C 17 18, 15 16, 14 12 Z" opacity="0.5"/>
+              <circle cx="10" cy="11" r="0.5" fill="currentColor"/>
+              <circle cx="12" cy="11" r="0.5" fill="currentColor"/>
+              <circle cx="24" cy="11" r="0.5" fill="currentColor"/>
+              <circle cx="26" cy="11" r="0.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <h4>CAD</h4>
+            <p>Planejamento e modelagem digital com tecnologia computer-aided design.</p>
+          </div>
+        </article>
+
+        <article class="service-sm" tabindex="0">
+          <div class="service-sm-icon">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 14 C 8 8, 14 6, 18 6 C 22 6, 28 8, 30 14 C 28 17, 26 17, 24 16 C 22 17, 20 17, 18 16 C 16 17, 14 17, 12 16 C 10 17, 8 17, 6 14 Z"/>
+              <path d="M6 22 C 8 28, 14 30, 18 30 C 22 30, 28 28, 30 22 C 28 19, 26 19, 24 20 C 22 19, 20 19, 18 20 C 16 19, 14 19, 12 20 C 10 19, 8 19, 6 22 Z"/>
+            </svg>
+          </div>
+          <div>
+            <h4>PT — Prótese Total</h4>
+            <p>Reabilitação completa da arcada em casos de edentulismo.</p>
+          </div>
+        </article>
+
+        <article class="service-sm" tabindex="0">
+          <div class="service-sm-icon">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+              <path d="M8 20 C 10 12, 16 9, 18 9 C 20 9, 26 12, 28 20 C 26 24, 23 24, 21 23 C 20 24, 18 24, 18 23 C 18 24, 16 24, 15 23 C 13 24, 10 24, 8 20 Z"/>
+              <path d="M6 18 C 4 18, 3 20, 4 23 L 8 22" />
+              <path d="M30 18 C 32 18, 33 20, 32 23 L 28 22" />
+              <path d="M13 23 L 23 23" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <h4>PPR — Prótese Parcial Removível</h4>
+            <p>Estrutura com grampos de retenção em dentes remanescentes.</p>
+          </div>
+        </article>
+
+        <article class="service-sm" tabindex="0">
+          <div class="service-sm-icon">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+              <path d="M13 10 C 14 7, 17 5, 18 5 C 19 5, 22 7, 23 10 C 23 17, 21 25, 18 28 C 15 25, 13 17, 13 10 Z"/>
+              <path d="M16 12 C 17 10, 18 10, 18 10 C 18 10, 19 10, 20 12 C 20 17, 19 22, 18 23 C 17 22, 16 17, 16 12 Z" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Metalocerâmica</h4>
+            <p>Coroas com infraestrutura metálica e cobertura cerâmica.</p>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -2051,11 +2164,17 @@ CLIENTES:
 - Atendemos exclusivamente dentistas e clínicas: autônomos (CPF) e empresas (CNPJ).
 - NÃO atendemos pacientes diretamente. Se um paciente perguntar sobre tratamento, oriente-o gentilmente a procurar o dentista de confiança, que entrará em contato com o Labucal.
 
-SERVIÇOS (todos sob prescrição/indicação do dentista):
+SERVIÇOS PRINCIPAIS (todos sob prescrição/indicação do dentista):
 - Prótese Dentária — parcial, total, fixa, coroas e facetas. Confecção da peça a partir do modelo e diretrizes enviados pelo dentista.
 - Implantes Dentários — componentes protéticos (coroa, abutment, barra) sobre implantes JÁ instalados pelo cirurgião-dentista. NÃO realizamos a cirurgia de implante em si.
 - Clareamento Dental — confecção de placas e moldeiras personalizadas para clareamento caseiro supervisionado pelo dentista. NÃO realizamos o clareamento de consultório.
 - Alinhadores Transparentes — confecção dos alinhadores a partir do escaneamento ou modelo enviado pelo dentista, com acompanhamento técnico em cada etapa do tratamento.
+
+TAMBÉM TRABALHAMOS COM (técnicas e especialidades dentro dos serviços acima):
+- CAD — planejamento e modelagem digital com tecnologia computer-aided design para confecção de peças com precisão milimétrica.
+- PT (Prótese Total) — reabilitação completa da arcada para casos de edentulismo (perda total dos dentes).
+- PPR (Prótese Parcial Removível) — estrutura com grampos metálicos de retenção nos dentes remanescentes.
+- Metalocerâmica — coroas com infraestrutura metálica e cobertura cerâmica, combinando resistência e estética.
 
 MATERIAIS COM QUE TRABALHAMOS:
 zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance, ligas metálicas certificadas. Indicamos o ideal para cada caso.

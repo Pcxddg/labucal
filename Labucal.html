@@ -1980,10 +1980,10 @@
     return d;
   };
 
-  // Gemini config. A chave deve estar restrita a https://pcxddg.github.io/* em Google Cloud.
-  const GEMINI_KEY = 'AIzaSyDioB6PR8THLbiP4II7XrFAabwDIv-TWTs';
-  const GEMINI_MODEL = 'gemini-2.5-flash';
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_KEY}`;
+  // URL do proxy que repassa as mensagens ao Gemini (ex.: Cloudflare Worker).
+  // A chave da API fica APENAS no proxy, nunca neste arquivo (que é público no GitHub).
+  // Enquanto estiver vazio, o chat opera só com as respostas fallback hardcoded.
+  const GEMINI_PROXY_URL = '';
 
   // Carrega contexto dinâmico (rating real) de data/reviews.json se disponível.
   let liveContext = '';
@@ -2068,8 +2068,12 @@ REGRAS DE RESPOSTA:
 
   const askGemini = async (userMessage) => {
     history.push({ role: 'user', parts: [{ text: userMessage }] });
+    if (!GEMINI_PROXY_URL) {
+      history.pop();
+      return fallbackFor(userMessage);
+    }
     try {
-      const res = await fetch(GEMINI_URL, {
+      const res = await fetch(GEMINI_PROXY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -6,6 +6,10 @@
 <title>Labucal — Laboratório de próteses dentárias</title>
 <meta name="description" content="Laboratório de prótese dentária em Sorocaba/SP. Próteses, implantes, clareamento e alinhadores transparentes para dentistas e clínicas. Prazos cumpridos e precisão milimétrica." />
 <link rel="canonical" href="https://labucal.pages.dev/" />
+<meta name="theme-color" content="#0A1B3D" />
+<meta name="color-scheme" content="light" />
+
+<link rel="preconnect" href="https://labucal-gemini-proxy.keanukeanom.workers.dev" crossorigin />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -119,10 +123,12 @@
     background: var(--bone);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
   }
   img, svg { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  img { height: auto; }
+  a { color: inherit; text-decoration: none; touch-action: manipulation; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; touch-action: manipulation; }
 
   /* Focus visible */
   :focus-visible {
@@ -156,6 +162,7 @@
   }
 
   section { position: relative; }
+  section[id] { scroll-margin-top: 80px; }
   section.with-prosthesis {
     overflow: hidden;
   }
@@ -709,7 +716,7 @@
     padding: 10px 0;
     transition: border-color var(--t) var(--ease);
   }
-  .field input:focus, .field textarea:focus {
+  .field input:focus-visible, .field textarea:focus-visible {
     outline: none; border-bottom-color: white;
   }
   .field textarea { min-height: 90px; resize: vertical; }
@@ -974,7 +981,10 @@
     flex: 1; background: transparent; border: 0; color: white; font: inherit;
     font-size: 14px; padding: 8px 4px;
   }
-  .lz-input input:focus { outline: none; }
+  .lz-input input:focus-visible {
+    outline: none;
+    box-shadow: inset 0 -1px 0 var(--ink-300);
+  }
   .lz-send {
     width: 34px; height: 34px; border-radius: 50%;
     background: var(--ink-300); color: var(--ink-900);
@@ -1219,9 +1229,11 @@
       <div class="prosthesis assembly" id="prosthesisAssembly">
         <img class="prosthesis-part upper"
              src="assets/labucal-images/prosthesis-part-01-upper.webp"
+             width="1254" height="1254" fetchpriority="high"
              alt="Parte superior de prótese dentária" />
         <img class="prosthesis-part lower"
              src="assets/labucal-images/prosthesis-part-02-lower.webp"
+             width="1254" height="1254" fetchpriority="high"
              alt="Parte inferior de prótese dentária" />
       </div>
     </div>
@@ -1235,8 +1247,8 @@
 
 <!-- ============ VALUE PROP ============ -->
 <section class="light pad with-prosthesis" id="sobre" aria-labelledby="valor-h">
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">Sobre o Labucal</span>
@@ -1270,8 +1282,8 @@
 
 <!-- ============ SERVICES ============ -->
 <section class="dark pad with-prosthesis" id="servicos" aria-labelledby="serv-h">
-  <img class="section-prosthesis decor-left decor-low" data-scroll-decor="left" src="assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-small decor-high" data-scroll-decor="right" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-low" data-scroll-decor="left" src="assets/decor/decor-partial.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-high" data-scroll-decor="right" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">O que fazemos</span>
@@ -1280,7 +1292,7 @@
     <div class="services-grid">
       <article class="service reveal" tabindex="0">
         <div class="service-thumb">
-          <img src="assets/labucal-images/service-protese.jpg" alt="Próteses dentárias trabalhadas em bancada de laboratório" loading="lazy" />
+          <img src="assets/labucal-images/service-protese.jpg" width="900" height="600" alt="Próteses dentárias trabalhadas em bancada de laboratório" loading="lazy" />
         </div>
         <h3>Prótese Dentária</h3>
         <p>Parcial, total e fixa. Coroas e facetas em zircônia, dissilicato ou cerâmica. Confecção a partir do modelo e diretrizes do dentista.</p>
@@ -1290,7 +1302,7 @@
       </article>
       <article class="service reveal" tabindex="0">
         <div class="service-thumb">
-          <img src="assets/labucal-images/service-implantes.jpg" alt="Componente protético sobre implante dentário" loading="lazy" />
+          <img src="assets/labucal-images/service-implantes.jpg" width="900" height="600" alt="Componente protético sobre implante dentário" loading="lazy" />
         </div>
         <h3>Implantes Dentários</h3>
         <p>Componentes protéticos sobre implantes já instalados pelo cirurgião. Coroas e abutments personalizados, sob indicação do dentista.</p>
@@ -1300,7 +1312,7 @@
       </article>
       <article class="service reveal" tabindex="0">
         <div class="service-thumb">
-          <img src="assets/labucal-images/service-clareamento.jpg" alt="Sorriso com dentes brancos após clareamento dental" loading="lazy" />
+          <img src="assets/labucal-images/service-clareamento.jpg" width="900" height="600" alt="Sorriso com dentes brancos após clareamento dental" loading="lazy" />
         </div>
         <h3>Clareamento Dental</h3>
         <p>Placas e moldeiras personalizadas para clareamento caseiro. Sob prescrição da clínica, com acompanhamento do dentista.</p>
@@ -1310,7 +1322,7 @@
       </article>
       <article class="service reveal" tabindex="0">
         <div class="service-thumb">
-          <img src="assets/labucal-images/service-alinhadores.jpg" alt="Alinhadores transparentes ortodônticos" loading="lazy" />
+          <img src="assets/labucal-images/service-alinhadores.jpg" width="900" height="600" alt="Alinhadores transparentes ortodônticos" loading="lazy" />
         </div>
         <h3>Alinhadores Transparentes</h3>
         <p>Confecção dos alinhadores a partir do escaneamento ou modelo enviado pelo dentista, com acompanhamento técnico em cada etapa do tratamento.</p>
@@ -1388,8 +1400,8 @@
 
 <!-- ============ PROCESS ============ -->
 <section class="light pad with-prosthesis" id="processo" aria-labelledby="proc-h">
-  <img class="section-prosthesis decor-right decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">Como trabalhamos</span>
@@ -1431,8 +1443,8 @@
 
 <!-- ============ GALLERY ============ -->
 <section class="dark pad with-prosthesis" id="galeria" aria-labelledby="gal-h">
-  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">Galeria</span>
@@ -1442,7 +1454,7 @@
     <div class="gallery reveal">
       <div class="g-item g-tall">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-articulador.jpg" alt="Modelo odontologico montado em articulador de laboratorio" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-articulador.jpg" width="1000" height="1334" alt="Modelo odontologico montado em articulador de laboratorio" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1453,7 +1465,7 @@
       </div>
       <div class="g-item g-wide">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-modelo-arcada-01.jpg" alt="Modelo de arcada com dentes artificiais em bancada" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-modelo-arcada-01.jpg" width="1916" height="920" alt="Modelo de arcada com dentes artificiais em bancada" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1464,7 +1476,7 @@
       </div>
       <div class="g-item g-wide">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-anteriores.jpg" alt="Close-up de dentes anteriores com acabamento estetico" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-anteriores.jpg" width="1228" height="656" alt="Close-up de dentes anteriores com acabamento estetico" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1478,7 +1490,7 @@
     <div class="gallery-row2 reveal">
       <div class="g-item g-square">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-coroas-modelo.jpg" alt="Coroas posicionadas sobre modelo odontologico" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-coroas-modelo.jpg" width="2160" height="1752" alt="Coroas posicionadas sobre modelo odontologico" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1489,7 +1501,7 @@
       </div>
       <div class="g-item g-square">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-emax-zirconia.jpg" alt="Comparacao visual entre coroa E-max e coroa de zirconia" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-emax-zirconia.jpg" width="1204" height="672" alt="Comparacao visual entre coroa E-max e coroa de zirconia" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1500,7 +1512,7 @@
       </div>
       <div class="g-item g-square">
         <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-modelo-arcada-02.jpg" alt="Modelo de arcada dentaria para planejamento de protese" loading="lazy" />
+          <img src="assets/labucal-images/lab-gallery-modelo-arcada-02.jpg" width="1916" height="920" alt="Modelo de arcada dentaria para planejamento de protese" loading="lazy" />
         </div>
         <div class="overlay">
           <div>
@@ -1514,8 +1526,8 @@
 </section>
 <!-- ============ NETWORK / CONSTELLATION ============ -->
 <section class="light pad with-prosthesis" id="rede" aria-labelledby="rede-h">
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="left" src="assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-partial.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="left" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">Rede</span>
@@ -1558,8 +1570,8 @@
 
 <!-- ============ CONTACT ============ -->
 <section class="dark pad with-prosthesis" id="contato" aria-labelledby="ctt-h">
-  <img class="section-prosthesis decor-left decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
   <div class="container">
     <div class="section-head reveal">
       <span class="overline">Contato</span>
@@ -1635,7 +1647,7 @@
         </div>
         <div class="field">
           <label for="f-cont">E-mail ou WhatsApp</label>
-          <input id="f-cont" name="contato" type="text" required />
+          <input id="f-cont" name="contato" type="text" autocomplete="email" inputmode="email" required />
         </div>
         <div class="field">
           <label for="f-msg">Mensagem</label>
@@ -1785,7 +1797,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-  <div class="lz-body" id="lzBody">
+  <div class="lz-body" id="lzBody" aria-live="polite" aria-atomic="false">
     <div class="msg bot">Olá! Sou o Labucalzinho, assistente do laboratório. Tiro dúvidas sobre próteses, materiais, prazos e orçamentos. No que posso te ajudar?</div>
     <div class="quick">
       <button data-q="orcamento">Pedir orçamento</button>

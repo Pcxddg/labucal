@@ -1980,10 +1980,10 @@
     return d;
   };
 
-  // URL do proxy que repassa as mensagens ao Gemini (ex.: Cloudflare Worker).
-  // A chave da API fica APENAS no proxy, nunca neste arquivo (que é público no GitHub).
-  // Enquanto estiver vazio, o chat opera só com as respostas fallback hardcoded.
-  const GEMINI_PROXY_URL = '';
+  // URL do proxy Cloudflare Worker que repassa as mensagens ao Gemini.
+  // A chave da API fica como Secret encriptado no Worker, nunca neste arquivo.
+  // Se vazio ou se a request falhar, o chat opera com as respostas fallback hardcoded.
+  const GEMINI_PROXY_URL = 'https://labucal-gemini-proxy.keanukeanom.workers.dev';
 
   // Carrega contexto dinâmico (rating real) de data/reviews.json se disponível.
   let liveContext = '';

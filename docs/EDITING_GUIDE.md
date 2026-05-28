@@ -75,22 +75,22 @@ Para una tarjeta oscura, seguir el patron de `.service`.
 
 ### Servicios
 
-Las miniaturas viven en:
+Hoy son cuatro tarjetas que viven en la seccion `#servicos` y usan SVG inline (no fotos JPG). Cada card tiene `data-service` para tracking futuro:
 
-```text
-assets/labucal-images/service-parcial.jpg
-assets/labucal-images/service-total.jpg
-assets/labucal-images/service-fixa.jpg
-assets/labucal-images/service-coroas.jpg
-```
+- `data-service="protese"` — Prótese Dentária (parcial, total, fixa, coroas, facetas)
+- `data-service="implantes"` — Implantes Dentários (componentes proteticos sobre implante ya instalado)
+- `data-service="clareamento"` — Clareamento Dental (placas y moldeiras)
+- `data-service="alinhadores"` — Alinhadores Transparentes
 
-Recomendaciones:
+Importante: el laboratorio trabaja **solo B2B** (dentistas autonomos con CPF y clinicas con CNPJ). Todos los servicios son **sob prescripcion del dentista**. No atendemos pacientes directos. Mantener ese encuadre en cualquier copy nuevo.
 
-- formato JPG;
-- ancho 1000-1400 px;
-- peso ideal menor a 250 KB;
-- escenas reales de laboratorio, dentistas o protesis;
-- evitar imagenes de stock muy genericas.
+Si en algun momento se quieren reintroducir fotos JPG en las cards en lugar de los iconos SVG actuales, usar los mismos requisitos de antes:
+
+- formato JPG, ancho 1000-1400 px, peso menor a 250 KB
+- escenas reales de laboratorio o de la pieza terminada
+- evitar imagenes de stock genericas
+
+Nota: los archivos `assets/labucal-images/service-parcial.jpg`, `service-total.jpg`, `service-fixa.jpg` y `service-coroas.jpg` quedaron huerfanos despues del cambio de servicios y se pueden borrar para limpiar el repo.
 
 ### Galeria
 

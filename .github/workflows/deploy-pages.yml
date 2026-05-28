@@ -1,0 +1,30 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  # Quando o bot de avaliações commita, encadeia o deploy
+  workflow_run:
+    workflows: ["Update Google Reviews"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Só roda se foi push/dispatch OU se o workflow encadeado teve sucesso
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=labucal --branch=main --commit-dirty=true

@@ -14,10 +14,12 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 ```text
 .
 |-- index.html
-|-- Labucal.html
 |-- privacidade.html
+|-- sitemap.xml
+|-- robots.txt
 |-- .github/
 |   `-- workflows/
+|       |-- deploy-pages.yml
 |       `-- update-reviews.yml
 |-- scripts/
 |   `-- fetch-reviews.js
@@ -32,28 +34,17 @@ Este proyecto no usa framework ni build step. Todo esta hecho con HTML, CSS y Ja
 
 ### Archivos principales
 
-- `index.html`: archivo de entrada publicado por GitHub Pages. Es el archivo que abre el navegador en produccion.
-- `Labucal.html`: copia de trabajo historica del sitio. Debe mantenerse sincronizada con `index.html`.
-- `privacidade.html`: pagina de Politica de Privacidade en cumplimiento de la LGPD. Enlazada desde el footer del sitio principal.
+- `index.html`: archivo principal del sitio. Es el unico HTML del sitio principal (antes habia un `Labucal.html` duplicado que se eliminó para evitar tener dos fuentes de verdad).
+- `privacidade.html`: pagina de Politica de Privacidade en cumplimiento de la LGPD. Enlazada desde el footer.
+- `sitemap.xml` y `robots.txt`: mapa de URLs y reglas de crawl para buscadores.
+- `.github/workflows/deploy-pages.yml`: deploya el sitio a Cloudflare Pages en cada push a main y despues de cada update del bot de reviews.
 - `.github/workflows/update-reviews.yml`: workflow que cada 6 h consulta Google Places y actualiza `data/reviews.json`. Ver seccion "Avaliacoes do Google" mas abajo.
-- `scripts/fetch-reviews.js`: script Node ejecutado por el workflow. Llama a la Places API (New) y graba el JSON.
-- `data/reviews.json`: datos de avaliacoes del Google (rating, conteo, link al perfil, hasta 5 reviews con texto). **Auto-generado por el workflow — no editar a mano**. El sitio lo lee desde el navegador para hidratar el popup de avaliacoes.
+- `scripts/fetch-reviews.js`: script Node ejecutado por el workflow de reviews.
+- `data/reviews.json`: datos de avaliacoes del Google (rating, conteo, link al perfil, hasta 5 reviews con texto). **Auto-generado por el workflow — no editar a mano**. El sitio lo lee en el navegador para hidratar el popup de avaliacoes.
 - `assets/brand/`: logo optimizado, favicon y apple touch icon.
 - `assets/decor/`: protesis transparentes decorativas usadas en animaciones por scroll.
 - `assets/labucal-images/`: fotos, fondo del hero, protesis principales y galeria.
-- `.gitignore`: ignora el logo fuente pesado original y carpetas temporales.
-
-Importante: si se modifica `Labucal.html`, copiar el resultado a `index.html` antes de publicar:
-
-```powershell
-Copy-Item -LiteralPath "Labucal.html" -Destination "index.html" -Force
-```
-
-Si se modifica `index.html`, hacer el movimiento inverso:
-
-```powershell
-Copy-Item -LiteralPath "index.html" -Destination "Labucal.html" -Force
-```
+- `.gitignore`: ignora el logo fuente pesado original, carpetas temporales y `assets/incoming/`.
 
 ## Identidad visual
 
@@ -327,7 +318,7 @@ Flujo recomendado:
 
 ```powershell
 git status -sb
-git add Labucal.html index.html assets docs README.md
+git add index.html assets docs README.md
 git commit -m "Descripcion corta del cambio"
 git push
 ```
@@ -346,7 +337,7 @@ El estado debe terminar en:
 
 ## Checklist antes de publicar
 
-- `index.html` y `Labucal.html` estan sincronizados.
+- Solo se trabaja en `index.html` (no hay duplicado que sincronizar).
 - No hay capturas temporales en `assets/`.
 - No se subio el logo fuente pesado original.
 - Todas las rutas `src="assets/..."`, `href="assets/..."` y `url("assets/...")` existen.

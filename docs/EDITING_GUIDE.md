@@ -17,20 +17,17 @@ Cuando se agregue una nueva pieza, debe sentirse parte de ese sistema. Evitar se
 
 ## Editar texto
 
-Los textos visibles estan directamente en HTML. Para cambiar un titulo o parrafo:
+Los textos visibles estan directamente en `index.html`. Para cambiar un titulo o parrafo:
 
 1. Buscar el texto exacto con `rg`.
-2. Editar en `Labucal.html`.
-3. Copiar a `index.html`.
-4. Revisar que no se rompan saltos de linea o acentos.
+2. Editar en `index.html`.
+3. Revisar que no se rompan saltos de linea o acentos.
 
 Ejemplo:
 
 ```powershell
-rg "Vamos conversar" Labucal.html
+rg "Vamos conversar" index.html
 ```
-
-No editar solo `index.html` si se quiere mantener `Labucal.html` como copia sincronizada.
 
 ## Agregar una seccion nueva
 
@@ -257,31 +254,27 @@ El sitio debe seguir siendo rapido. Reglas:
 
 ## Publicar cambios
 
-1. Sincronizar HTML:
-
-```powershell
-Copy-Item -LiteralPath "Labucal.html" -Destination "index.html" -Force
-```
-
-2. Revisar estado:
+1. Revisar estado:
 
 ```powershell
 git status -sb
 git diff --stat
 ```
 
-3. Commit:
+2. Commit:
 
 ```powershell
-git add Labucal.html index.html assets docs README.md
+git add index.html assets docs README.md
 git commit -m "Descripcion del cambio"
 ```
 
-4. Push:
+3. Push:
 
 ```powershell
 git push
 ```
+
+El push dispara automaticamente el workflow `deploy-pages.yml`, que publica en Cloudflare Pages en ~30 segundos.
 
 5. Confirmar Pages:
 
@@ -291,7 +284,6 @@ gh api repos/Pcxddg/labucal/pages
 
 ## Errores comunes
 
-- Editar `Labucal.html` y olvidar `index.html`.
 - Subir capturas temporales a `assets/`.
 - Usar la imagen original pesada del logo en vez de las optimizadas.
 - Poner decoraciones encima de texto o formulario.
@@ -308,9 +300,9 @@ gh api repos/Pcxddg/labucal/pages
 Antes de entregar a otro programador:
 
 - Explicar que es un sitio estatico sin build.
-- Indicar que GitHub Pages publica `index.html`.
+- Indicar que Cloudflare Pages publica `index.html` desde la rama `main` via el workflow `deploy-pages.yml`.
 - Mostrar donde estan las variables CSS.
 - Mostrar donde estan las animaciones JS.
 - Mostrar carpetas de assets.
-- Confirmar que tiene acceso al repo GitHub.
-- Confirmar que sabe sincronizar `Labucal.html` e `index.html`.
+- Confirmar que tiene acceso al repo GitHub y a la cuenta de Cloudflare.
+- Confirmar que entiende el flujo automatico de avaliacoes del Google (workflow `update-reviews.yml` -> `data/reviews.json` -> popup).

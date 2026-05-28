@@ -9,6 +9,11 @@ on:
 permissions:
   contents: write
 
+# Força que as actions JavaScript rodem em Node 24 (evita o aviso de
+# deprecação do Node 20, que sai do runner em setembro/2026).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   update-reviews:
     runs-on: ubuntu-latest
@@ -24,7 +29,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # Node 22 LTS (Node 20 chegou ao EOL em abril/2026).
+          node-version: '22'
 
       - name: Fetch reviews from Google Places API
         env:

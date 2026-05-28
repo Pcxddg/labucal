@@ -13,6 +13,11 @@ permissions:
   contents: read
   deployments: write
 
+# Força que as actions JavaScript rodem em Node 24, evitando o aviso
+# de deprecação do Node 20 (que será removido em setembro/2026).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

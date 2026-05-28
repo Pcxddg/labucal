@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Pastas internas que não devem ser indexadas
+Disallow: /scripts/
+Disallow: /.github/
+Disallow: /data/
+Disallow: /docs/
+
+Sitemap: https://labucal.pages.dev/sitemap.xml

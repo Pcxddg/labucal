@@ -126,8 +126,8 @@ No usar ese archivo directamente en el HTML. Usar las versiones optimizadas:
 ### Imagenes principales
 
 - `assets/labucal-images/hero-lab-bg.jpg`: fondo fotografico del hero, con overlay azul.
-- `assets/labucal-images/prosthesis-part-01-upper.png`: parte superior de la protesis animada del hero.
-- `assets/labucal-images/prosthesis-part-02-lower.png`: parte inferior de la protesis animada del hero.
+- `assets/labucal-images/prosthesis-part-01-upper.webp`: parte superior de la protesis animada del hero.
+- `assets/labucal-images/prosthesis-part-02-lower.webp`: parte inferior de la protesis animada del hero.
 - `assets/labucal-images/gallery-01.jpg` a `gallery-06.jpg`: galeria.
 - `assets/labucal-images/service-*.jpg`: miniaturas de servicios.
 
@@ -171,8 +171,8 @@ Markup:
 
 ```html
 <div class="prosthesis assembly" id="prosthesisAssembly">
-  <img class="prosthesis-part upper" src="assets/labucal-images/prosthesis-part-01-upper.png" alt="..." />
-  <img class="prosthesis-part lower" src="assets/labucal-images/prosthesis-part-02-lower.png" alt="..." />
+  <img class="prosthesis-part upper" src="assets/labucal-images/prosthesis-part-01-upper.webp" alt="..." />
+  <img class="prosthesis-part lower" src="assets/labucal-images/prosthesis-part-02-lower.webp" alt="..." />
 </div>
 ```
 

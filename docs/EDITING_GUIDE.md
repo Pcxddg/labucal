@@ -126,8 +126,8 @@ assets/labucal-images/hero-lab-bg.jpg
 2. Protesis animada en dos partes:
 
 ```text
-assets/labucal-images/prosthesis-part-01-upper.png
-assets/labucal-images/prosthesis-part-02-lower.png
+assets/labucal-images/prosthesis-part-01-upper.webp
+assets/labucal-images/prosthesis-part-02-lower.webp
 ```
 
 Las piezas de la protesis deben ser PNG transparentes, con bastante espacio alrededor para que no se corten al animar.

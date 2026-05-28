@@ -32,4 +32,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=labucal --branch=main --commit-dirty=true
+          wranglerVersion: 'latest'
+          # --commit-message ASCII-safe evita o bug em que wrangler tenta
+          # enviar o commit message do git contendo caracteres especiais
+          # (->, "", acentos) e a API do Cloudflare responde com erro 8000111.
+          command: pages deploy . --project-name=labucal --branch=main --commit-dirty=true --commit-message="Deploy from main"

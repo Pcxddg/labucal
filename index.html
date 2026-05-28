@@ -135,6 +135,27 @@
     outline: 2px solid var(--ink-300);
     outline-offset: 2px;
     border-radius: 4px;
+    scroll-margin-block-start: 90px;
+  }
+
+  /* Skip link (WCAG 2.4.1 Bypass Blocks) */
+  .skip-link {
+    position: absolute;
+    inset-block-start: -64px;
+    inset-inline-start: 12px;
+    z-index: 100;
+    background: var(--ink-900);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: inset-block-start var(--t) var(--ease);
+  }
+  .skip-link:focus-visible {
+    inset-block-start: 12px;
+    outline-offset: 4px;
   }
 
   /* Type scale */
@@ -142,7 +163,7 @@
   h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 600; }
   h2 { font-size: clamp(28px, 4.2vw, 44px); }
   h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.01em; }
-  p  { margin: 0; }
+  p  { margin: 0; text-wrap: pretty; }
 
   .overline {
     display: inline-block;
@@ -283,7 +304,7 @@
     padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px;
     transition: transform var(--t) var(--ease), background var(--t) var(--ease);
   }
-  .nav-cta:hover { transform: translateY(-1px); background: #ECEAE3; }
+  .nav-cta:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
 
   .hamburger {
     display: none;
@@ -367,11 +388,11 @@
     border: 1px solid transparent;
   }
   .btn-primary { background: var(--white); color: var(--ink-900); }
-  .btn-primary:hover { transform: translateY(-1px); background: #ECEAE3; }
+  .btn-primary:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
   .btn-ghost { color: white; border-color: rgba(255,255,255,0.35); }
   .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.06); }
   .btn-dark { background: var(--ink-900); color: white; }
-  .btn-dark:hover { transform: translateY(-1px); background: #07142C; }
+  .btn-dark:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--ink-900), black 15%); }
 
   /* Constellation */
   .constellation-wrap {
@@ -496,7 +517,7 @@
   .service:hover {
     transform: translateY(-4px);
     border-color: rgba(123,167,225,0.45);
-    background: #16306B;
+    background: color-mix(in oklch, var(--ink-800), white 8%);
   }
   .service-thumb {
     aspect-ratio: 16/9;
@@ -1034,7 +1055,7 @@
     font-weight: 600; font-size: 13px;
     transition: transform var(--t) var(--ease), background var(--t) var(--ease);
   }
-  .cookie-btn:hover { transform: translateY(-1px); background: #ECEAE3; }
+  .cookie-btn:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
 
   /* ---------- Google reviews popup ---------- */
   .gr-popup {
@@ -1162,6 +1183,9 @@
 </style>
 </head>
 <body>
+
+<!-- ============ SKIP LINK (WCAG 2.4.1 Bypass Blocks) ============ -->
+<a class="skip-link" href="#hero-h">Pular para o conteúdo</a>
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">

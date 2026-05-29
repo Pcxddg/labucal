@@ -179,7 +179,22 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    /* Scrollbar da janela na paleta da marca (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink-600) rgba(10,27,61,0.06);
+  }
+  /* Scrollbar da janela na paleta da marca (WebKit / Chromium) */
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: rgba(10,27,61,0.05); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ink-600);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-800); }
   body {
     margin: 0;
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -999,7 +1014,20 @@
     padding: 18px;
     display: flex; flex-direction: column; gap: 12px;
     background: linear-gradient(180deg, rgba(123,167,225,0.04), transparent 200px);
+    /* Scrollbar na paleta da marca (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(123,167,225,0.35) transparent;
   }
+  /* Scrollbar na paleta da marca (WebKit / Chromium) */
+  .lz-body::-webkit-scrollbar { width: 8px; }
+  .lz-body::-webkit-scrollbar-track { background: transparent; }
+  .lz-body::-webkit-scrollbar-thumb {
+    background: rgba(123,167,225,0.35);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .lz-body::-webkit-scrollbar-thumb:hover { background: rgba(123,167,225,0.6); }
   .msg {
     max-width: 80%;
     padding: 10px 14px;

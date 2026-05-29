@@ -152,6 +152,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
+<!-- Sem JS: restaura a barra de rolagem nativa (a custom depende de JS) -->
+<noscript><style>
+  html { scrollbar-width: auto; }
+  html::-webkit-scrollbar { width: 12px; height: 12px; display: block; }
+  .app-scrollbar { display: none !important; }
+</style></noscript>
+
 <style>
   :root {
     --ink-900: #0A1B3D;   /* azul noche base */
@@ -181,21 +188,39 @@
   *, *::before, *::after { box-sizing: border-box; }
   html {
     scroll-behavior: smooth;
-    /* Scrollbar da janela na paleta da marca (Firefox) */
-    scrollbar-width: thin;
-    scrollbar-color: var(--ink-600) transparent;
+    /* Oculta a barra nativa da JANELA (Firefox + legacy). Não reserva espaço,
+       então o conteúdo não fica deslocado. A barra do chat (.lz-body) mantém a sua. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  /* Scrollbar da janela na paleta da marca (WebKit / Chromium) */
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
-  ::-webkit-scrollbar-thumb {
-    background: var(--ink-600);
+  /* Oculta a barra nativa da janela no WebKit/Chromium (escopo só na raiz) */
+  html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+  /* ---------- Barra de rolagem custom (overlay, controlada por JS) ---------- */
+  .app-scrollbar {
+    position: fixed; top: 2px; right: 2px; bottom: 2px;
+    width: 10px; z-index: 95;
+    pointer-events: none; opacity: 0;
+    transition: opacity .35s var(--ease);
+  }
+  .app-scrollbar.is-active { opacity: 1; }
+  .app-scrollbar__thumb {
+    position: absolute; top: 0; right: 0;
+    width: 6px; min-height: 36px;
     border-radius: 999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
+    background: rgba(46,74,140,0.55);   /* --ink-600 translúcido: visível sobre claro e escuro */
+    pointer-events: auto; cursor: grab;
+    will-change: transform, height;
+    transition: width .15s var(--ease), background .2s var(--ease);
   }
-  ::-webkit-scrollbar-thumb:hover { background: var(--ink-800); }
+  .app-scrollbar:hover .app-scrollbar__thumb,
+  .app-scrollbar.is-dragging .app-scrollbar__thumb { width: 10px; background: rgba(46,74,140,0.85); }
+  .app-scrollbar.is-dragging .app-scrollbar__thumb { cursor: grabbing; }
+  @media (prefers-reduced-motion: reduce) { .app-scrollbar { transition: opacity .01ms; } }
+  /* Em telas de toque o thumb é só indicador visual: rola-se com swipe, sem alvo minúsculo */
+  @media (hover: none) and (pointer: coarse) {
+    .app-scrollbar__thumb { pointer-events: none; cursor: default; }
+  }
   body {
     margin: 0;
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -1963,6 +1988,11 @@
   </div>
 </div>
 
+<!-- ============ CUSTOM SCROLLBAR (overlay) ============ -->
+<div class="app-scrollbar" id="appScrollbar" aria-hidden="true">
+  <div class="app-scrollbar__thumb" id="appScrollbarThumb"></div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   // ---------- Nav scroll ----------
@@ -1977,6 +2007,94 @@
   ham.addEventListener('click', () => mm.classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', () => mm.classList.remove('open'));
   mm.querySelectorAll('[data-mclose]').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // ---------- Custom overlay scrollbar ----------
+  (function customScrollbar(){
+    const bar = document.getElementById('appScrollbar');
+    const thumb = document.getElementById('appScrollbarThumb');
+    if (!bar || !thumb) return;
+    const scroller = document.scrollingElement || document.documentElement;
+
+    let hideTimer = null;
+    let dragging = false;
+    let hovering = false;
+
+    const trackH = () => bar.clientHeight;
+
+    const update = () => {
+      const scrollH = scroller.scrollHeight;
+      const winH = window.innerHeight;
+      if (scrollH <= winH + 2) { bar.classList.remove('is-active'); return; }
+      const ratio = winH / scrollH;
+      const th = Math.max(36, Math.round(trackH() * ratio));
+      const maxThumbTop = Math.max(0, trackH() - th);
+      const range = scrollH - winH;
+      const top = range > 0 ? (scroller.scrollTop / range) * maxThumbTop : 0;
+      thumb.style.height = th + 'px';
+      thumb.style.transform = 'translateY(' + Math.round(top) + 'px)';
+    };
+
+    const isScrollable = () => scroller.scrollHeight > window.innerHeight + 2;
+
+    const flash = () => {
+      if (!isScrollable()) { bar.classList.remove('is-active'); return; }
+      bar.classList.add('is-active');
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        if (!dragging && !hovering) bar.classList.remove('is-active');
+      }, 1200);
+    };
+
+    window.addEventListener('scroll', () => { update(); flash(); }, { passive: true });
+    window.addEventListener('resize', () => { update(); flash(); }, { passive: true });
+
+    // Conteúdo dinâmico (imagens carregando, acordeão do FAQ, toggle de serviços)
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(() => { update(); flash(); }).observe(document.body);
+    }
+    window.addEventListener('load', () => { update(); flash(); });
+
+    // Mostra ao aproximar o mouse da borda direita
+    window.addEventListener('mousemove', (e) => {
+      if (window.innerWidth - e.clientX < 40) flash();
+    }, { passive: true });
+
+    bar.addEventListener('mouseenter', () => { hovering = true; flash(); });
+    bar.addEventListener('mouseleave', () => { hovering = false; flash(); });
+
+    // Arrastar o thumb. A geometria é "congelada" no pointerdown para que uma
+    // mudança de altura no meio do arraste (imagem, acordeão) não cause salto.
+    let startY = 0, startScroll = 0, dragRange = 0, dragMaxThumbTop = 1;
+    thumb.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      bar.classList.add('is-dragging', 'is-active');
+      startY = e.clientY;
+      startScroll = scroller.scrollTop;
+      dragRange = Math.max(0, scroller.scrollHeight - window.innerHeight);
+      dragMaxThumbTop = Math.max(1, trackH() - thumb.offsetHeight);
+      try { thumb.setPointerCapture(e.pointerId); } catch (_) {}
+      e.preventDefault();
+    });
+    thumb.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const dy = e.clientY - startY;
+      let next = startScroll + (dy / dragMaxThumbTop) * dragRange;
+      next = Math.max(0, Math.min(dragRange, next));
+      scroller.scrollTop = next;   // atribuição direta = instantâneo (ignora scroll-behavior)
+    });
+    const endDrag = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      bar.classList.remove('is-dragging');
+      try { thumb.releasePointerCapture(e.pointerId); } catch (_) {}
+      flash();
+    };
+    thumb.addEventListener('pointerup', endDrag);
+    thumb.addEventListener('pointercancel', endDrag);
+
+    update();
+    flash();
+  })();
 
   // ---------- Hero constellation ----------
   (function buildHero(){

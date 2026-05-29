@@ -895,7 +895,7 @@ h2.title {
 .ctrl-checklist li { display: flex; gap: 14px; align-items: center; padding: 15px 18px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--surface); opacity: .4; transform: translateX(-10px); transition: opacity .45s, transform .45s, border-color .45s; box-shadow: var(--shadow-sm); }
 .ctrl-checklist li.done { opacity: 1; transform: none; border-color: var(--accent-soft); }
 .ctrl-cbox { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; flex: none; color: #fff; transition: background .3s, border-color .3s; }
-.ctrl-checklist li.done .ctrl-cbox { background: var(--accent); border-color: var(--accent); }
+.ctrl-checklist li.done .ctrl-cbox { background: var(--accent-deep); border-color: var(--accent-deep); }
 .ctrl-cbox svg { opacity: 0; transform: scale(.5); transition: opacity .3s .1s, transform .3s .1s cubic-bezier(.22,1.6,.4,1); }
 .ctrl-checklist li.done .ctrl-cbox svg { opacity: 1; transform: scale(1); }
 .ctrl-checklist b { display: block; font-size: 15.5px; color: var(--ink); font-weight: 600; font-family: var(--font-sans); }
@@ -905,7 +905,7 @@ h2.title {
 .ctrl-piece { position: absolute; left: 50%; top: 52%; transform: translate(-50%,-50%); width: 150px; height: 178px; background: linear-gradient(155deg,#fbf7ef,#e0d7c6); border-radius: 75px 75px 30px 30px; box-shadow: inset -10px -12px 26px rgba(11,27,58,.14), inset 8px 8px 20px rgba(255,255,255,.7), 0 18px 40px -18px rgba(11,27,58,.4); }
 .ctrl-piece::before { content:""; position:absolute; left:50%; top:22%; transform:translateX(-50%); width:2px; height:46%; background: rgba(11,27,58,.10); border-radius:2px; }
 .ctrl-piece::after { content:""; position:absolute; left:26%; right:26%; top:30%; height:40%; border-radius:50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.7), transparent 60%); }
-.ctrl-mark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(62,146,192,.2); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .35s cubic-bezier(.22,1.6,.4,1); z-index: 3; }
+.ctrl-mark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-deep); box-shadow: 0 0 0 4px rgba(44,114,153,.2); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .35s cubic-bezier(.22,1.6,.4,1); z-index: 3; }
 .ctrl-mark.on { opacity: 1; transform: scale(1); }
 .ctrl-scanline { position: absolute; left: 8%; right: 8%; height: 2px; top: 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 18px 2px var(--accent); opacity: 0; z-index: 4; }
 .ctrl-scanline.active { opacity: 1; }
@@ -921,7 +921,7 @@ h2.title {
   .ctrl-track { height: auto; }
   .ctrl-stage { position: static; min-height: 0; padding-block: clamp(64px,9vw,128px); }
   .ctrl-checklist li { opacity: 1; transform: none; }
-  .ctrl-checklist li .ctrl-cbox { background: var(--accent); border-color: var(--accent); }
+  .ctrl-checklist li .ctrl-cbox { background: var(--accent-deep); border-color: var(--accent-deep); }
   .ctrl-checklist li .ctrl-cbox svg { opacity: 1; transform: none; }
   .ctrl-mark { opacity: 1; transform: scale(1); }
   .ctrl-stamp { opacity: 1; transform: rotate(-9deg); }

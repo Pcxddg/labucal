@@ -232,6 +232,18 @@ h2.title {
     radial-gradient(900px 500px at 78% 18%, rgba(192,119,44,.20), transparent 60%),
     radial-gradient(700px 500px at 10% 90%, rgba(40,70,130,.5), transparent 60%);
 }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(11,27,58,.96) 0%, rgba(11,27,58,.82) 48%, rgba(11,27,58,.70) 100%),
+    url("/assets/labucal-images/hero-lab-bg.jpg") center / cover no-repeat;
+  filter: blur(6px) saturate(.82) brightness(.75);
+  transform: scale(1.04);
+  opacity: .46;
+}
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(56px, 8vw, 104px); }
 .hero-copy h1 {
   font-size: clamp(38px, 6vw, 76px);
@@ -253,10 +265,10 @@ h2.title {
   overflow: hidden; box-shadow: var(--shadow-lg);
   border: 1px solid rgba(237,231,218,.12);
 }
-.hero-bg > img {
-  filter: blur(3px) saturate(.88) brightness(.72);
-  opacity: .62;
-  transform: scale(1.045);
+.hero-bg {
+  background:
+    radial-gradient(520px 360px at 52% 47%, rgba(32,53,92,.24), transparent 62%),
+    linear-gradient(145deg, rgba(17,38,78,.96), rgba(8,23,53,.98));
 }
 .hero-bg::after {
   content: "";
@@ -264,8 +276,8 @@ h2.title {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(11,27,58,.32), rgba(11,27,58,.60)),
-    radial-gradient(460px 320px at 54% 48%, rgba(11,27,58,.08), rgba(11,27,58,.52) 72%);
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(11,27,58,.18)),
+    radial-gradient(460px 320px at 54% 48%, transparent, rgba(5,16,39,.36) 76%);
   pointer-events: none;
 }
 .constellation { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .9; }

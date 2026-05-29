@@ -35,25 +35,25 @@
   }
 
   const aTrack = $(".assembly-track");
-  const layers = $$("#layerStack .layer");
+  const layerStack = $("#layerStack");
+  const assemblyTags = $$("#layerStack .assembly-tag");
   const legend = $$("#assemblyLegend li");
   const scrub = $("#assemblyScrub");
   const hint = $("#assemblyHint");
-  const N = layers.length;
   function anatomia() {
     if (!aTrack) return;
     const p = pinProgress(aTrack);
     if (scrub) scrub.style.height = (p * 100) + "%";
     if (hint) hint.style.opacity = p > 0.05 ? "0" : "1";
-    layers.forEach((el, i) => {
-      const start = i * 0.15, end = start + 0.5;
-      const t = easeInOutCubic(clamp((p - start) / (end - start), 0, 1));
-      const fromY = -150 - (N - i) * 24;
-      el.style.transform = `translateX(-50%) translateY(${((1 - t) * fromY).toFixed(1)}px)`;
-      el.style.opacity = (0.12 + 0.88 * t).toFixed(3);
-      const lit = t > 0.55;
-      el.classList.toggle("lit", lit);
-      if (legend[i]) legend[i].classList.toggle("active", lit);
+    const t = easeInOutCubic(p);
+    if (layerStack) {
+      layerStack.style.transform = `translateY(${((1 - t) * 28).toFixed(1)}px) scale(${(.94 + t * .06).toFixed(3)})`;
+      layerStack.style.opacity = (.72 + t * .28).toFixed(3);
+    }
+    legend.forEach((li, i) => {
+      const active = p >= i * 0.18;
+      li.classList.toggle("active", active);
+      if (assemblyTags[i]) assemblyTags[i].classList.toggle("active", active);
     });
   }
 
@@ -126,7 +126,7 @@
       heroTeeth.style.setProperty("--teeth-lower-y", "55px");
       heroTeeth.style.setProperty("--teeth-scale", ".98");
     }
-    layers.forEach(el => { el.classList.add("lit"); el.style.transform = "translateX(-50%)"; el.style.opacity = "1"; });
+    if (layerStack) { layerStack.style.transform = "none"; layerStack.style.opacity = "1"; }
     legend.forEach(l => l.classList.add("active"));
     $$("#steps .step").forEach(s => s.classList.add("lit"));
     if (procFill) procFill.style.width = "100%";

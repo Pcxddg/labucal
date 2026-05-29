@@ -35,25 +35,26 @@
   }
 
   const aTrack = $(".assembly-track");
-  const layerStack = $("#layerStack");
-  const assemblyTags = $$("#layerStack .assembly-tag");
+  const layers = $$("#layerStack .layer");
   const legend = $$("#assemblyLegend li");
   const scrub = $("#assemblyScrub");
   const hint = $("#assemblyHint");
+  const N = layers.length;
   function anatomia() {
     if (!aTrack) return;
     const p = pinProgress(aTrack);
     if (scrub) scrub.style.height = (p * 100) + "%";
     if (hint) hint.style.opacity = p > 0.05 ? "0" : "1";
-    const t = easeInOutCubic(p);
-    if (layerStack) {
-      layerStack.style.transform = `translateY(${((1 - t) * 28).toFixed(1)}px) scale(${(.94 + t * .06).toFixed(3)})`;
-      layerStack.style.opacity = (.72 + t * .28).toFixed(3);
-    }
-    legend.forEach((li, i) => {
-      const active = p >= i * 0.18;
-      li.classList.toggle("active", active);
-      if (assemblyTags[i]) assemblyTags[i].classList.toggle("active", active);
+    layers.forEach((el, i) => {
+      const start = i === 0 ? -0.32 : 0.08 + (i - 1) * 0.18;
+      const end = start + 0.44;
+      const t = easeInOutCubic(clamp((p - start) / (end - start), 0, 1));
+      const fromY = -190 - (N - i) * 34;
+      el.style.transform = `translateY(${((1 - t) * fromY).toFixed(1)}px) scale(${(.96 + t * .04).toFixed(3)})`;
+      el.style.opacity = (.04 + .96 * t).toFixed(3);
+      const lit = t > 0.55;
+      el.classList.toggle("lit", lit);
+      if (legend[i]) legend[i].classList.toggle("active", lit);
     });
   }
 
@@ -126,7 +127,7 @@
       heroTeeth.style.setProperty("--teeth-lower-y", "55px");
       heroTeeth.style.setProperty("--teeth-scale", ".98");
     }
-    if (layerStack) { layerStack.style.transform = "none"; layerStack.style.opacity = "1"; }
+    layers.forEach(el => { el.classList.add("lit"); el.style.transform = "none"; el.style.opacity = "1"; });
     legend.forEach(l => l.classList.add("active"));
     $$("#steps .step").forEach(s => s.classList.add("lit"));
     if (procFill) procFill.style.width = "100%";

@@ -2326,11 +2326,39 @@
   // ---------- Form ----------
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = e.currentTarget.querySelector('button');
+    const form = e.currentTarget;
+    const nome = form.querySelector('#f-nome').value.trim();
+    const clinica = form.querySelector('#f-clin').value.trim();
+    const contato = form.querySelector('#f-cont').value.trim();
+    const mensagem = form.querySelector('#f-msg').value.trim();
+
+    // Validação mínima (o form usa novalidate): nome e contato são obrigatórios.
+    if (!nome || !contato) {
+      (nome ? form.querySelector('#f-cont') : form.querySelector('#f-nome')).focus();
+      return;
+    }
+
+    const subject = 'Pedido de orçamento — ' + nome;
+    const body = [
+      'Nome: ' + nome,
+      clinica ? 'Clínica: ' + clinica : null,
+      'Contato: ' + contato,
+      '',
+      mensagem || '(sem mensagem)'
+    ].filter(l => l !== null).join('\n');
+
+    const mailto = 'mailto:contato@labucal.com.br'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    const btn = form.querySelector('button');
     const original = btn.innerHTML;
-    btn.innerHTML = 'Enviado ✓';
+    btn.innerHTML = 'Abrindo e-mail…';
     btn.style.background = '#7BA7E1';
-    setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; e.currentTarget.reset(); }, 2400);
+    // Abre o cliente de e-mail. Não damos reset() para não perder os dados
+    // caso o usuário não tenha um cliente de e-mail configurado.
+    window.location.href = mailto;
+    setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; }, 2400);
   });
 
   // ---------- Labucalzinho (powered by Gemini) ----------

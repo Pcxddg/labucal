@@ -234,10 +234,12 @@ Menú mobile (hamburguesa) incluye además **Rede** (`#rede`).
   - **Mensagem** (`mensagem`, textarea, opcional; placeholder: "Conte um pouco sobre o caso ou o que
     precisa.")
   - Botón **Enviar**.
-- ⚠️ **IMPORTANTE — el formulario NO envía a ningún backend.** Hoy el handler solo hace
-  `preventDefault()`, muestra "Enviado ✓" ~2.4s y resetea el form. **No hay e-mail, ni base de datos, ni
-  integración.** Al rehacer el sitio, decidir e implementar el destino real (ej: servicio tipo
-  Formspree/Web3Forms, un Worker de Cloudflare, o `mailto:`/`wa.me`). Esto es deuda funcional pendiente.
+- **Envío vía `mailto:` (sin backend).** Al enviar, el handler valida que `nome` y `contato` estén
+  completos, arma un `mailto:contato@labucal.com.br` con `subject` ("Pedido de orçamento — {nome}") y
+  `body` (nome, clínica, contato, mensagem) y abre el cliente de correo del usuario. No hace `reset()`
+  para no perder los datos si el usuario no tiene cliente de e-mail configurado.
+  - Limitación conocida: depende de que el dispositivo tenga un cliente de correo. Si en el futuro se
+    quiere envío sin salir del sitio, migrar a Web3Forms/Formspree o un Worker de Cloudflare.
 
 ---
 

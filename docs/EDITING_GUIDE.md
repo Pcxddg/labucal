@@ -1,308 +1,170 @@
-# Guia de edicion y diseno de Labucal
+# Guía de edición y diseño de Labucal (V2)
 
-Esta guia explica como editar el sitio manteniendo el diseno, las animaciones y la estructura con buenas practicas.
+Cómo editar el sitio manteniendo el sistema "Precisão", las escenas animadas y las buenas prácticas.
+
+> Aplica a la **V2** (sitio vigente en la raíz). La v1 archivada en `old/` ya no se usa.
+> Visión funcional completa: [`ESPECIFICACION-DEL-SITIO.md`](ESPECIFICACION-DEL-SITIO.md).
 
 ## Principio general
 
-Labucal tiene una estetica de laboratorio dental premium:
+Labucal tiene una estética de **laboratorio dental premium y técnico**:
 
-- fondo azul profundo;
-- tipografia limpia y amplia;
-- imagenes reales o protesis realistas;
-- animaciones suaves;
-- mucho espacio respirable;
-- informacion clara para dentistas y clinicas.
+- navy profundo + papel cor de osso + un acento **azul** de precisión;
+- título en **serif** (Newsreader) con calor, cuerpo limpio (Plus Jakarta), rótulos en mono (Space Mono);
+- **escenas que se montan al scrollear** (no solo texto);
+- mucho espacio respirable; encuadre claro B2B (dentistas y clínicas, sob prescripción, no pacientes).
 
-Cuando se agregue una nueva pieza, debe sentirse parte de ese sistema. Evitar secciones con estilo de landing generica, iconos sueltos o colores que no existan en la paleta.
+Cuando agregues una pieza, debe sentirse parte de ese sistema. Evitar landing genérica, iconos sueltos
+o colores fuera de la paleta.
 
-## Editar texto
+## Dónde vive cada cosa
 
-Los textos visibles estan directamente en `index.html`. Para cambiar un titulo o parrafo:
+| Querés cambiar… | Archivo |
+|---|---|
+| Estructura HTML, hero, encabezados de sección, contacto, FAQ markup | `index.html` |
+| Textos de servicios, pasos, galería, FAQ, depoimentos | **`script.js`** (arreglos `SERVICES`, `STEPS`, `GALLERY`, `FAQ`, `DEPO`) |
+| Colores, tipografía, espaciados, layout | `styles.css` (`:root` + reglas) |
+| Animaciones por scroll (4 escenas, dientes del hero) | `scroll.js` |
+| Comportamiento del chat (prompt, fallback) | `script.js` (`SYSTEM_PROMPT`, `FALLBACK`) |
 
-1. Buscar el texto exacto con `rg`.
-2. Editar en `index.html`.
-3. Revisar que no se rompan saltos de linea o acentos.
+## Editar texto y contenido
 
-Ejemplo:
+- **Hero, encabezados de sección (overline + H2), copy de Anatomia/Controle, contacto, FAQ visible:**
+  están en `index.html`. Buscá el texto con `rg "..." index.html` y editá.
+- **Servicios / pasos / galería / FAQ / depoimentos:** se renderizan desde `script.js`. Por ejemplo,
+  para editar un servicio cambiá su objeto en `const SERVICES = [...]` (campos `t` título, `d`
+  descripción, `img` imagen, `s` clave `data-service`). El FAQ visible y el JSON-LD `FAQPage` deben
+  coincidir **verbatim** — si cambiás una pregunta, actualizá el array `FAQ` **y** el JSON-LD en
+  `index.html`.
+- **NAP / datos de contacto:** si cambia el teléfono, e-mail o dirección, actualizá TODAS las
+  apariciones: contacto y footer (`index.html`), JSON-LD, **el `SYSTEM_PROMPT` y los textos de
+  `FALLBACK`/`fallback()` del chat en `script.js`**, y el mapa.
 
 ```powershell
-rg "Vamos conversar" index.html
+rg "99110|contato@|labucalprotese|Conego|7 dias corridos" .
 ```
 
-## Agregar una seccion nueva
+## Paleta y tipografía
 
-Usar este patron:
+En `:root` de `styles.css`. El acento es **azul**:
+
+```css
+--ink:#0B1B3A; --paper:#F4EFE6; --text:#15233F;
+--accent:#3E92C0; --accent-deep:#2C7299; --accent-soft:#7FBBDD; --accent-tint:#DDEEF6;
+```
+
+- Usá **`--accent`** para detalles/links y **`--accent-deep`** para botones y texto sobre fondo claro
+  (pasa contraste WCAG AA; `--accent` solo no alcanza para texto/botones).
+- Sobre fondo navy (`.on-ink`) usá `--accent-soft`.
+- Evitá hardcodear el azul como `rgba(...)`; derivá del token cuando se pueda.
+- **Paletas alternativas:** `:root[data-palette="frio"]` (teal) y `"grafite"` (gris/dorado). Se activan
+  poniendo el atributo en `<html>`. No introducir paletas nuevas sin actualizar todo el sistema.
+- **Tipografía:** se carga desde Google Fonts en el `<head>`. Si agregás un peso, sumalo a esa URL.
+
+## Agregar o editar una sección
+
+Patrón de una sección normal (clara o `on-ink` para oscura):
 
 ```html
-<section class="light pad" id="novo-id" aria-labelledby="novo-h">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Etiqueta</span>
-      <h2 id="novo-h">Titulo de la seccion.</h2>
+<section class="section novo has-decor" id="novo-id">
+  <!-- (opcional) piezas decorativas animadas -->
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Etiqueta</p>
+      <h2 class="title">Título de la sección.</h2>
     </div>
-
     <!-- contenido -->
   </div>
 </section>
 ```
 
-Reglas:
+- `.wrap` es el contenedor centrado. `.section` da el padding vertical. `on-ink` = fondo navy.
+- `has-decor` habilita las prótesis decorativas que se mueven con el scroll (ver abajo).
+- Si la agregás al menú, actualizá nav desktop, menú mobile y footer.
 
-- Usar `light` o `dark`, alternando para ritmo visual.
-- Mantener `pad` para espaciado vertical.
-- Usar `.container` como envoltorio principal.
-- Usar `.section-head reveal` para encabezados.
-- Si se agrega al menu, actualizar nav desktop, menu mobile y footer.
-
-## Agregar tarjetas
-
-Las tarjetas existentes usan bordes suaves, radios moderados y poco ornamento. Evitar tarjetas dentro de tarjetas.
-
-Para una tarjeta clara:
+### Piezas decorativas animadas (`.section-prosthesis`)
 
 ```html
-<article class="quote">
-  ...
-</article>
+<img class="section-prosthesis decor-right decor-high" data-scroll-decor="right"
+     src="/assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
 ```
 
-Para una tarjeta oscura, seguir el patron de `.service`.
+Clases: `decor-left`/`decor-right`, `decor-high`/`decor-low`, `decor-small`, `decor-slim`. Modos de
+`data-scroll-decor`: `left`, `right`, `float`. Se ocultan en mobile. No poner sobre texto o formularios.
 
-## Reemplazar imagenes
+## Reemplazar imágenes
 
-### Servicios
+Todas las rutas son absolutas (`/assets/...`) porque el sitio sirve desde la raíz.
 
-Hoy son cuatro tarjetas que viven en la seccion `#servicos` y usan SVG inline (no fotos JPG). Cada card tiene `data-service` para tracking futuro:
+- **Servicios** (`/assets/labucal-images/service-*.jpg`) — escenas reales, JPG, ancho 1000-1400 px,
+  < 250 KB. Los nombres se referencian en `SERVICES`/`SERVICES_EXTRA` (`script.js`).
+- **Galería** (`/assets/labucal-images/lab-gallery-*.jpg`) — referenciadas en `GALLERY`.
+- **Hero — prótesis animada** (`prosthesis-part-01-upper.webp` / `prosthesis-part-02-lower.webp`): PNG/
+  WebP con transparencia y espacio alrededor para que no se corten al animar.
+- **Escena Anatomia** (`/assets/assembly/assembly-layer-{preparo,zirconia,ceramica,glaze}.webp`): las 4
+  capas que se apilan.
+- **Escena Controle** (`/assets/quality/quality-crown.png`): la pieza inspeccionada.
+- **Logo/favicons** en `/assets/brand/`.
 
-- `data-service="protese"` — Prótese Dentária (parcial, total, fixa, coroas, facetas)
-- `data-service="implantes"` — Implantes Dentários (componentes proteticos sobre implante ya instalado)
-- `data-service="clareamento"` — Clareamento Dental (placas y moldeiras)
-- `data-service="alinhadores"` — Alinhadores Transparentes
+> Optimizá antes de subir: las imágenes deberían servirse cerca de su tamaño mostrado (hoy hay deuda de
+> imágenes sobredimensionadas — ver pendientes en la especificación).
 
-Importante: el laboratorio trabaja **solo B2B** (dentistas autonomos con CPF y clinicas con CNPJ). Todos los servicios son **sob prescripcion del dentista**. No atendemos pacientes directos. Mantener ese encuadre en cualquier copy nuevo.
+## Ajustar las escenas por scroll (`scroll.js`)
 
-Si en algun momento se quieren reintroducir fotos JPG en las cards en lugar de los iconos SVG actuales, usar los mismos requisitos de antes:
-
-- formato JPG, ancho 1000-1400 px, peso menor a 250 KB
-- escenas reales de laboratorio o de la pieza terminada
-- evitar imagenes de stock genericas
-
-Nota: los archivos `assets/labucal-images/service-parcial.jpg`, `service-total.jpg`, `service-fixa.jpg` y `service-coroas.jpg` quedaron huerfanos despues del cambio de servicios y se pueden borrar para limpiar el repo.
-
-### Galeria
-
-Archivos:
-
-```text
-gallery-01.jpg
-gallery-02.jpg
-gallery-03.jpg
-gallery-04.jpg
-gallery-05.jpg
-gallery-06.jpg
-```
-
-Mantener los formatos de los contenedores:
-
-- `.g-tall`: vertical;
-- `.g-wide`: horizontal;
-- `.g-square`: cuadrado.
-
-No cambiar proporciones en CSS sin revisar mobile.
-
-### Hero
-
-El hero tiene dos capas principales:
-
-1. Fondo fotografico:
-
-```text
-assets/labucal-images/hero-lab-bg.jpg
-```
-
-2. Protesis animada en dos partes:
-
-```text
-assets/labucal-images/prosthesis-part-01-upper.webp
-assets/labucal-images/prosthesis-part-02-lower.webp
-```
-
-Las piezas de la protesis deben ser PNG transparentes, con bastante espacio alrededor para que no se corten al animar.
-
-## Crear protesis transparentes
-
-Idealmente generar o exportar la protesis sobre fondo transparente. Si se usa fondo cromatico:
-
-- usar verde puro `#00ff00`;
-- no usar verde en la pieza;
-- retirar el fondo antes de subirlo;
-- revisar bordes sobre fondo azul.
-
-Despues de recortar, probar sobre `#0A1B3D` para detectar halos.
-
-## Ajustar animaciones por scroll
-
-### Hero
-
-La funcion esta cerca de:
+Cada escena pinneada calcula su progreso con `pinProgress(track)` (el track es más alto que el
+viewport). Para cambiar la velocidad/longitud de una escena, ajustá la altura del track en `styles.css`
+(`.assembly-track`, `.proc-track`, `.ctrl-track`, en `vh`). Para los **dientes del hero** editá
+`heroProsthesis()`:
 
 ```js
-// ---------- Prosthesis assembly on scroll ----------
+const raw = scrollY / Math.min(760, vh * 0.82);   // divisor mayor = más lento
 ```
 
-Variables clave:
+- En mobile las escenas se **de-pinnean** (track `height:auto`, stage estático) y la pieza se muestra
+  montada. Todo respeta `prefers-reduced-motion`.
+- No uses animaciones CSS infinitas para estas piezas: la intención es que respondan al scroll.
 
-```js
-const raw = window.scrollY / Math.min(760, vh * 0.82);
-const upperY = -150 + (eased * 110);
-const lowerY = 170 - (eased * 115);
-const scale = 0.86 + (eased * 0.12);
-```
+## Chat "Labucalzinho"
 
-Que significa:
+- El comportamiento está en `script.js`: `SYSTEM_PROMPT` (contexto y reglas), `FALLBACK`/`fallback()`
+  (respuestas offline por keyword) y `GEMINI_PROXY_URL` (el Worker que reenvía a Gemini).
+- Si cambia info del laboratorio, actualizá el `SYSTEM_PROMPT` para que el bot no dé datos viejos.
+- El Worker valida el origen: si se cambia el dominio, hay que actualizar el allowlist del Worker.
 
-- `raw`: cuanto scroll necesita para completar la animacion.
-- `upperY`: posicion vertical de la parte superior.
-- `lowerY`: posicion vertical de la parte inferior.
-- `scale`: crecimiento durante el armado.
+## Mapa y contacto
 
-Para hacer el cierre mas lento: aumentar `760` o `0.82`.
-
-Para hacer que cierre mas: aumentar los multiplicadores `110` y `115`.
-
-Para que empiece mas abierto: alejar los valores iniciales `-150` y `170`.
-
-### Decoraciones por seccion
-
-La funcion esta cerca de:
-
-```js
-const updateDecorScroll = () => { ... }
-```
-
-Modos:
-
-- `right`: movimiento desde derecha.
-- `left`: movimiento desde izquierda.
-- `float`: movimiento flotante.
-
-La decoracion calcula progreso por seccion:
-
-```js
-const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-```
-
-No usar animaciones CSS infinitas para estas protesis. La intencion es que respondan al scroll.
-
-## Contacto
-
-Datos oficiales actuales:
-
-```text
-Telefone / WhatsApp: (15) 99110-7117
-E-mail: contato@labucal.com.br
-Facebook: https://www.facebook.com/labucalprotese
-Instagram: https://www.instagram.com/labucalprotese/
-Endereco: Rua Conego Januario Barbosa, 225, Jardim Vergueiro, Sorocaba, Brazil
-```
-
-Cuando se cambie un dato, buscarlo en todo el proyecto:
-
-```powershell
-rg "99110|contato@|labucalprotese|Conego" .
-```
-
-## Mapa
-
-El mapa no usa Google Maps embebido, sino OpenStreetMap:
-
-```html
-<iframe src="https://www.openstreetmap.org/export/embed.html?..."></iframe>
-```
-
-Ventajas:
-
-- sin API key;
-- funciona en GitHub Pages;
-- sencillo de mantener.
-
-Tambien hay enlace externo a Google Maps para rutas. Si se ajusta la direccion, actualizar ambos.
+Mapa OpenStreetMap embebido (sin API key) + link a Google Maps para rutas. Si cambia la dirección,
+actualizá el `bbox`/`marker` del iframe **y** la query del link de Google Maps.
 
 ## Accesibilidad
 
-Mantener:
-
-- `aria-label` en botones iconicos.
-- `aria-hidden="true"` en decoraciones.
-- `alt=""` para imagenes decorativas.
-- `alt` descriptivo para imagenes informativas.
-- Contraste suficiente en texto.
-- Foco visible con `:focus-visible`.
-
-No ocultar informacion importante solo en imagenes.
+Mantener: 1 solo H1, jerarquía de headings, `aria-label` en controles icónicos, `alt=""` +
+`aria-hidden` en decorativos y `alt` descriptivo en informativas, **skip-link**, foco visible
+(`:focus-visible` — no quitar el `outline` sin reemplazo), el chat como diálogo (`role="dialog"`,
+Escape, foco), contraste suficiente (botones en `--accent-deep`), `target="_blank" rel="noopener"` en
+externos.
 
 ## Performance
 
-El sitio debe seguir siendo rapido. Reglas:
-
-- Preferir JPG para fotos.
-- Preferir PNG solo para transparencias.
-- Usar `loading="lazy"` en imagenes fuera del hero.
-- Evitar imagenes mayores a 1 MB salvo que sean indispensables.
-- No agregar librerias JS si se puede resolver con vanilla JS.
-- No agregar fuentes nuevas sin necesidad.
+Sitio rápido y estático. Preferir JPG para fotos y WebP/PNG transparente solo para piezas; `loading="lazy"`
+fuera del hero; `width`/`height` en `<img>` para evitar CLS; sin librerías JS pesadas; no agregar fuentes
+sin necesidad.
 
 ## Publicar cambios
 
-1. Revisar estado:
-
 ```powershell
-git status -sb
-git diff --stat
-```
-
-2. Commit:
-
-```powershell
-git add index.html assets docs README.md
-git commit -m "Descripcion del cambio"
-```
-
-3. Push:
-
-```powershell
-git push
-```
-
-El push dispara automaticamente el workflow `deploy-pages.yml`, que publica en Cloudflare Pages en ~30 segundos.
-
-5. Confirmar Pages:
-
-```powershell
-gh api repos/Pcxddg/labucal/pages
+git add -A
+git commit -m "Descripción del cambio"
+git push   # dispara deploy-pages.yml → Cloudflare Pages (~30 s)
 ```
 
 ## Errores comunes
 
-- Subir capturas temporales a `assets/`.
-- Usar la imagen original pesada del logo en vez de las optimizadas.
-- Poner decoraciones encima de texto o formulario.
-- Cambiar el color azul principal solo en una seccion.
-- Eliminar `loading="lazy"` en imagenes que estan debajo del hero.
-- Cambiar ids de secciones sin actualizar enlaces.
-- Editar `data/reviews.json` a mano. Es auto-generado por el workflow de GitHub Actions cada 6 horas — cualquier edicion manual sera sobreescrita en la siguiente corrida.
-- Olvidar reemplazar `REPLACE_WITH_PLACE_ID` en `.github/workflows/update-reviews.yml`. Sin eso el workflow falla y el popup de avaliacoes queda con datos estaticos. Ver seccion "Avaliacoes do Google" del README.
-- "El aviso de cookies / popup de avaliacoes no aparece al recargar". Es esperado: el aviso de cookies persiste en `localStorage.labucal_cookies_accepted` y el popup en `sessionStorage.labucal_reviews_dismissed`. Para forzar reaparicion durante pruebas, borrar la clave en DevTools > Application > Storage.
-- Quitar `aria-hidden="true"` del `.map-overlay` o del Place ID en `.gr-popup`. Esas capas son decorativas/funcionales sin contenido relevante para lectores de pantalla.
-
-## Checklist de handoff
-
-Antes de entregar a otro programador:
-
-- Explicar que es un sitio estatico sin build.
-- Indicar que Cloudflare Pages publica `index.html` desde la rama `main` via el workflow `deploy-pages.yml`.
-- Mostrar donde estan las variables CSS.
-- Mostrar donde estan las animaciones JS.
-- Mostrar carpetas de assets.
-- Confirmar que tiene acceso al repo GitHub y a la cuenta de Cloudflare.
-- Confirmar que entiende el flujo automatico de avaliacoes del Google (workflow `update-reviews.yml` -> `data/reviews.json` -> popup).
+- Editar `data/reviews.json` a mano (es auto-generado cada 6 h por el workflow).
+- Cambiar un servicio/pregunta solo en `index.html` o solo en `script.js` (deben coincidir; el FAQ
+  además con el JSON-LD).
+- Usar `--accent` (claro) en botones/texto → falla contraste; usar `--accent-deep`.
+- Romper el encuadre B2B (el laboratorio no atiende pacientes directos).
+- Cambiar ids de sección sin actualizar nav/menú/footer.
+- Reintroducir el panel de "tweaks"/`postMessage` (era una herramienta del editor; no va en producción).
+- Poner decoraciones encima de texto o formulario; quitar `aria-hidden` de decorativos.

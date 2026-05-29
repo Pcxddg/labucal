@@ -1,0 +1,11 @@
+{
+  "updatedAt": "2026-05-28T09:00:00.000Z",
+  "name": "Labucal",
+  "rating": 5,
+  "userRatingCount": 2,
+  "googleMapsUri": "https://www.google.com/maps/place/?q=place_id:ChIJ6f3VvLmLxZQRdLE0dLMATaI",
+  "reviews": [
+    { "author": "Diego Silva Feitosa", "authorPhoto": "", "rating": 5, "text": "Excelente serviço, cumpriram com o prazo de entrega, recomendo amplamente.", "relativeTime": "há 4 anos", "publishTime": "2022-05-01T00:00:00.000Z" },
+    { "author": "Cliente parceiro", "authorPhoto": "", "rating": 5, "text": "Ajustes chegam praticamente prontos. Economizo tempo em cadeira.", "relativeTime": "há 2 meses", "publishTime": "2026-03-20T00:00:00.000Z" }
+  ]
+}

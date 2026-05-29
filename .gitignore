@@ -2,3 +2,8 @@
 chrome-labucal-profile/
 assets/incoming/
 .claude/
+
+# Artefatos do editor da landing v2 (não fazem parte do site)
+landing v2/.thumbnail
+landing v2/screenshots/
+landing v2/uploads/

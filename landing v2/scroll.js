@@ -120,6 +120,19 @@
     drawIO.observe(netSvg);
   }
 
+  /* ---------- 5. FOOTER — subtle prosthesis reveal ---------- */
+  const footer = $("#footer");
+  function footerReveal() {
+    if (!footer) return;
+    footer.classList.toggle("in", footer.getBoundingClientRect().top < innerHeight * 0.86);
+  }
+  if (footer) {
+    const footerIO = new IntersectionObserver((entries) => {
+      entries.forEach(en => footer.classList.toggle("in", en.isIntersecting));
+    }, { threshold: 0.18 });
+    footerIO.observe(footer);
+  }
+
   /* ---------- reduced motion: jump to final states ---------- */
   if (reduce) {
     if (heroTeeth) {
@@ -139,7 +152,7 @@
 
   /* ---------- rAF loop ---------- */
   let ticking = false;
-  function frame() { heroProsthesis(); anatomia(); processo(); controle(); ticking = false; }
+  function frame() { heroProsthesis(); anatomia(); processo(); controle(); footerReveal(); ticking = false; }
   function onScroll() { if (!ticking) { requestAnimationFrame(frame); ticking = true; } }
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", frame);

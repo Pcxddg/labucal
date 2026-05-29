@@ -332,8 +332,11 @@ h2.title {
 
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
-  .hero-visual { aspect-ratio: 4/3.4; order: -1; }
-  .hero-teeth { inset: 12% 20% 11%; }
+  .hero-visual { aspect-ratio: 4/3.6; order: -1; }
+  .hero-teeth { inset: 6% 14% 6%; }
+  /* mobile: só os dentes + animação (sem caixa, constelação ou badge) */
+  .hero-figure { background: transparent; border: 0; box-shadow: none; }
+  .hero-bg, .constellation, .hero-badge { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-teeth {

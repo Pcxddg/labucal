@@ -183,11 +183,12 @@
     scroll-behavior: smooth;
     /* Scrollbar da janela na paleta da marca (Firefox) */
     scrollbar-width: thin;
-    scrollbar-color: var(--ink-600) rgba(10,27,61,0.06);
+    scrollbar-color: var(--ink-600) transparent;
   }
   /* Scrollbar da janela na paleta da marca (WebKit / Chromium) */
   ::-webkit-scrollbar { width: 12px; height: 12px; }
-  ::-webkit-scrollbar-track { background: rgba(10,27,61,0.05); }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
   ::-webkit-scrollbar-thumb {
     background: var(--ink-600);
     border-radius: 999px;

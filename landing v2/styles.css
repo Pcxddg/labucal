@@ -253,7 +253,52 @@ h2.title {
   overflow: hidden; box-shadow: var(--shadow-lg);
   border: 1px solid rgba(237,231,218,.12);
 }
+.hero-bg > img {
+  filter: blur(3px) saturate(.88) brightness(.72);
+  opacity: .62;
+  transform: scale(1.045);
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(11,27,58,.32), rgba(11,27,58,.60)),
+    radial-gradient(460px 320px at 54% 48%, rgba(11,27,58,.08), rgba(11,27,58,.52) 72%);
+  pointer-events: none;
+}
 .constellation { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .9; }
+.hero-teeth {
+  position: absolute;
+  left: 50%;
+  top: 51%;
+  z-index: 3;
+  width: min(72%, 360px);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: drop-shadow(0 28px 34px rgba(4, 12, 30, .34));
+}
+.hero-teeth-part {
+  position: absolute;
+  left: 50%;
+  width: 92%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  will-change: transform;
+}
+.hero-teeth-upper {
+  top: 8%;
+  transform: translate(-50%, calc(-28px * var(--teeth-open, 1))) rotate(calc(-1.5deg * var(--teeth-open, 1)));
+  transform-origin: 50% 88%;
+}
+.hero-teeth-lower {
+  bottom: 5%;
+  transform: translate(-50%, calc(30px * var(--teeth-open, 1))) rotate(calc(1.2deg * var(--teeth-open, 1)));
+  transform-origin: 50% 12%;
+}
 .hero-badge {
   position: absolute; left: -14px; bottom: 34px; z-index: 4;
   background: var(--surface); color: var(--ink);
@@ -267,6 +312,7 @@ h2.title {
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
   .hero-visual { aspect-ratio: 4/3.4; order: -1; }
+  .hero-teeth { width: min(62%, 320px); top: 50%; }
 }
 
 /* =====================================================

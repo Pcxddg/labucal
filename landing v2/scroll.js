@@ -18,6 +18,18 @@
   };
 
   /* ---------- 1. ANATOMIA — layer assembly ---------- */
+  const hero = $(".hero");
+  const heroTeeth = $("#heroTeeth");
+  function heroProsthesis() {
+    if (!hero || !heroTeeth) return;
+    const r = hero.getBoundingClientRect();
+    const travel = Math.max(1, Math.min(innerHeight * 0.72, r.height * 0.62));
+    const p = clamp(-r.top / travel, 0, 1);
+    const open = 1 - easeInOutCubic(p);
+    heroTeeth.style.setProperty("--teeth-open", open.toFixed(3));
+    heroTeeth.style.transform = `translate(-50%, -50%) translateY(${(p * 10).toFixed(1)}px) scale(${(1 + p * 0.035).toFixed(3)})`;
+  }
+
   const aTrack = $(".assembly-track");
   const layers = $$("#layerStack .layer");
   const legend = $$("#assemblyLegend li");
@@ -105,6 +117,7 @@
 
   /* ---------- reduced motion: jump to final states ---------- */
   if (reduce) {
+    if (heroTeeth) heroTeeth.style.setProperty("--teeth-open", "0");
     layers.forEach(el => { el.classList.add("lit"); el.style.transform = "translateX(-50%)"; el.style.opacity = "1"; });
     legend.forEach(l => l.classList.add("active"));
     $$("#steps .step").forEach(s => s.classList.add("lit"));
@@ -117,7 +130,7 @@
 
   /* ---------- rAF loop ---------- */
   let ticking = false;
-  function frame() { anatomia(); processo(); controle(); ticking = false; }
+  function frame() { heroProsthesis(); anatomia(); processo(); controle(); ticking = false; }
   function onScroll() { if (!ticking) { requestAnimationFrame(frame); ticking = true; } }
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", frame);

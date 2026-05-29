@@ -753,6 +753,8 @@ h2.title {
 .cookie p a { color: var(--accent-soft); }
 .cookie .btn { flex: none; padding: 11px 22px; }
 @media (max-width: 520px){ .cookie { flex-direction: column; align-items: stretch; text-align:left; } .cookie .btn{ justify-content:center; } .reviews-pop { display:none; } }
+/* Em telas estreitas o aviso sobe acima do botão de chat (FAB) para não cobri-lo */
+@media (max-width: 640px){ .cookie { bottom: 96px; } }
 
 /* utility */
 .visually-hidden { position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0 0 0 0); }
@@ -828,11 +830,17 @@ h2.title {
 @keyframes nudge { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(4px);} }
 
 @media (max-width: 860px) {
-  .assembly-track { height: 260vh; }
+  /* de-pin: igual que processo/controle, evita recorte em telas baixas */
+  .assembly-track { height: auto; }
+  .assembly-stage { position: static; height: auto; padding-block: clamp(64px,9vw,128px); }
   .assembly-inner { grid-template-columns: 1fr; gap: 24px; }
   .assembly-viz { height: 320px; order: -1; }
   .layer-stack { width: min(78vw, 270px); }
   .layer .tag { display: none; }
+  .assembly-scrub, .assembly-hint { display: none; }
+  /* mostra a peça já montada (estática) — o scrub não cabe sem o pin */
+  .assembly .layer { opacity: 1 !important; transform: none !important; }
+  .assembly-legend li { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .assembly-track { height: auto; }

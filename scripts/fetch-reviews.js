@@ -67,6 +67,28 @@ const fieldMask = [
     );
 
     console.log(`OK: rating ${output.rating} (${output.userRatingCount} avaliações, ${output.reviews.length} com texto)`);
+
+    // Mantém o aggregateRating do JSON-LD em index.html sincronizado com os
+    // dados reais. Só atualiza quando há rating e ao menos 1 avaliação — o
+    // schema.org exige valores válidos e o Google rejeita reviewCount = 0.
+    if (output.rating != null && output.userRatingCount > 0) {
+      const indexPath = path.join(process.cwd(), 'index.html');
+      try {
+        let html = fs.readFileSync(indexPath, 'utf8');
+        const ratingStr = Number(output.rating).toFixed(1);
+        const countStr = String(output.userRatingCount);
+        const before = html;
+        html = html
+          .replace(/("ratingValue":\s*")[^"]*(")/, `$1${ratingStr}$2`)
+          .replace(/("reviewCount":\s*")[^"]*(")/, `$1${countStr}$2`);
+        if (html !== before) {
+          fs.writeFileSync(indexPath, html, 'utf8');
+          console.log(`OK: aggregateRating do index.html -> ${ratingStr} / ${countStr}`);
+        }
+      } catch (e) {
+        console.warn('Aviso: não foi possível atualizar o aggregateRating em index.html:', e.message);
+      }
+    }
   } catch (err) {
     console.error('Erro ao buscar avaliações:', err.message);
     process.exit(1);

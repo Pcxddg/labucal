@@ -429,11 +429,15 @@
 
   /* Mobile menu */
   .mobile-menu {
-    position: fixed; inset: 0; background: var(--ink-900); z-index: 60;
+    position: fixed; inset: 0; background: var(--ink-900); z-index: 80;
     display: none; flex-direction: column; padding: 100px var(--gutter) 40px;
-    color: white;
+    color: white; overflow-y: auto;
   }
   .mobile-menu.open { display: flex; }
+  /* Com o menu aberto, esconde os flutuantes para não cobrir o CTA */
+  body:has(.mobile-menu.open) .lz-btn,
+  body:has(.mobile-menu.open) .cookie-notice,
+  body:has(.mobile-menu.open) .gr-popup { display: none; }
   .mobile-menu a { font-size: 28px; padding: 18px 0; border-bottom: 1px solid var(--border-dark); font-weight: 500; }
   .mobile-menu .nav-cta { margin-top: 28px; text-align: center; width: 100%; padding: 16px; }
   .mobile-close {
@@ -1280,8 +1284,11 @@
     .gallery-row2 { grid-template-columns: 1fr 1fr; }
     .foot-grid { grid-template-columns: 1fr; gap: 40px; }
     .scroll-cue { display: none; }
+    /* Espaço extra para o botão flutuante do chat não cobrir o rodapé */
+    footer.site { padding-bottom: 104px; }
   }
   @media (max-width: 520px) {
+    .foot-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
     .cookie-notice {
       left: 12px; right: 12px; bottom: 90px;
       width: auto; max-width: none;

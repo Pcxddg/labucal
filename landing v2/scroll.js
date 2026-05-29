@@ -26,7 +26,9 @@
     const travel = Math.max(1, Math.min(innerHeight * 0.72, r.height * 0.62));
     const p = clamp(-r.top / travel, 0, 1);
     const open = 1 - easeInOutCubic(p);
+    const gap = 9 + 25 * open;
     heroTeeth.style.setProperty("--teeth-open", open.toFixed(3));
+    heroTeeth.style.setProperty("--teeth-gap", `${gap.toFixed(1)}px`);
     heroTeeth.style.transform = `translate(-50%, -50%) translateY(${(p * 10).toFixed(1)}px) scale(${(1 + p * 0.035).toFixed(3)})`;
   }
 
@@ -117,7 +119,10 @@
 
   /* ---------- reduced motion: jump to final states ---------- */
   if (reduce) {
-    if (heroTeeth) heroTeeth.style.setProperty("--teeth-open", "0");
+    if (heroTeeth) {
+      heroTeeth.style.setProperty("--teeth-open", "0");
+      heroTeeth.style.setProperty("--teeth-gap", "14px");
+    }
     layers.forEach(el => { el.classList.add("lit"); el.style.transform = "translateX(-50%)"; el.style.opacity = "1"; });
     legend.forEach(l => l.classList.add("active"));
     $$("#steps .step").forEach(s => s.classList.add("lit"));

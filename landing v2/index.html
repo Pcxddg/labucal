@@ -32,6 +32,13 @@
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
 <link rel="preconnect" href="https://labucal-gemini-proxy.keanukeanom.workers.dev" crossorigin />
 
+<!-- Sem JS: restaura a barra de rolagem nativa (a custom depende de JS) -->
+<noscript><style>
+  html { scrollbar-width: auto; }
+  html::-webkit-scrollbar { width: 12px; height: 12px; display: block; }
+  .app-scrollbar { display: none !important; }
+</style></noscript>
+
 <!-- JSON-LD: MedicalBusiness + ProfessionalService -->
 <script type="application/ld+json">
 {
@@ -507,6 +514,9 @@
 
 <!-- ============ TWEAKS PANEL ============ -->
 <div id="tweaksPanel"></div>
+
+<!-- barra de rolagem custom (overlay) -->
+<div class="app-scrollbar" id="appScrollbar" aria-hidden="true"><div class="app-scrollbar__thumb" id="appScrollbarThumb"></div></div>
 
 <script src="script.js"></script>
 <script src="scroll.js"></script>

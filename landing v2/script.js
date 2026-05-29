@@ -588,3 +588,68 @@ REGRAS DE RESPOSTA:
   });
   window.parent.postMessage({ type: "__edit_mode_available" }, "*");
 })();
+
+/* ============================================================
+   Barra de rolagem custom (overlay) — porte da v1
+   Oculta a barra nativa (sem reservar espaço) e desenha um thumb
+   que reflete a posição do scroll; arrastável; auto-hide.
+   ============================================================ */
+(function customScrollbar() {
+  "use strict";
+  const bar = document.getElementById("appScrollbar");
+  const thumb = document.getElementById("appScrollbarThumb");
+  if (!bar || !thumb) return;
+  const scroller = document.scrollingElement || document.documentElement;
+  let hideTimer = null, dragging = false, hovering = false;
+  const trackH = () => bar.clientHeight;
+  const isScrollable = () => scroller.scrollHeight > window.innerHeight + 2;
+
+  const update = () => {
+    const scrollH = scroller.scrollHeight, winH = window.innerHeight;
+    if (scrollH <= winH + 2) { bar.classList.remove("is-active"); return; }
+    const th = Math.max(36, Math.round(trackH() * (winH / scrollH)));
+    const maxThumbTop = Math.max(0, trackH() - th);
+    const range = scrollH - winH;
+    const top = range > 0 ? (scroller.scrollTop / range) * maxThumbTop : 0;
+    thumb.style.height = th + "px";
+    thumb.style.transform = "translateY(" + Math.round(top) + "px)";
+  };
+  const flash = () => {
+    if (!isScrollable()) { bar.classList.remove("is-active"); return; }
+    bar.classList.add("is-active");
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => { if (!dragging && !hovering) bar.classList.remove("is-active"); }, 1200);
+  };
+
+  window.addEventListener("scroll", () => { update(); flash(); }, { passive: true });
+  window.addEventListener("resize", () => { update(); flash(); }, { passive: true });
+  if ("ResizeObserver" in window) new ResizeObserver(() => { update(); flash(); }).observe(document.body);
+  window.addEventListener("load", () => { update(); flash(); });
+  window.addEventListener("mousemove", (e) => { if (window.innerWidth - e.clientX < 40) flash(); }, { passive: true });
+  bar.addEventListener("mouseenter", () => { hovering = true; flash(); });
+  bar.addEventListener("mouseleave", () => { hovering = false; flash(); });
+
+  // arrastar o thumb (geometria congelada no pointerdown)
+  let startY = 0, startScroll = 0, dragRange = 0, dragMaxThumbTop = 1;
+  thumb.addEventListener("pointerdown", (e) => {
+    dragging = true; bar.classList.add("is-dragging", "is-active");
+    startY = e.clientY; startScroll = scroller.scrollTop;
+    dragRange = Math.max(0, scroller.scrollHeight - window.innerHeight);
+    dragMaxThumbTop = Math.max(1, trackH() - thumb.offsetHeight);
+    try { thumb.setPointerCapture(e.pointerId); } catch (_) {} e.preventDefault();
+  });
+  thumb.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    let next = startScroll + ((e.clientY - startY) / dragMaxThumbTop) * dragRange;
+    scroller.scrollTop = Math.max(0, Math.min(dragRange, next));
+  });
+  const endDrag = (e) => {
+    if (!dragging) return;
+    dragging = false; bar.classList.remove("is-dragging");
+    try { thumb.releasePointerCapture(e.pointerId); } catch (_) {} flash();
+  };
+  thumb.addEventListener("pointerup", endDrag);
+  thumb.addEventListener("pointercancel", endDrag);
+
+  update(); flash();
+})();

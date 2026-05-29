@@ -7,3 +7,6 @@ assets/incoming/
 landing v2/.thumbnail
 landing v2/screenshots/
 landing v2/uploads/
+
+# v1 archivada (solo local, recuperable del historial de git)
+old/

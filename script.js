@@ -455,8 +455,15 @@ REGRAS DE RESPOSTA:
     }
     setTimeout(() => chatInput.focus(), 300);
   }
-  function closeChat() { panel.classList.remove("open"); fab.classList.remove("open"); fab.setAttribute("aria-expanded", "false"); }
+  function closeChat() {
+    panel.classList.remove("open"); fab.classList.remove("open"); fab.setAttribute("aria-expanded", "false");
+    fab.focus();
+  }
   fab.addEventListener("click", () => panel.classList.contains("open") ? closeChat() : openChat());
+  const chatClose = document.getElementById("chatClose");
+  if (chatClose) chatClose.addEventListener("click", closeChat);
+  // Escape fecha o chat (acessibilidade do diálogo)
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && panel.classList.contains("open")) closeChat(); });
   chatForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const q = chatInput.value.trim();
@@ -514,79 +521,6 @@ REGRAS DE RESPOSTA:
     updateDecor();
   }
 
-  /* =====================================================
-     TWEAKS panel (vanilla, host protocol)
-     ===================================================== */
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "palette": "clinica",
-    "typeface": "serif",
-    "heroHeadline": "Sua próxima prótese, pronta no prazo."
-  }/*EDITMODE-END*/;
-
-  const tweaks = Object.assign({}, TWEAK_DEFAULTS);
-  function applyTweaks() {
-    const root = document.documentElement;
-    if (tweaks.palette && tweaks.palette !== "clinica") root.setAttribute("data-palette", tweaks.palette);
-    else root.removeAttribute("data-palette");
-    if (tweaks.typeface === "grotesk") root.setAttribute("data-type", "grotesk");
-    else root.removeAttribute("data-type");
-    const h1 = $(".hero-copy h1");
-    if (h1 && tweaks.heroHeadline) {
-      // keep last clause emphasized
-      const parts = tweaks.heroHeadline.split(",");
-      if (parts.length > 1) h1.innerHTML = parts[0] + ", <em>" + parts.slice(1).join(",").trim() + "</em>";
-      else h1.textContent = tweaks.heroHeadline;
-    }
-  }
-  applyTweaks();
-
-  function setTweak(key, val) {
-    tweaks[key] = val;
-    applyTweaks();
-    window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [key]: val } }, "*");
-    buildPanel();
-  }
-
-  const PALETTES = [
-    { id: "clinica", label: "Clínica", sw: ["#0B1B3A", "#F4EFE6", "#3E92C0"] },
-    { id: "frio", label: "Tecido", sw: ["#0B1B3A", "#F1F3F5", "#1E7C8C"] },
-    { id: "grafite", label: "Ardósia", sw: ["#1A1A1E", "#E9E6E0", "#A8853C"] },
-  ];
-
-  const panelEl = $("#tweaksPanel");
-  let panelOpen = false;
-  function buildPanel() {
-    panelEl.innerHTML = `
-      <div class="tw-head"><span>Tweaks</span><button class="tw-x" id="twX" aria-label="Fechar">&times;</button></div>
-      <div class="tw-body">
-        <div class="tw-sec">Paleta</div>
-        <div class="tw-swatches">
-          ${PALETTES.map(p => `<button class="tw-pal ${tweaks.palette === p.id ? "on" : ""}" data-pal="${p.id}">
-            <span class="tw-dots">${p.sw.map(c => `<i style="background:${c}"></i>`).join("")}</span>${p.label}</button>`).join("")}
-        </div>
-        <div class="tw-sec">Tipografia dos títulos</div>
-        <div class="tw-seg">
-          <button data-type="serif" class="${tweaks.typeface === "serif" ? "on" : ""}">Serifada</button>
-          <button data-type="grotesk" class="${tweaks.typeface === "grotesk" ? "on" : ""}">Grotesca</button>
-        </div>
-        <div class="tw-sec">Título do hero</div>
-        <textarea class="tw-text" id="twHead" rows="2">${tweaks.heroHeadline}</textarea>
-      </div>`;
-    $("#twX", panelEl).addEventListener("click", dismissPanel);
-    $$(".tw-pal", panelEl).forEach(b => b.addEventListener("click", () => setTweak("palette", b.dataset.pal)));
-    $$(".tw-seg button", panelEl).forEach(b => b.addEventListener("click", () => setTweak("typeface", b.dataset.type)));
-    const ta = $("#twHead", panelEl);
-    ta.addEventListener("change", () => setTweak("heroHeadline", ta.value.trim() || TWEAK_DEFAULTS.heroHeadline));
-  }
-  function openPanel() { panelOpen = true; panelEl.classList.add("open"); buildPanel(); }
-  function dismissPanel() { panelOpen = false; panelEl.classList.remove("open"); window.parent.postMessage({ type: "__edit_mode_dismissed" }, "*"); }
-
-  window.addEventListener("message", (e) => {
-    const t = e && e.data && e.data.type;
-    if (t === "__activate_edit_mode") openPanel();
-    else if (t === "__deactivate_edit_mode") { panelOpen = false; panelEl.classList.remove("open"); }
-  });
-  window.parent.postMessage({ type: "__edit_mode_available" }, "*");
 })();
 
 /* ============================================================

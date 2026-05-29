@@ -1,45 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Laboratório de Prótese Dentária em Sorocaba/SP | Labucal</title>
-<meta name="description" content="Laboratório de prótese dentária em Sorocaba/SP. Próteses, implantes, clareamento e alinhadores transparentes para dentistas e clínicas. Prazos cumpridos e precisão milimétrica." />
+<meta name="description" content="Laboratório de prótese dentária em Sorocaba/SP. Próteses, implantes, clareamento e alinhadores para dentistas e clínicas, com prazo cumprido e precisão." />
 <link rel="canonical" href="https://labucal.pages.dev/" />
 <meta name="theme-color" content="#0A1B3D" />
 <meta name="color-scheme" content="light" />
 
-<link rel="preconnect" href="https://labucal-gemini-proxy.keanukeanom.workers.dev" crossorigin />
-
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Labucal" />
 <meta property="og:title" content="Laboratório de Prótese Dentária em Sorocaba/SP | Labucal" />
 <meta property="og:description" content="Próteses, implantes, clareamento e alinhadores transparentes para dentistas e clínicas. Prazos cumpridos e precisão milimétrica." />
 <meta property="og:url" content="https://labucal.pages.dev/" />
 <meta property="og:image" content="https://labucal.pages.dev/assets/labucal-images/service-protese.jpg" />
-<meta property="og:image:width" content="900" />
-<meta property="og:image:height" content="600" />
 <meta property="og:locale" content="pt_BR" />
-
-<!-- Twitter Cards -->
+<meta property="og:site_name" content="Labucal" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Laboratório de Prótese Dentária em Sorocaba/SP | Labucal" />
 <meta name="twitter:description" content="Próteses, implantes, clareamento e alinhadores transparentes para dentistas e clínicas." />
 <meta name="twitter:image" content="https://labucal.pages.dev/assets/labucal-images/service-protese.jpg" />
 
-<!-- Structured data: LocalBusiness / Dental Laboratory -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+<link rel="preconnect" href="https://labucal-gemini-proxy.keanukeanom.workers.dev" crossorigin />
+
+<!-- Sem JS: restaura a barra de rolagem nativa (a custom depende de JS) -->
+<noscript><style>
+  html { scrollbar-width: auto; }
+  html::-webkit-scrollbar { width: 12px; height: 12px; display: block; }
+  .app-scrollbar { display: none !important; }
+</style></noscript>
+
+<!-- JSON-LD: MedicalBusiness + ProfessionalService -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": ["MedicalBusiness", "ProfessionalService"],
   "name": "Labucal",
-  "description": "Laboratório de prótese dentária em Sorocaba/SP. Próteses, implantes, clareamento e alinhadores transparentes para dentistas e clínicas.",
-  "url": "https://labucal.pages.dev/",
-  "logo": "https://labucal.pages.dev/assets/brand/labucal-logo-192.png",
+  "description": "Laboratório de prótese dentária em Sorocaba/SP para dentistas e clínicas.",
   "image": "https://labucal.pages.dev/assets/labucal-images/service-protese.jpg",
-  "telephone": "+55-15-99110-7117",
+  "logo": "https://labucal.pages.dev/assets/brand/labucal-logo-192.png",
+  "url": "https://labucal.pages.dev/",
+  "telephone": "+5515991107117",
   "email": "contato@labucal.com.br",
+  "taxID": "12.720.218/0001-08",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rua Cônego Januário Barbosa, 225",
@@ -48,17 +60,12 @@
     "postalCode": "18030-075",
     "addressCountry": "BR"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -23.5084267,
-    "longitude": -47.4584548
-  },
-  "openingHoursSpecification": [{
+  "geo": { "@type": "GeoCoordinates", "latitude": -23.5084267, "longitude": -47.4584548 },
+  "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "08:00",
-    "closes": "18:00"
-  }],
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "08:00", "closes": "18:00"
+  },
   "areaServed": [
     { "@type": "City", "name": "Sorocaba" },
     { "@type": "State", "name": "São Paulo" },
@@ -68,1259 +75,37 @@
     "https://www.facebook.com/labucalprotese",
     "https://www.instagram.com/labucalprotese/"
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "2",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "2" }
 }
 </script>
 
-<!-- Structured data: FAQPage -->
+<!-- JSON-LD: FAQPage -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Quais serviços vocês oferecem?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prótese dentária (parcial, total e fixa, coroas e facetas), componentes protéticos sobre implantes já instalados, placas e moldeiras para clareamento caseiro, e alinhadores transparentes. Todos os serviços são executados sob prescrição do dentista. Atendemos exclusivamente profissionais autônomos (CPF) e clínicas (CNPJ) — não atendemos pacientes diretamente."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quais são os prazos de entrega?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "O prazo depende do tipo de serviço. Coroas unitárias saem em 7 dias corridos; reabilitações completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Vocês atendem clínicas de outras cidades?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sim. Operamos a partir de Sorocaba, SP. Atendemos todo o estado e demais capitais brasileiras por logística rastreada, com seguro e prazo de envio acordado na abertura do pedido."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Como funciona o orçamento?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Após o envio do caso, retornamos em até 24h com proposta detalhada: material, etapas, prazo e valor. Sem custo de avaliação."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Trabalham com quais materiais?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Como é feita a entrega das próteses?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Embalagem identificada com etiqueta do caso, transportadora parceira e código de rastreio enviado por WhatsApp. Em Sorocaba e região, entrega própria sob demanda."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Posso visitar o laboratório?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Claro. Recebemos profissionais com agendamento prévio para conhecer o espaço, os equipamentos e a equipe técnica."
-      }
-    }
+    { "@type": "Question", "name": "Quais serviços vocês oferecem?", "acceptedAnswer": { "@type": "Answer", "text": "Prótese dentária (parcial, total e fixa, coroas e facetas), componentes protéticos sobre implantes já instalados, placas e moldeiras para clareamento caseiro, e alinhadores transparentes. Todos os serviços são executados sob prescrição do dentista. Atendemos exclusivamente profissionais autônomos (CPF) e clínicas (CNPJ) — não atendemos pacientes diretamente." } },
+    { "@type": "Question", "name": "Quais são os prazos de entrega?", "acceptedAnswer": { "@type": "Answer", "text": "O prazo depende do tipo de serviço. Coroas unitárias saem em 7 dias corridos; reabilitações completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido." } },
+    { "@type": "Question", "name": "Vocês atendem clínicas de outras cidades?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Operamos a partir de Sorocaba, SP. Atendemos todo o estado e demais capitais brasileiras por logística rastreada, com seguro e prazo de envio acordado na abertura do pedido." } },
+    { "@type": "Question", "name": "Como funciona o orçamento?", "acceptedAnswer": { "@type": "Answer", "text": "Após o envio do caso, retornamos em até 24h com proposta detalhada: material, etapas, prazo e valor. Sem custo de avaliação." } },
+    { "@type": "Question", "name": "Trabalham com quais materiais?", "acceptedAnswer": { "@type": "Answer", "text": "Zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso." } },
+    { "@type": "Question", "name": "Como é feita a entrega das próteses?", "acceptedAnswer": { "@type": "Answer", "text": "Embalagem identificada com etiqueta do caso, transportadora parceira e código de rastreio enviado por WhatsApp. Em Sorocaba e região, entrega própria sob demanda." } },
+    { "@type": "Question", "name": "Posso visitar o laboratório?", "acceptedAnswer": { "@type": "Answer", "text": "Claro. Recebemos profissionais com agendamento prévio para conhecer o espaço, os equipamentos e a equipe técnica." } }
   ]
 }
 </script>
-
-<link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
-<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-
-<!-- Sem JS: restaura a barra de rolagem nativa (a custom depende de JS) -->
-<noscript><style>
-  html { scrollbar-width: auto; }
-  html::-webkit-scrollbar { width: 12px; height: 12px; display: block; }
-  .app-scrollbar { display: none !important; }
-</style></noscript>
-
-<style>
-  :root {
-    --ink-900: #0A1B3D;   /* azul noche base */
-    --ink-800: #142A5C;   /* azul profundo */
-    --ink-600: #2E4A8C;   /* azul medio */
-    --ink-300: #7BA7E1;   /* azul claro acento */
-    --bone:    #F8F7F4;   /* blanco hueso */
-    --white:   #FFFFFF;
-    --text:    #1A1A1A;
-    --muted:   #6B6B6B;
-
-    --border-dark:  rgba(255,255,255,0.10);
-    --border-dark-2: rgba(255,255,255,0.18);
-    --border-light: rgba(10,27,61,0.10);
-
-    --radius: 10px;
-    --radius-lg: 14px;
-    --shadow-card: 0 2px 12px rgba(0,0,0,0.04);
-
-    --ease: cubic-bezier(.22,.61,.36,1);
-    --t: 240ms;
-
-    --container: 1240px;
-    --gutter: clamp(20px, 4vw, 56px);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html {
-    scroll-behavior: smooth;
-    /* Oculta a barra nativa da JANELA (Firefox + legacy). Não reserva espaço,
-       então o conteúdo não fica deslocado. A barra do chat (.lz-body) mantém a sua. */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  /* Oculta a barra nativa da janela no WebKit/Chromium (escopo só na raiz) */
-  html::-webkit-scrollbar { width: 0; height: 0; display: none; }
-
-  /* ---------- Barra de rolagem custom (overlay, controlada por JS) ---------- */
-  .app-scrollbar {
-    position: fixed; top: 2px; right: 2px; bottom: 2px;
-    width: 10px; z-index: 95;
-    pointer-events: none; opacity: 0;
-    transition: opacity .35s var(--ease);
-  }
-  .app-scrollbar.is-active { opacity: 1; }
-  .app-scrollbar__thumb {
-    position: absolute; top: 0; right: 0;
-    width: 6px; min-height: 36px;
-    border-radius: 999px;
-    background: rgba(46,74,140,0.55);   /* --ink-600 translúcido: visível sobre claro e escuro */
-    pointer-events: auto; cursor: grab;
-    will-change: transform, height;
-    transition: width .15s var(--ease), background .2s var(--ease);
-  }
-  .app-scrollbar:hover .app-scrollbar__thumb,
-  .app-scrollbar.is-dragging .app-scrollbar__thumb { width: 10px; background: rgba(46,74,140,0.85); }
-  .app-scrollbar.is-dragging .app-scrollbar__thumb { cursor: grabbing; }
-  @media (prefers-reduced-motion: reduce) { .app-scrollbar { transition: opacity .01ms; } }
-  /* Em telas de toque o thumb é só indicador visual: rola-se com swipe, sem alvo minúsculo */
-  @media (hover: none) and (pointer: coarse) {
-    .app-scrollbar__thumb { pointer-events: none; cursor: default; }
-  }
-  body {
-    margin: 0;
-    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text);
-    background: var(--bone);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: transparent;
-  }
-  img, svg { display: block; max-width: 100%; }
-  img { height: auto; }
-  a { color: inherit; text-decoration: none; touch-action: manipulation; }
-  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; touch-action: manipulation; }
-
-  /* Focus visible */
-  :focus-visible {
-    outline: 2px solid var(--ink-300);
-    outline-offset: 2px;
-    border-radius: 4px;
-    scroll-margin-block-start: 90px;
-  }
-
-  /* Skip link (WCAG 2.4.1 Bypass Blocks) */
-  .skip-link {
-    position: absolute;
-    inset-block-start: -64px;
-    inset-inline-start: 12px;
-    z-index: 100;
-    background: var(--ink-900);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: inset-block-start var(--t) var(--ease);
-  }
-  .skip-link:focus-visible {
-    inset-block-start: 12px;
-    outline-offset: 4px;
-  }
-
-  /* Type scale */
-  h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-  h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 600; }
-  h2 { font-size: clamp(28px, 4.2vw, 44px); }
-  h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.01em; }
-  p  { margin: 0; text-wrap: pretty; }
-
-  .overline {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-600);
-  }
-  .dark .overline { color: var(--ink-300); }
-
-  .container {
-    max-width: var(--container);
-    margin: 0 auto;
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
-  }
-
-  section { position: relative; }
-  section[id] { scroll-margin-top: 80px; }
-  section.with-prosthesis {
-    overflow: hidden;
-  }
-  section.with-prosthesis > .container {
-    position: relative;
-    z-index: 1;
-  }
-  .pad {
-    padding-top: clamp(72px, 11vw, 140px);
-    padding-bottom: clamp(72px, 11vw, 140px);
-  }
-  .dark  { background: var(--ink-900); color: var(--white); }
-  .light { background: var(--bone);    color: var(--text); }
-  .dark .muted { color: rgba(255,255,255,0.65); }
-  .light .muted { color: var(--muted); }
-
-  .section-prosthesis {
-    --from-x: 0px;
-    --from-y: 0px;
-    --from-rot: 0deg;
-    --to-x: 0px;
-    --to-y: 0px;
-    --to-rot: 0deg;
-    --scroll-x: 0px;
-    --scroll-y: 0px;
-    --scroll-rot: 0deg;
-    --scroll-scale: 0.94;
-    --decor-opacity: 0.16;
-    position: absolute;
-    width: clamp(280px, 38vw, 600px);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    transform: translate3d(calc(var(--from-x) + var(--scroll-x)), calc(var(--from-y) + var(--scroll-y)), 0) rotate(calc(var(--from-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
-    transition: opacity 900ms var(--ease), transform 120ms linear;
-    filter: drop-shadow(0 28px 45px rgba(10,27,61,0.18));
-  }
-  .section-prosthesis.in {
-    opacity: var(--decor-opacity);
-    transform: translate3d(calc(var(--to-x) + var(--scroll-x)), calc(var(--to-y) + var(--scroll-y)), 0) rotate(calc(var(--to-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
-  }
-  .dark .section-prosthesis { --decor-opacity: 0.22; filter: drop-shadow(0 28px 50px rgba(0,0,0,0.35)); }
-  .light .section-prosthesis { --decor-opacity: 0.15; }
-  .section-prosthesis.decor-right {
-    right: max(-120px, -7vw);
-    top: 8%;
-    --from-x: 120px;
-    --from-rot: 12deg;
-    --to-rot: -5deg;
-  }
-  .section-prosthesis.decor-left {
-    left: max(-140px, -8vw);
-    bottom: 8%;
-    --from-x: -120px;
-    --from-rot: -13deg;
-    --to-rot: 5deg;
-  }
-  .section-prosthesis.decor-high {
-    top: 10%;
-    bottom: auto;
-  }
-  .section-prosthesis.decor-low {
-    top: auto;
-    bottom: 4%;
-  }
-  .section-prosthesis.decor-open {
-    width: clamp(340px, 46vw, 700px);
-  }
-  .section-prosthesis.decor-slim {
-    width: clamp(190px, 27vw, 430px);
-  }
-  .section-prosthesis.decor-small {
-    width: clamp(170px, 22vw, 340px);
-    --decor-opacity: 0.1;
-  }
-  .dark .section-prosthesis.decor-small { --decor-opacity: 0.15; }
-  .section-prosthesis.decor-left.decor-small {
-    left: max(-90px, -5vw);
-  }
-  .section-prosthesis.decor-right.decor-small {
-    right: max(-90px, -5vw);
-  }
-
-  /* ---------- Nav ---------- */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    transition: background var(--t) var(--ease), backdrop-filter var(--t) var(--ease), border-color var(--t) var(--ease);
-    border-bottom: 1px solid transparent;
-  }
-  .nav.scrolled {
-    background: rgba(10,27,61,0.82);
-    backdrop-filter: saturate(140%) blur(12px);
-    -webkit-backdrop-filter: saturate(140%) blur(12px);
-    border-bottom-color: var(--border-dark);
-  }
-  .nav-inner {
-    height: 76px;
-    display: flex; align-items: center; justify-content: space-between;
-    color: var(--white);
-  }
-  .logo {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-weight: 600; letter-spacing: -0.01em; font-size: 18px;
-  }
-  .logo-img {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    object-fit: contain;
-    flex: 0 0 auto;
-  }
-  .nav-links { display: flex; align-items: center; gap: 32px; }
-  .nav-links a {
-    font-size: 14px; opacity: 0.78; transition: opacity var(--t) var(--ease);
-  }
-  .nav-links a:hover { opacity: 1; }
-  .nav-cta {
-    background: var(--white); color: var(--ink-900);
-    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px;
-    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
-  }
-  .nav-cta:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
-
-  .hamburger {
-    display: none;
-    width: 40px; height: 40px; border-radius: 8px;
-    align-items: center; justify-content: center;
-    border: 1px solid var(--border-dark-2);
-  }
-  .hamburger span { display: block; width: 18px; height: 1.5px; background: white; position: relative; }
-  .hamburger span::before, .hamburger span::after {
-    content: ""; position: absolute; left: 0; right: 0; height: 1.5px; background: white;
-  }
-  .hamburger span::before { top: -6px; }
-  .hamburger span::after  { top: 6px; }
-
-  /* Mobile menu */
-  .mobile-menu {
-    position: fixed; inset: 0; background: var(--ink-900); z-index: 80;
-    display: none; flex-direction: column; padding: 100px var(--gutter) 40px;
-    color: white; overflow-y: auto;
-  }
-  .mobile-menu.open { display: flex; }
-  /* Com o menu aberto, esconde os flutuantes para não cobrir o CTA */
-  body:has(.mobile-menu.open) .lz-btn,
-  body:has(.mobile-menu.open) .cookie-notice,
-  body:has(.mobile-menu.open) .gr-popup { display: none; }
-  .mobile-menu a { font-size: 28px; padding: 18px 0; border-bottom: 1px solid var(--border-dark); font-weight: 500; }
-  .mobile-menu .nav-cta { margin-top: 28px; text-align: center; width: 100%; padding: 16px; }
-  .mobile-close {
-    position: absolute; top: 22px; right: var(--gutter);
-    width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border-dark-2);
-    display: grid; place-items: center;
-  }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    min-height: 140vh; min-height: 140svh;
-    padding-top: 120px;
-    padding-bottom: 80px;
-    background: var(--ink-900);
-    color: white;
-    overflow: hidden;
-    position: relative;
-  }
-  .hero-bg {
-    position: absolute; inset: 0; pointer-events: none;
-    background:
-      linear-gradient(rgba(10,27,61,0.68), rgba(10,27,61,0.82)),
-      url("assets/labucal-images/hero-lab-bg.jpg") center / cover no-repeat,
-      radial-gradient(60% 50% at 80% 30%, rgba(46,74,140,0.35), transparent 70%),
-      radial-gradient(40% 40% at 10% 80%, rgba(46,74,140,0.18), transparent 70%);
-  }
-  .hero-grid {
-    position: sticky;
-    top: 96px;
-    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: clamp(40px, 6vw, 96px);
-    align-items: center;
-    min-height: calc(100vh - 200px);
-    min-height: calc(100svh - 200px);
-  }
-  .hero h1 {
-    margin-top: 20px;
-    max-width: 16ch;
-    text-wrap: balance;
-  }
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(180deg, var(--white) 0%, var(--ink-300) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .hero p.lead {
-    margin-top: 24px;
-    color: rgba(255,255,255,0.72);
-    max-width: 46ch;
-    font-size: clamp(16px, 1.2vw, 18px);
-  }
-  .hero-ctas { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 22px; border-radius: 999px;
-    font-weight: 600; font-size: 15px;
-    transition: transform var(--t) var(--ease), background var(--t) var(--ease), border-color var(--t) var(--ease), color var(--t) var(--ease);
-    border: 1px solid transparent;
-  }
-  .btn-primary { background: var(--white); color: var(--ink-900); }
-  .btn-primary:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
-  .btn-ghost { color: white; border-color: rgba(255,255,255,0.35); }
-  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.06); }
-  .btn-dark { background: var(--ink-900); color: white; }
-  .btn-dark:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--ink-900), black 15%); }
-
-  /* Constellation */
-  .constellation-wrap {
-    position: relative;
-    aspect-ratio: 1 / 1.05;
-    width: 100%;
-    max-width: 560px;
-    margin-left: auto;
-  }
-  .constellation-wrap svg { width: 100%; height: 100%; overflow: visible; }
-  .prosthesis {
-    position: absolute; inset: 22% 22% 22% 22%;
-    display: grid; place-items: center;
-    color: rgba(255,255,255,0.92);
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
-  }
-  .prosthesis svg,
-  .prosthesis img { width: 100%; height: 100%; object-fit: contain; }
-  .prosthesis.assembly {
-    --prosthesis-progress: 0;
-    --prosthesis-upper-y: -150px;
-    --prosthesis-lower-y: 170px;
-    --prosthesis-scale: 0.86;
-    isolation: isolate;
-  }
-  .prosthesis.assembly img {
-    position: absolute;
-    inset: 0;
-    will-change: transform;
-    transition: transform 80ms linear;
-  }
-  .prosthesis-part.upper {
-    transform: translate3d(0, var(--prosthesis-upper-y), 0) scale(var(--prosthesis-scale));
-    transform-origin: 50% 72%;
-    z-index: 2;
-  }
-  .prosthesis-part.lower {
-    transform: translate3d(0, var(--prosthesis-lower-y), 0) scale(var(--prosthesis-scale));
-    transform-origin: 50% 28%;
-    z-index: 1;
-  }
-
-  /* dot pulse */
-  @keyframes pulse {
-    0%, 100% { opacity: 0.4; r: 2.4; }
-    50%      { opacity: 1;   r: 3.6; }
-  }
-  @keyframes lineFlow {
-    0%, 100% { opacity: 0.18; }
-    50%      { opacity: 0.55; }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .star { animation: pulse 4s var(--ease) infinite; transform-box: fill-box; transform-origin: center; }
-    .link { animation: lineFlow 6s var(--ease) infinite; }
-  }
-
-  .scroll-cue {
-    position: absolute; left: 50%; bottom: 32px; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    color: rgba(255,255,255,0.5);
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  .scroll-cue .line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
-    position: relative; overflow: hidden;
-  }
-  .scroll-cue .line::after {
-    content: ""; position: absolute; top: -40px; left: 0; right: 0; height: 14px;
-    background: linear-gradient(to bottom, transparent, white);
-    animation: scrollDot 2.4s var(--ease) infinite;
-  }
-  @keyframes scrollDot {
-    0%   { transform: translateY(0); opacity: 0; }
-    30%  { opacity: 1; }
-    100% { transform: translateY(60px); opacity: 0; }
-  }
-
-  /* ---------- Value prop ---------- */
-  .section-head {
-    display: grid; gap: 20px;
-    max-width: 800px;
-  }
-  .section-head h2 { text-wrap: balance; max-width: 22ch; }
-  .pillars {
-    margin-top: 72px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background: var(--border-light);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-  .pillar {
-    background: var(--bone);
-    padding: 36px 32px;
-    display: grid; gap: 12px;
-    transition: background var(--t) var(--ease);
-  }
-  .pillar:hover { background: var(--white); }
-  .pillar .icon {
-    width: 36px; height: 36px;
-    color: var(--ink-800);
-    display: grid; place-items: center;
-    margin-bottom: 4px;
-  }
-  .pillar h3 { font-weight: 600; }
-  .pillar p { color: var(--muted); }
-
-  /* ---------- Services ---------- */
-  .services-grid {
-    margin-top: 64px;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-  }
-  .service {
-    background: var(--ink-800);
-    border: 1px solid var(--border-dark);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    transition: transform var(--t) var(--ease), border-color var(--t) var(--ease), background var(--t) var(--ease);
-    display: grid; gap: 16px;
-  }
-  .service:hover {
-    transform: translateY(-4px);
-    border-color: rgba(123,167,225,0.45);
-    background: color-mix(in oklch, var(--ink-800), white 8%);
-  }
-  .service-thumb {
-    aspect-ratio: 16/9;
-    background:
-      radial-gradient(100% 100% at 0% 0%, rgba(123,167,225,0.18), transparent 60%),
-      linear-gradient(135deg, #0E2350 0%, #1B3A7E 100%);
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--border-dark);
-  }
-  .service-thumb svg {
-    position: absolute; inset: 0; margin: auto;
-    width: 56%; opacity: 0.85;
-  }
-  .service-thumb img,
-  .g-item .ph img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .service-thumb img { position: absolute; inset: 0; }
-  .service h3 { font-weight: 600; }
-  .service p { color: rgba(255,255,255,0.65); font-size: 15px; }
-  .service .more {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--ink-300); font-weight: 500; font-size: 14px;
-    margin-top: 4px;
-    transition: gap var(--t) var(--ease);
-  }
-  .service:hover .more { gap: 12px; }
-
-  /* ---------- Toggle de serviços extras ---------- */
-  .services-toggle-wrap {
-    margin-top: 40px;
-    display: flex; justify-content: center;
-  }
-  .services-toggle {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: transparent;
-    border: 1px solid var(--border-dark-2);
-    color: white;
-    padding: 13px 26px;
-    border-radius: 999px;
-    font-weight: 600; font-size: 14px;
-    letter-spacing: -0.01em;
-    transition: background var(--t) var(--ease), border-color var(--t) var(--ease), transform var(--t) var(--ease);
-  }
-  .services-toggle:hover {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(123,167,225,0.45);
-    transform: translateY(-1px);
-  }
-  .services-toggle-chevron { transition: transform var(--t) var(--ease); }
-  .services-toggle[aria-expanded="true"] .services-toggle-chevron { transform: rotate(180deg); }
-  .services-toggle-less { display: none; }
-  .services-toggle[aria-expanded="true"] .services-toggle-more { display: none; }
-  .services-toggle[aria-expanded="true"] .services-toggle-less { display: inline; }
-
-  .services-extra { margin-top: 24px; }
-  .services-extra[hidden] { display: none; }
-  @media (prefers-reduced-motion: no-preference) {
-    .services-extra:not([hidden]) {
-      animation: servicesFadeIn 400ms var(--ease);
-    }
-  }
-  @keyframes servicesFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ---------- Process ---------- */
-  .process {
-    margin-top: 72px;
-    position: relative;
-  }
-  .process-track {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
-    position: relative;
-  }
-  .process-line {
-    position: absolute; top: 28px; left: 8%; right: 8%; height: 1px;
-    background: var(--border-light);
-  }
-  .process-line .fill {
-    position: absolute; left: 0; top: 0; bottom: 0;
-    background: var(--ink-600);
-    width: 0%; transition: width 600ms var(--ease);
-  }
-  .step { position: relative; }
-  .step .num {
-    font-size: 56px; font-weight: 300; color: var(--ink-600);
-    line-height: 1; letter-spacing: -0.04em;
-    background: var(--bone); padding-right: 14px; display: inline-block;
-  }
-  .step h3 { margin-top: 18px; font-weight: 600; }
-  .step p  { margin-top: 6px; color: var(--muted); font-size: 15px; }
-
-  /* ---------- Gallery ---------- */
-  .gallery {
-    margin-top: 64px;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 16px;
-  }
-  .g-item {
-    position: relative; overflow: hidden;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-dark);
-    background:
-      radial-gradient(120% 80% at 0% 0%, rgba(123,167,225,0.22), transparent 60%),
-      linear-gradient(135deg, #0E2350 0%, #1B3A7E 100%);
-    cursor: pointer;
-  }
-  .g-item .ph {
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
-    color: rgba(255,255,255,0.55);
-    transition: transform 600ms var(--ease), opacity var(--t) var(--ease);
-  }
-  .g-item:hover .ph { transform: scale(1.04); }
-  .g-item .overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,27,61,0.85) 0%, transparent 60%);
-    opacity: 0; transition: opacity var(--t) var(--ease);
-    display: flex; align-items: flex-end; padding: 22px;
-    color: white;
-  }
-  .g-item:hover .overlay { opacity: 1; }
-  .g-item .overlay .label { font-weight: 500; font-size: 15px; }
-  .g-item .overlay .sub { font-size: 12px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; }
-  .g-tall { grid-row: span 2; aspect-ratio: 4 / 5; }
-  .g-wide { aspect-ratio: 16 / 9; }
-  .g-square { aspect-ratio: 1 / 1; }
-
-  .gallery-row2 {
-    margin-top: 16px;
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
-  }
-
-  /* ---------- Network constellation ---------- */
-  .network-wrap {
-    margin-top: 56px;
-    position: relative;
-    border: 1px solid var(--border-light);
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 36px;
-    aspect-ratio: 16/8;
-    overflow: hidden;
-  }
-  .network-wrap svg { width: 100%; height: 100%; }
-  .net-star { cursor: pointer; transition: r var(--t) var(--ease); }
-  .net-star:hover { r: 8; }
-  .tooltip {
-    position: absolute; pointer-events: none; opacity: 0;
-    transform: translate(-50%, calc(-100% - 12px));
-    background: var(--ink-900); color: white;
-    padding: 6px 10px; border-radius: 6px;
-    font-size: 12px; white-space: nowrap;
-    transition: opacity var(--t) var(--ease);
-    z-index: 3;
-  }
-  .tooltip::after {
-    content: ""; position: absolute; left: 50%; bottom: -4px;
-    width: 8px; height: 8px; background: var(--ink-900);
-    transform: translateX(-50%) rotate(45deg);
-  }
-
-  .testimonials {
-    margin-top: 56px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  }
-  .quote {
-    background: var(--white);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-card);
-  }
-  .quote .mark { font-size: 32px; color: var(--ink-600); line-height: 0.6; }
-  .quote p { margin-top: 14px; font-size: 16px; color: var(--text); }
-  .quote footer { margin-top: 20px; font-size: 13px; color: var(--muted); }
-  .quote footer strong { color: var(--text); font-weight: 600; display: block; }
-
-  /* ---------- Contact ---------- */
-  .contact-grid {
-    margin-top: 56px;
-    display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 6vw, 96px);
-    align-items: start;
-  }
-  .contact-list { display: grid; gap: 28px; }
-  .c-item {
-    display: grid; grid-template-columns: 28px 1fr; gap: 16px; align-items: start;
-  }
-  .c-item .icon { color: var(--ink-300); padding-top: 4px; }
-  .c-item .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-  .c-item .val { font-size: 18px; font-weight: 500; margin-top: 4px; transition: color var(--t) var(--ease); }
-  .c-item a:hover .val { color: var(--ink-300); }
-
-  .form { display: grid; gap: 22px; }
-  .field { display: grid; gap: 8px; }
-  .field label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-  .field input, .field textarea {
-    background: transparent;
-    border: 0; border-bottom: 1px solid rgba(255,255,255,0.25);
-    color: white; font: inherit; font-size: 16px;
-    padding: 10px 0;
-    transition: border-color var(--t) var(--ease);
-  }
-  .field input:focus-visible, .field textarea:focus-visible {
-    outline: none; border-bottom-color: white;
-  }
-  .field textarea { min-height: 90px; resize: vertical; }
-  .form .btn-primary { justify-self: start; margin-top: 6px; }
-
-  .map-card {
-    margin-top: 48px;
-    border: 1px solid var(--border-dark);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--ink-800);
-    min-height: 360px;
-    position: relative;
-  }
-  .map-card iframe {
-    width: 100%;
-    height: clamp(320px, 42vw, 460px);
-    border: 0;
-    display: block;
-    filter: saturate(0.85) contrast(0.95);
-  }
-  .map-info {
-    position: absolute;
-    left: 18px;
-    bottom: 18px;
-    max-width: min(420px, calc(100% - 36px));
-    background: rgba(10,27,61,0.88);
-    border: 1px solid var(--border-dark-2);
-    color: white;
-    border-radius: 10px;
-    padding: 16px 18px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .map-info strong {
-    display: block;
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-  .map-info p {
-    color: rgba(255,255,255,0.72);
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .map-info a {
-    display: inline-flex;
-    margin-top: 10px;
-    color: var(--ink-300);
-    font-size: 13px;
-    font-weight: 600;
-  }
-  /* Captura o scroll para não roubar a rolagem da página.
-     Libera com um clique do usuário; volta a capturar quando o mouse sai. */
-  .map-overlay {
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    background: transparent;
-  }
-  .map-overlay::after {
-    content: "Clique no mapa para interagir";
-    position: absolute;
-    top: 14px; left: 14px;
-    background: rgba(10,27,61,0.85);
-    color: white;
-    padding: 7px 13px;
-    border-radius: 999px;
-    font-size: 12px; font-weight: 500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--t) var(--ease);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  .map-overlay:hover::after { opacity: 1; }
-  @media (hover: none) {
-    .map-overlay::after { opacity: 1; }
-  }
-  .map-overlay.inactive { pointer-events: none; }
-  .map-overlay.inactive::after { display: none; }
-
-  /* ---------- FAQ ---------- */
-  .faq { margin-top: 48px; max-width: 880px; }
-  .faq-item { border-bottom: 1px solid var(--border-light); }
-  .faq-q {
-    width: 100%; display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 0; text-align: left;
-    font-size: clamp(17px, 1.5vw, 19px); font-weight: 500; color: var(--text);
-    transition: color var(--t) var(--ease);
-  }
-  .faq-q:hover { color: var(--ink-800); }
-  .faq-q .plus {
-    width: 24px; height: 24px; position: relative;
-    transition: transform var(--t) var(--ease);
-    flex-shrink: 0;
-  }
-  .faq-q .plus::before, .faq-q .plus::after {
-    content: ""; position: absolute; left: 50%; top: 50%;
-    width: 14px; height: 1.5px; background: var(--ink-800);
-    transform: translate(-50%, -50%);
-  }
-  .faq-q .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform var(--t) var(--ease); }
-  .faq-item.open .plus { transform: rotate(45deg); }
-  .faq-a {
-    overflow: hidden; max-height: 0;
-    transition: max-height 400ms var(--ease);
-  }
-  .faq-a-inner {
-    padding: 0 0 24px 0; padding-right: 60px;
-    color: var(--muted); font-size: 16px;
-  }
-
-  /* ---------- Footer ---------- */
-  footer.site {
-    background: var(--ink-900); color: rgba(255,255,255,0.7);
-    padding: 80px 0 32px;
-    border-top: 1px solid var(--border-dark);
-  }
-  .foot-grid {
-    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 60px;
-  }
-  .foot-grid h4 {
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 18px;
-  }
-  .foot-grid .logo { color: white; }
-  .foot-grid p.tag { margin-top: 16px; max-width: 28ch; color: rgba(255,255,255,0.6); font-size: 15px; }
-  .foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  .foot-grid a { font-size: 15px; transition: color var(--t) var(--ease); }
-  .foot-grid a:hover { color: white; }
-  .socials { margin-top: 20px; display: flex; gap: 10px; }
-  .socials a {
-    width: 36px; height: 36px; border-radius: 8px;
-    border: 1px solid var(--border-dark-2);
-    display: grid; place-items: center;
-    transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
-  }
-  .socials a:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.4); }
-  .foot-bottom {
-    margin-top: 72px; padding-top: 24px;
-    border-top: 1px solid var(--border-dark);
-    display: flex; justify-content: space-between; gap: 20px;
-    font-size: 13px; color: rgba(255,255,255,0.5);
-    flex-wrap: wrap;
-  }
-
-  /* ---------- Labucalzinho ---------- */
-  .lz-btn {
-    position: fixed; right: 22px; bottom: 22px; z-index: 70;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: var(--ink-900);
-    border: 1px solid var(--ink-300);
-    color: white;
-    display: grid; place-items: center;
-    box-shadow: 0 10px 30px rgba(10,27,61,0.35);
-    transform: scale(0); opacity: 0;
-    transition: transform 600ms cubic-bezier(.34,1.56,.64,1), opacity 300ms;
-  }
-  .lz-btn.in { transform: scale(1); opacity: 1; }
-  .lz-btn:hover { background: var(--ink-800); }
-  .lz-btn .badge {
-    position: absolute; top: -2px; right: -2px;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--ink-300);
-    border: 2px solid var(--ink-900);
-  }
-
-  .lz-panel {
-    position: fixed; right: 22px; bottom: 96px; z-index: 70;
-    width: 340px; max-width: calc(100vw - 32px);
-    max-height: 540px;
-    background: var(--ink-900); color: white;
-    border: 1px solid var(--border-dark-2);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-    transform: translateY(10px) scale(0.98); opacity: 0; pointer-events: none;
-    transition: transform var(--t) var(--ease), opacity var(--t) var(--ease);
-  }
-  .lz-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-  .lz-head {
-    display: flex; align-items: center; gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--border-dark);
-  }
-  .lz-head .avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--ink-800); border: 1px solid var(--border-dark-2);
-    display: grid; place-items: center;
-  }
-  .lz-head .name { font-weight: 600; font-size: 15px; }
-  .lz-head .status { font-size: 11px; color: var(--ink-300); display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-  .lz-head .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-300); display: inline-block; }
-  .lz-close { margin-left: auto; opacity: 0.6; transition: opacity var(--t); padding: 6px; }
-  .lz-close:hover { opacity: 1; }
-
-  .lz-body {
-    flex: 1; overflow-y: auto;
-    padding: 18px;
-    display: flex; flex-direction: column; gap: 12px;
-    background: linear-gradient(180deg, rgba(123,167,225,0.04), transparent 200px);
-    /* Scrollbar na paleta da marca (Firefox) */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(123,167,225,0.35) transparent;
-  }
-  /* Scrollbar na paleta da marca (WebKit / Chromium) */
-  .lz-body::-webkit-scrollbar { width: 8px; }
-  .lz-body::-webkit-scrollbar-track { background: transparent; }
-  .lz-body::-webkit-scrollbar-thumb {
-    background: rgba(123,167,225,0.35);
-    border-radius: 999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-  .lz-body::-webkit-scrollbar-thumb:hover { background: rgba(123,167,225,0.6); }
-  .msg {
-    max-width: 80%;
-    padding: 10px 14px;
-    border-radius: 14px;
-    font-size: 14px; line-height: 1.5;
-  }
-  .msg.bot { background: var(--ink-800); border-bottom-left-radius: 4px; }
-  .msg.me  { background: var(--ink-300); color: var(--ink-900); align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
-  .msg.typing {
-    display: inline-flex; gap: 4px; align-items: center;
-    padding: 14px;
-    background: var(--ink-800);
-    border-bottom-left-radius: 4px;
-  }
-  .msg.typing span {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    display: inline-block;
-    animation: lzTyping 1.4s var(--ease) infinite;
-  }
-  .msg.typing span:nth-child(2) { animation-delay: 0.18s; }
-  .msg.typing span:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes lzTyping {
-    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-    30%           { opacity: 1;   transform: translateY(-4px); }
-  }
-  .lz-input input:disabled { opacity: 0.5; cursor: not-allowed; }
-  .msg .msg-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 10px;
-    padding: 8px 14px;
-    background: #25D366;
-    color: #062b1c;
-    border-radius: 999px;
-    font-weight: 600; font-size: 13px;
-    text-decoration: none;
-    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
-  }
-  .msg .msg-cta:hover { transform: translateY(-1px); background: #1DA851; color: white; }
-  .msg .msg-cta svg { flex-shrink: 0; }
-
-  .quick {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin-top: 4px;
-  }
-  .quick button {
-    font-size: 12px; padding: 7px 12px; border-radius: 999px;
-    border: 1px solid var(--border-dark-2); color: rgba(255,255,255,0.85);
-    transition: background var(--t), border-color var(--t);
-  }
-  .quick button:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.4); }
-
-  .lz-input {
-    border-top: 1px solid var(--border-dark);
-    padding: 12px 14px;
-    display: flex; gap: 8px; align-items: center;
-  }
-  .lz-input input {
-    flex: 1; background: transparent; border: 0; color: white; font: inherit;
-    font-size: 14px; padding: 8px 4px;
-  }
-  .lz-input input:focus-visible {
-    outline: none;
-    box-shadow: inset 0 -1px 0 var(--ink-300);
-  }
-  .lz-send {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--ink-300); color: var(--ink-900);
-    display: grid; place-items: center;
-    transition: transform var(--t);
-  }
-  .lz-send:hover { transform: translateX(2px); }
-
-  /* ---------- Cookie notice ---------- */
-  .cookie-notice {
-    position: fixed;
-    left: 22px; bottom: 22px;
-    z-index: 65;
-    max-width: 420px;
-    width: calc(100vw - 44px);
-    background: var(--ink-900);
-    color: white;
-    border: 1px solid var(--border-dark-2);
-    border-radius: 14px;
-    padding: 18px 20px;
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 14px;
-    align-items: start;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 400ms var(--ease), opacity 400ms var(--ease);
-  }
-  .cookie-notice.in { transform: translateY(0); opacity: 1; }
-  .cookie-notice[hidden] { display: none; }
-  .cookie-icon { color: var(--ink-300); padding-top: 2px; }
-  .cookie-text { grid-column: 2 / 3; }
-  .cookie-text strong {
-    display: block; font-size: 14px; font-weight: 600;
-    margin-bottom: 4px; letter-spacing: -0.01em;
-  }
-  .cookie-text p {
-    margin: 0; font-size: 13px; line-height: 1.55;
-    color: rgba(255,255,255,0.78);
-  }
-  .cookie-text a {
-    color: var(--ink-300);
-    text-decoration: underline; text-underline-offset: 2px;
-    transition: color var(--t) var(--ease);
-  }
-  .cookie-text a:hover { color: white; }
-  .cookie-actions {
-    grid-column: 2 / 3; margin-top: 12px;
-    display: flex; justify-content: flex-end;
-  }
-  .cookie-btn {
-    background: white; color: var(--ink-900);
-    padding: 9px 18px; border-radius: 999px;
-    font-weight: 600; font-size: 13px;
-    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
-  }
-  .cookie-btn:hover { transform: translateY(-1px); background: color-mix(in oklch, var(--bone), black 5%); }
-
-  /* ---------- Google reviews popup ---------- */
-  .gr-popup {
-    position: fixed;
-    left: 22px; bottom: 22px;
-    z-index: 65;
-    width: 320px;
-    max-width: calc(100vw - 44px);
-    background: var(--white);
-    color: var(--text);
-    border: 1px solid var(--border-light);
-    border-radius: 14px;
-    padding: 18px 20px 16px;
-    box-shadow: 0 20px 50px rgba(10,27,61,0.18);
-    transform: translateY(20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 500ms var(--ease), opacity 500ms var(--ease), bottom 400ms var(--ease);
-  }
-  .gr-popup.in {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  /* Se o aviso de cookies estiver visível, sobe o popup para não se sobrepor */
-  body:has(.cookie-notice.in) .gr-popup {
-    bottom: 220px;
-  }
-  .gr-popup[hidden] { display: none; }
-  .gr-head {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 12px;
-  }
-  .gr-head .g-logo { width: 22px; height: 22px; flex-shrink: 0; }
-  .gr-head .gr-source {
-    font-size: 13px; font-weight: 600;
-    color: var(--ink-900); line-height: 1.2;
-  }
-  .gr-head .gr-sub {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-top: 2px;
-  }
-  .gr-close {
-    margin-left: auto;
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    display: grid; place-items: center;
-    color: var(--muted);
-    transition: background var(--t), color var(--t);
-  }
-  .gr-close:hover { background: var(--bone); color: var(--ink-900); }
-  .gr-stars {
-    display: inline-flex; gap: 2px;
-    color: #FBBC04;
-    margin-bottom: 8px;
-  }
-  .gr-meta {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0 0 14px;
-    line-height: 1.55;
-  }
-  .gr-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 9px 16px;
-    background: var(--ink-900); color: white;
-    border-radius: 999px;
-    font-weight: 600; font-size: 13px;
-    text-decoration: none;
-    transition: transform var(--t) var(--ease), background var(--t) var(--ease);
-  }
-  .gr-cta:hover { transform: translateY(-1px); background: var(--ink-800); }
-
-  /* ---------- Reveal on scroll ---------- */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
-  .reveal.in { opacity: 1; transform: none; }
-
-  /* ---------- Responsive ---------- */
-  @media (max-width: 1024px) {
-    .pillars { grid-template-columns: 1fr; }
-    .process-track { grid-template-columns: 1fr; gap: 18px; }
-    .process-line { display: none; }
-    .step .num { font-size: 44px; }
-    .testimonials { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .foot-grid { grid-template-columns: 1fr 1fr; }
-    .network-wrap { aspect-ratio: 4/3; }
-  }
-  @media (max-width: 768px) {
-    .nav-links, .nav .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    .hero { min-height: 100vh; min-height: 100svh; }
-    .hero-grid { position: relative; top: auto; grid-template-columns: 1fr; gap: 48px; min-height: auto; padding-top: 24px; }
-    .section-prosthesis { display: none; }
-    .constellation-wrap { max-width: 420px; margin: 0 auto; }
-    .services-grid { grid-template-columns: 1fr; }
-    .gallery { grid-template-columns: 1fr; }
-    .g-tall { aspect-ratio: 4/5; grid-row: auto; }
-    .gallery-row2 { grid-template-columns: 1fr 1fr; }
-    .foot-grid { grid-template-columns: 1fr; gap: 40px; }
-    .scroll-cue { display: none; }
-    /* Espaço extra para o botão flutuante do chat não cobrir o rodapé */
-    footer.site { padding-bottom: 104px; }
-  }
-  @media (max-width: 520px) {
-    .foot-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
-    .cookie-notice {
-      left: 12px; right: 12px; bottom: 90px;
-      width: auto; max-width: none;
-      padding: 14px 16px;
-    }
-    .gr-popup {
-      top: auto;
-      bottom: 90px;
-      left: 12px; right: 12px;
-      width: auto;
-    }
-    body:has(.cookie-notice.in) .gr-popup {
-      bottom: 280px;
-    }
-  }
-  @media (max-width: 420px) {
-    .lz-panel { right: 12px; bottom: 88px; }
-    .lz-btn { right: 14px; bottom: 14px; }
-  }
-</style>
 </head>
 <body>
 
-<!-- ============ SKIP LINK (WCAG 2.4.1 Bypass Blocks) ============ -->
-<a class="skip-link" href="#hero-h">Pular para o conteúdo</a>
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
-  <div class="container nav-inner">
-    <a href="#top" class="logo" aria-label="Labucal — início">
-      <img class="logo-img" src="assets/brand/labucal-logo-96.png" alt="" width="42" height="42" />
-      <span>Labucal</span>
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <nav class="nav" aria-label="Principal">
+    <a class="brand" href="#top" aria-label="Labucal — início">
+      <img class="brand-logo" src="/assets/brand/labucal-logo-96.png" alt="" width="38" height="38" />
+      <span class="word">Labucal</span>
     </a>
     <div class="nav-links">
       <a href="#servicos">Serviços</a>
@@ -1328,1412 +113,413 @@
       <a href="#galeria">Galeria</a>
       <a href="#contato">Contato</a>
     </div>
-    <a href="#contato" class="nav-cta">Pedir orçamento</a>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span></button>
-  </div>
-</nav>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+5515991107117">(15) 99110-7117</a>
+      <a class="btn btn-primary" href="#contato">Pedir orçamento</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu principal">
-  <button class="mobile-close" id="mobileClose" aria-label="Fechar menu">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <a href="#servicos" data-mclose>Serviços</a>
-  <a href="#processo" data-mclose>Processo</a>
-  <a href="#galeria" data-mclose>Galeria</a>
-  <a href="#rede" data-mclose>Rede</a>
-  <a href="#contato" data-mclose>Contato</a>
-  <a href="#contato" class="nav-cta" data-mclose>Pedir orçamento</a>
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-top">
+    <span class="brand"><img class="brand-logo" src="/assets/brand/labucal-logo-96.png" alt="" width="38" height="38" /><span class="word" style="color:var(--on-ink)">Labucal</span></span>
+    <button class="mm-close" id="mmClose" aria-label="Fechar menu">&times;</button>
+  </div>
+  <nav aria-label="Menu mobile">
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#rede">Rede</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <div class="mm-foot">
+    <a href="tel:+5515991107117" style="color:var(--accent-soft);text-decoration:none">(15) 99110-7117</a>
+    <span>Seg a sex · 08h às 18h</span>
+  </div>
 </div>
 
+<main id="main" tabindex="-1">
 <!-- ============ HERO ============ -->
-<section class="hero dark" id="top" aria-labelledby="hero-h">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-grid">
-    <div class="hero-text">
-      <span class="overline">Laboratório de próteses dentárias</span>
-      <h1 id="hero-h">Sua próxima prótese, <em>pronta no prazo</em>.</h1>
+<section class="hero on-ink" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="overline">Laboratório de próteses dentárias</p>
+      <h1>Sua próxima prótese, <em>pronta no prazo.</em></h1>
       <p class="lead">O laboratório que devolve a peça quando você combinou — sem retrabalho, sem surpresa. Atendimento direto com o técnico responsável.</p>
-      <div class="hero-ctas">
-        <a href="#contato" class="btn btn-primary">
-          Pedir orçamento
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#processo" class="btn btn-ghost">Conhecer o processo</a>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contato">Pedir orçamento <span class="btn-arrow">→</span></a>
+        <a class="btn btn-ghost" href="#processo">Conhecer o processo</a>
+      </div>
+      <div class="hero-trust">
+        <div class="t"><b>7</b><span>dias corridos · coroa unitária</span></div>
+        <div class="t"><b>24h</b><span>retorno do orçamento</span></div>
+        <div class="t"><b>B2B</b><span>dentistas e clínicas</span></div>
       </div>
     </div>
-
-    <div class="constellation-wrap" aria-hidden="true">
-      <svg viewBox="0 0 500 520" id="heroSvg">
-        <!-- lines -->
-        <g stroke="rgba(123,167,225,0.4)" stroke-width="1" fill="none"></g>
-        <!-- stars + center filled by JS -->
-      </svg>
-      <div class="prosthesis assembly" id="prosthesisAssembly">
-        <img class="prosthesis-part upper"
-             src="assets/labucal-images/prosthesis-part-01-upper.webp"
-             width="1254" height="1254" fetchpriority="high"
-             alt="Parte superior de prótese dentária" />
-        <img class="prosthesis-part lower"
-             src="assets/labucal-images/prosthesis-part-02-lower.webp"
-             width="1254" height="1254" fetchpriority="high"
-             alt="Parte inferior de prótese dentária" />
+    <div class="hero-visual">
+      <div class="hero-figure">
+        <div class="ph dark hero-bg" aria-hidden="true"></div>
+        <div class="hero-teeth" id="heroTeeth" aria-hidden="true">
+          <img class="hero-teeth-part hero-teeth-upper" src="/assets/labucal-images/prosthesis-part-01-upper.webp" alt="" />
+          <img class="hero-teeth-part hero-teeth-lower" src="/assets/labucal-images/prosthesis-part-02-lower.webp" alt="" />
+        </div>
+        <svg class="constellation" viewBox="0 0 400 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+      </div>
+      <div class="hero-badge">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div><b>Conferência dimensional</b><span>antes de cada entrega</span></div>
       </div>
     </div>
-  </div>
-
-  <div class="scroll-cue" aria-hidden="true">
-    <span>rolar</span>
-    <div class="line"></div>
   </div>
 </section>
 
-<!-- ============ VALUE PROP ============ -->
-<section class="light pad with-prosthesis" id="sobre" aria-labelledby="valor-h">
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Sobre o Labucal</span>
-      <h2 id="valor-h">Precisão técnica, entrega no prazo, parceria de longo prazo.</h2>
+<!-- ============ SOBRE / PILLARS ============ -->
+<section class="section sobre has-decor" id="sobre">
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="/assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="float" src="/assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Sobre o Labucal</p>
+      <h2 class="title">Precisão técnica, entrega no prazo, parceria de longo prazo.</h2>
     </div>
-    <div class="pillars reveal">
-      <div class="pillar">
-        <div class="icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
-        </div>
+    <div class="pillars">
+      <article class="pillar">
+        <span class="num">01</span>
+        <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
         <h3>Precisão milimétrica</h3>
-        <p class="muted">Menos retrabalho em cadeira. Cada peça é conferida dimensional e funcionalmente antes de sair.</p>
-      </div>
-      <div class="pillar">
-        <div class="icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        </div>
+        <p>Menos retrabalho em cadeira. Cada peça é conferida dimensional e funcionalmente antes de sair.</p>
+      </article>
+      <article class="pillar">
+        <span class="num">02</span>
+        <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
         <h3>Prazos cumpridos</h3>
-        <p class="muted">O prazo combinado é o prazo entregue. Cronograma definido caso a caso, na abertura do pedido.</p>
-      </div>
-      <div class="pillar">
-        <div class="icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 21v-1a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v1"/><circle cx="12" cy="7" r="3"/></svg>
-        </div>
+        <p>O prazo combinado é o prazo entregue. Cronograma definido caso a caso, na abertura do pedido.</p>
+      </article>
+      <article class="pillar">
+        <span class="num">03</span>
+        <div class="pic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <h3>Acompanhamento próximo</h3>
-        <p class="muted">Sem central de atendimento. Você fala direto com o técnico responsável pelo seu caso.</p>
+        <p>Sem central de atendimento. Você fala direto com o técnico responsável pelo seu caso.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANATOMIA / ASSEMBLY (scroll) ============ -->
+<section class="assembly on-ink" id="anatomia" aria-label="Como uma peça é construída">
+  <div class="assembly-track">
+    <div class="assembly-stage">
+      <div class="wrap assembly-inner">
+        <div class="assembly-copy">
+          <p class="overline">Anatomia de uma peça</p>
+          <h2 class="title">Camada por camada, até o encaixe perfeito.</h2>
+          <p class="lead">Cada prótese é construída em etapas conferidas — do preparo à caracterização final.</p>
+          <ol class="assembly-legend" id="assemblyLegend">
+            <li data-layer="0"><span class="dot"></span><div><b><span class="ln">01</span> Preparo &amp; modelo</b><span>base de trabalho aferida</span></div></li>
+            <li data-layer="1"><span class="dot"></span><div><b><span class="ln">02</span> Núcleo em zircônia</b><span>infraestrutura de alta resistência</span></div></li>
+            <li data-layer="2"><span class="dot"></span><div><b><span class="ln">03</span> Cerâmica de cobertura</b><span>forma e função</span></div></li>
+            <li data-layer="3"><span class="dot"></span><div><b><span class="ln">04</span> Caracterização &amp; glaze</b><span>estética final</span></div></li>
+          </ol>
+        </div>
+        <div class="assembly-viz">
+          <div class="layer-stack" id="layerStack">
+            <div class="layer l0" data-layer="0"><img class="layer-img" src="/assets/assembly/assembly-layer-preparo.webp" alt="" loading="lazy" /><span class="tag">preparo</span></div>
+            <div class="layer l1" data-layer="1"><img class="layer-img" src="/assets/assembly/assembly-layer-zirconia.webp" alt="" loading="lazy" /><span class="tag">zircônia</span></div>
+            <div class="layer l2" data-layer="2"><img class="layer-img" src="/assets/assembly/assembly-layer-ceramica.webp" alt="" loading="lazy" /><span class="tag">cerâmica</span></div>
+            <div class="layer l3" data-layer="3"><img class="layer-img" src="/assets/assembly/assembly-layer-glaze.webp" alt="" loading="lazy" /><span class="tag">glaze</span></div>
+          </div>
+          <div class="assembly-scrub"><span id="assemblyScrub"></span></div>
+        </div>
       </div>
+      <div class="assembly-hint" id="assemblyHint">role para montar <span class="ar">↓</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="dark pad with-prosthesis" id="servicos" aria-labelledby="serv-h">
-  <img class="section-prosthesis decor-left decor-low" data-scroll-decor="left" src="assets/decor/decor-partial.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-small decor-high" data-scroll-decor="right" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">O que fazemos</span>
-      <h2 id="serv-h">Nossos serviços.</h2>
+<!-- ============ SERVIÇOS ============ -->
+<section class="section servicos has-decor" id="servicos">
+  <img class="section-prosthesis decor-left decor-low" data-scroll-decor="left" src="/assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-high" data-scroll-decor="right" src="/assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">O que fazemos</p>
+      <h2 class="title">Nossos serviços.</h2>
     </div>
-    <div class="services-grid">
-      <article class="service reveal" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-protese.jpg" width="900" height="600" alt="Próteses dentárias trabalhadas em bancada de laboratório" loading="lazy" />
-        </div>
-        <h3>Prótese Dentária</h3>
-        <p>Parcial, total, fixa, coroas e facetas. Material escolhido caso a caso — zircônia, dissilicato ou cerâmica feldspática. Sai pronta para você entregar ao paciente.</p>
-        <a href="#contato" class="more" data-service="protese">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service reveal" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-implantes.jpg" width="900" height="600" alt="Componente protético sobre implante dentário" loading="lazy" />
-        </div>
-        <h3>Implantes Dentários</h3>
-        <p>Coroas, abutments e barras para o implante que você já colocou. Encaixe verificado antes de sair — sem ajuste surpresa de cadeira.</p>
-        <a href="#contato" class="more" data-service="implantes">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service reveal" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-clareamento.jpg" width="900" height="600" alt="Sorriso com dentes brancos após clareamento dental" loading="lazy" />
-        </div>
-        <h3>Clareamento Dental</h3>
-        <p>Placas e moldeiras sob medida para o clareamento caseiro do seu paciente. Você manda a moldagem, recebe a placa pronta para entregar.</p>
-        <a href="#contato" class="more" data-service="clareamento">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service reveal" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-alinhadores.jpg" width="900" height="600" alt="Alinhadores transparentes ortodônticos" loading="lazy" />
-        </div>
-        <h3>Alinhadores Transparentes</h3>
-        <p>Você envia o escaneamento ou modelo, a gente confecciona a sequência de alinhadores e acompanha tecnicamente cada etapa do tratamento.</p>
-        <a href="#contato" class="more" data-service="alinhadores">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-    </div>
-
-    <div class="services-toggle-wrap reveal">
-      <button type="button" class="services-toggle" id="servicesToggle" aria-controls="servicesExtra" aria-expanded="false">
-        <span class="services-toggle-more">Ver mais serviços</span>
-        <span class="services-toggle-less">Ocultar serviços extras</span>
-        <svg class="services-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-    </div>
-
-    <div class="services-grid services-extra" id="servicesExtra" hidden>
-      <article class="service" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-cad.jpg" width="900" height="1126" alt="Software CAD dental para modelagem digital de prótese" loading="lazy" />
-        </div>
-        <h3>CAD</h3>
-        <p>Planejamento e modelagem digital de próteses com tecnologia computer-aided design para precisão milimétrica.</p>
-        <a href="#contato" class="more" data-service="cad">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-pt.jpg" width="900" height="600" alt="Prótese total para reabilitação completa da arcada" loading="lazy" />
-        </div>
-        <h3>PT — Prótese Total</h3>
-        <p>Reabilitação completa da arcada para casos de edentulismo, com ajuste anatômico e estética cuidada.</p>
-        <a href="#contato" class="more" data-service="pt">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-ppr.jpg" width="900" height="565" alt="Prótese parcial removível com estrutura metálica" loading="lazy" />
-        </div>
-        <h3>PPR — Prótese Parcial Removível</h3>
-        <p>Estrutura com grampos de retenção em dentes remanescentes, garantindo estabilidade e conforto ao uso.</p>
-        <a href="#contato" class="more" data-service="ppr">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
-      <article class="service" tabindex="0">
-        <div class="service-thumb">
-          <img src="assets/labucal-images/service-metaloceramica.jpg" width="900" height="600" alt="Coroa metalocerâmica para reabilitação fixa" loading="lazy" />
-        </div>
-        <h3>Metalocerâmica</h3>
-        <p>Coroas com infraestrutura metálica e cobertura cerâmica, combinando resistência e estética em harmonia.</p>
-        <a href="#contato" class="more" data-service="metaloceramica">Pedir orçamento
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </article>
+    <div class="serv-grid" id="servGrid"></div>
+    <div class="serv-extra" id="servExtra"></div>
+    <div class="serv-toggle-wrap">
+      <button class="btn btn-ghost" id="servToggle" aria-expanded="false" aria-controls="servExtra">Ver mais serviços <span class="btn-arrow">↓</span></button>
     </div>
   </div>
 </section>
 
-<!-- ============ PROCESS ============ -->
-<section class="light pad with-prosthesis" id="processo" aria-labelledby="proc-h">
-  <img class="section-prosthesis decor-right decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Como trabalhamos</span>
-      <h2 id="proc-h">Um processo claro, do pedido à entrega.</h2>
-    </div>
-
-    <div class="process reveal" id="processSection">
-      <div class="process-line" aria-hidden="true"><div class="fill" id="processFill"></div></div>
-      <div class="process-track">
-        <div class="step">
-          <span class="num">1</span>
-          <h3>Solicitação</h3>
-          <p class="muted">Recebemos o caso do dentista com modelo e diretrizes.</p>
+<!-- ============ PROCESSO (pinned journey) ============ -->
+<section class="proc-scene on-ink" id="processo">
+  <div class="proc-track">
+    <div class="proc-stage">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="overline">Como trabalhamos</p>
+          <h2 class="title">Um processo claro, do pedido à entrega.</h2>
         </div>
-        <div class="step">
-          <span class="num">2</span>
-          <h3>Análise técnica</h3>
-          <p class="muted">Avaliamos viabilidade, materiais e cronograma.</p>
-        </div>
-        <div class="step">
-          <span class="num">3</span>
-          <h3>Modelagem</h3>
-          <p class="muted">Produção da peça com aferição em cada etapa.</p>
-        </div>
-        <div class="step">
-          <span class="num">4</span>
-          <h3>Controle</h3>
-          <p class="muted">Conferência dimensional, estética e funcional.</p>
-        </div>
-        <div class="step">
-          <span class="num">5</span>
-          <h3>Entrega</h3>
-          <p class="muted">Embalagem identificada e envio no prazo combinado.</p>
+        <div class="proc-rail">
+          <div class="proc-line"><span class="proc-fill" id="procFill"></span></div>
+          <div class="proc-token" id="procToken" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2v6l-3 9a2.5 2.5 0 0 0 2.4 3.3h7.2A2.5 2.5 0 0 0 18 17l-3-9V2"/></svg>
+          </div>
+          <div class="steps" id="steps"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section class="dark pad with-prosthesis" id="galeria" aria-labelledby="gal-h">
-  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-small decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Galeria</span>
-      <h2 id="gal-h">Trabalhos recentes.</h2>
+<!-- ============ GALERIA ============ -->
+<section class="section galeria has-decor" id="galeria">
+  <img class="section-prosthesis decor-left decor-high" data-scroll-decor="left" src="/assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-small decor-low" data-scroll-decor="float" src="/assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Galeria</p>
+      <h2 class="title">Trabalhos recentes.</h2>
     </div>
+    <div class="gal-grid" id="galGrid"></div>
+  </div>
+</section>
 
-    <div class="gallery reveal">
-      <div class="g-item g-tall">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-articulador.jpg" width="1000" height="1334" alt="Modelo odontologico montado em articulador de laboratorio" loading="lazy" />
+<!-- ============ CONTROLE DE QUALIDADE (scan, scroll) ============ -->
+<section class="ctrl-scene" id="controle" aria-label="Controle de qualidade">
+  <div class="ctrl-track">
+    <div class="ctrl-stage">
+      <div class="wrap ctrl-inner">
+        <div class="ctrl-copy">
+          <p class="overline">Controle</p>
+          <h2 class="title">Nada sai sem passar pela conferência.</h2>
+          <p class="lead">Cada peça é verificada em três frentes antes de ser embalada.</p>
+          <ul class="ctrl-checklist" id="ctrlChecklist">
+            <li data-check="0"><span class="ctrl-cbox"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Conferência dimensional</b><span>medidas e adaptação ao modelo</span></div></li>
+            <li data-check="1"><span class="ctrl-cbox"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Conferência estética</b><span>cor, forma e textura</span></div></li>
+            <li data-check="2"><span class="ctrl-cbox"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Conferência funcional</b><span>oclusão e encaixe</span></div></li>
+          </ul>
         </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 01</div>
-            <div class="label">Modelo em articulador · ajuste de oclusao</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item g-wide">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-modelo-arcada-01.jpg" width="1916" height="920" alt="Modelo de arcada com dentes artificiais em bancada" loading="lazy" />
-        </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 02</div>
-            <div class="label">Montagem de arcada · planejamento protetico</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item g-wide">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-anteriores.jpg" width="1228" height="656" alt="Close-up de dentes anteriores com acabamento estetico" loading="lazy" />
-        </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 03</div>
-            <div class="label">Acabamento anterior · estetica e textura</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gallery-row2 reveal">
-      <div class="g-item g-square">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-coroas-modelo.jpg" width="2160" height="1752" alt="Coroas posicionadas sobre modelo odontologico" loading="lazy" />
-        </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 04</div>
-            <div class="label">Coroas sobre modelo · conferencia de adaptacao</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item g-square">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-emax-zirconia.jpg" width="1204" height="672" alt="Comparacao visual entre coroa E-max e coroa de zirconia" loading="lazy" />
-        </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 05</div>
-            <div class="label">Coroas E-max e zirconia · escolha de material</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item g-square">
-        <div class="ph">
-          <img src="assets/labucal-images/lab-gallery-modelo-arcada-02.jpg" width="1916" height="920" alt="Modelo de arcada dentaria para planejamento de protese" loading="lazy" />
-        </div>
-        <div class="overlay">
-          <div>
-            <div class="sub">registro 06</div>
-            <div class="label">Modelo de arcada · prova e refinamento</div>
-          </div>
+        <div class="ctrl-viz">
+          <div class="ctrl-grid"></div>
+          <div class="ctrl-piece" id="ctrlPiece"><img src="/assets/quality/quality-crown.png" alt="" loading="lazy" /></div>
+          <span class="ctrl-mark" id="mark0" style="left:62%;top:30%"></span>
+          <span class="ctrl-mark" id="mark1" style="left:38%;top:48%"></span>
+          <span class="ctrl-mark" id="mark2" style="left:56%;top:66%"></span>
+          <div class="ctrl-scanline" id="ctrlScan"></div>
+          <div class="ctrl-stamp" id="ctrlStamp">Aprovado ✓</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- ============ NETWORK / CONSTELLATION ============ -->
-<section class="light pad with-prosthesis" id="rede" aria-labelledby="rede-h">
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-partial.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="left" src="assets/decor/decor-veneers.png" width="560" height="560" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Rede</span>
-      <h2 id="rede-h">Uma rede de profissionais que confiam no nosso trabalho.</h2>
-    </div>
 
-    <div class="network-wrap reveal" id="networkWrap">
-      <svg viewBox="0 0 1000 500" id="networkSvg" aria-hidden="true"></svg>
-      <div class="tooltip" id="netTooltip"></div>
+<!-- ============ REDE / CONSTELAÇÃO ============ -->
+<section class="section rede on-ink has-decor" id="rede">
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="/assets/decor/decor-partial.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-left decor-small decor-low" data-scroll-decor="left" src="/assets/decor/decor-veneers.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Rede</p>
+      <h2 class="title">Uma rede de profissionais que confiam no nosso trabalho.</h2>
     </div>
-
-    <div class="testimonials reveal">
-      <figure class="quote">
-        <div class="mark">"</div>
-        <p>Os ajustes chegam praticamente prontos. Economizo tempo em cadeira e o paciente sai satisfeito no mesmo dia.</p>
-        <footer>
-          <strong>Dra. Camila Andrade</strong>
-          Clínica Andrade Odontologia · São Paulo
-        </footer>
-      </figure>
-      <figure class="quote">
-        <div class="mark">"</div>
-        <p>Prazo é prazo. Em três anos de parceria, nunca tive uma entrega atrasada. Isso muda como eu planejo a agenda.</p>
-        <footer>
-          <strong>Dr. Rafael Moreira</strong>
-          Espaço Odonto · Campinas
-        </footer>
-      </figure>
-      <figure class="quote">
-        <div class="mark">"</div>
-        <p>O contato direto com o técnico faz diferença em casos complexos. Resolve dúvidas antes de virar problema.</p>
-        <footer>
-          <strong>Dra. Beatriz Salles</strong>
-          Salles Estética Dental · Belo Horizonte
-        </footer>
-      </figure>
+    <div class="rede-grid">
+      <div class="net" id="net">
+        <svg id="netSvg" viewBox="0 0 460 400" aria-label="Rede de clínicas parceiras"></svg>
+        <div class="net-tip" id="netTip"></div>
+      </div>
+      <div class="depo-list" id="depoList"></div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section class="dark pad with-prosthesis" id="contato" aria-labelledby="ctt-h">
-  <img class="section-prosthesis decor-left decor-slim decor-low" data-scroll-decor="float" src="assets/decor/decor-implant.png" width="420" height="420" alt="" loading="lazy" aria-hidden="true" />
-  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="assets/decor/decor-bridge.png" width="620" height="620" alt="" loading="lazy" aria-hidden="true" />
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">Contato</span>
-      <h2 id="ctt-h">Vamos conversar sobre seu próximo trabalho?</h2>
+<!-- ============ CONTATO ============ -->
+<section class="section contato has-decor" id="contato">
+  <img class="section-prosthesis decor-left decor-slim decor-low" data-scroll-decor="float" src="/assets/decor/decor-implant.png" alt="" loading="lazy" aria-hidden="true" />
+  <img class="section-prosthesis decor-right decor-high" data-scroll-decor="right" src="/assets/decor/decor-bridge.png" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Contato</p>
+      <h2 class="title">Vamos conversar sobre seu próximo trabalho?</h2>
     </div>
+    <div class="contato-grid">
+      <div>
+        <div class="contact-list">
+          <a class="contact-row" href="tel:+5515991107117">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <span class="ct"><b>Telefone / WhatsApp</b><span>(15) 99110-7117</span></span>
+          </a>
+          <a class="contact-row" href="mailto:contato@labucal.com.br">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span class="ct"><b>E-mail</b><span>contato@labucal.com.br</span></span>
+          </a>
+          <a class="contact-row" href="https://www.instagram.com/labucalprotese/" target="_blank" rel="noopener">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+            <span class="ct"><b>Instagram</b><span>@labucalprotese</span></span>
+          </a>
+          <a class="contact-row" href="https://www.facebook.com/labucalprotese" target="_blank" rel="noopener">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8h2V5h-2c-2 0-3 1.4-3 3.3V11H9v3h2v6h3v-6h2.2l.4-3H14V8.6c0-.4.3-.6.7-.6z"/></svg></span>
+            <span class="ct"><b>Facebook</b><span>Labucal Prótese Odontológica</span></span>
+          </a>
+          <a class="contact-row" href="https://www.google.com/maps/dir/?api=1&destination=Rua+C%C3%B4nego+Janu%C3%A1rio+Barbosa%2C+225%2C+Jardim+Vergueiro%2C+Sorocaba+-+SP%2C+18030-075" target="_blank" rel="noopener">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="ct"><b>Endereço</b><span>Rua Cônego Januário Barbosa, 225 · Jardim Vergueiro · Sorocaba/SP · 18030-075</span></span>
+          </a>
+          <div class="contact-row" style="cursor:default">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <span class="ct"><b>Horário</b><span>Segunda a sexta, 08h às 18h</span></span>
+          </div>
+        </div>
 
-    <div class="contact-grid">
-      <div class="contact-list reveal">
-        <a href="tel:+5515991107117" class="c-item">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.65 2.8a2 2 0 0 1-.45 2.11L8.1 9.84a16 16 0 0 0 6.06 6.06l1.21-1.21a2 2 0 0 1 2.11-.45c.9.3 1.84.52 2.8.65A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <div>
-            <div class="label">Telefone</div>
-            <div class="val">(15) 99110-7117</div>
-          </div>
-        </a>
-        <a href="mailto:contato@labucal.com.br" class="c-item">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
-          <div>
-            <div class="label">E-mail</div>
-            <div class="val">contato@labucal.com.br</div>
-          </div>
-        </a>
-        <a href="https://www.facebook.com/labucalprotese" class="c-item" target="_blank" rel="noopener">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </span>
-          <div>
-            <div class="label">Facebook</div>
-            <div class="val">Labucal Prótese Odontológica</div>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/labucalprotese/" class="c-item" target="_blank" rel="noopener">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <div>
-            <div class="label">Instagram</div>
-            <div class="val">@labucalprotese</div>
-          </div>
-        </a>
-        <div class="c-item">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </span>
-          <div>
-            <div class="label">Endereço</div>
-            <div class="val">Rua Cônego Januário Barbosa, 225<br/>Jardim Vergueiro · Sorocaba, SP<br/>CEP 18030-075</div>
-          </div>
+        <!-- MAP -->
+        <div class="map-wrap">
+          <iframe title="Mapa — Labucal, Sorocaba/SP" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-47.4624548%2C-23.5114267%2C-47.4544548%2C-23.5054267&layer=mapnik&marker=-23.5084267%2C-47.4584548"></iframe>
+          <div class="map-overlay" id="mapOverlay"><span class="hint">Clique no mapa para interagir</span></div>
         </div>
-        <div class="c-item">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          </span>
-          <div>
-            <div class="label">Horário</div>
-            <div class="val">Seg a sex · 08h às 18h</div>
-          </div>
-        </div>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=Rua+C%C3%B4nego+Janu%C3%A1rio+Barbosa%2C+225%2C+Jardim+Vergueiro%2C+Sorocaba+-+SP%2C+18030-075" target="_blank" rel="noopener">Abrir rota no Google Maps <span class="btn-arrow">→</span></a>
       </div>
 
-      <form class="form reveal" id="contactForm" novalidate>
-        <div class="field">
-          <label for="f-nome">Nome</label>
-          <input id="f-nome" name="nome" type="text" autocomplete="name" required />
+      <!-- FORM -->
+      <form class="form-card" id="contactForm" novalidate>
+        <div class="form-fields">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="clinica">Clínica <span class="opt">opcional</span></label>
+            <input type="text" id="clinica" name="clinica" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="contato">E-mail ou WhatsApp</label>
+            <input type="text" id="contato" name="contato" inputmode="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="mensagem">Mensagem <span class="opt">opcional</span></label>
+            <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre o caso ou o que precisa."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar <span class="btn-arrow">→</span></button>
+          <p class="form-note">Retorno em até 24h · sem custo de avaliação · atendemos dentistas e clínicas.</p>
         </div>
-        <div class="field">
-          <label for="f-clin">Clínica</label>
-          <input id="f-clin" name="clinica" type="text" autocomplete="organization" />
+        <div class="form-sent">
+          <div class="check"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Enviado ✓</h3>
+          <p>Abrimos o WhatsApp com sua mensagem. Caso não tenha aberto, fale no (15) 99110-7117.</p>
         </div>
-        <div class="field">
-          <label for="f-cont">E-mail ou WhatsApp</label>
-          <input id="f-cont" name="contato" type="text" autocomplete="email" inputmode="email" required />
-        </div>
-        <div class="field">
-          <label for="f-msg">Mensagem</label>
-          <textarea id="f-msg" name="mensagem" rows="3" placeholder="Conte um pouco sobre o caso ou o que precisa."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          Enviar
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
       </form>
-    </div>
-
-    <div class="map-card reveal" aria-label="Mapa da localização do Labucal">
-      <iframe
-        title="Mapa para o Labucal em Sorocaba"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-47.4634548%2C-23.5114267%2C-47.4534548%2C-23.5054267&amp;layer=mapnik&amp;marker=-23.5084267%2C-47.4584548">
-      </iframe>
-      <div class="map-overlay" id="mapOverlay" aria-hidden="true"></div>
-      <div class="map-info">
-        <strong>Laboratório de prótese dentária</strong>
-        <p>Rua Cônego Januário Barbosa, 225 · Jardim Vergueiro · Sorocaba, SP · CEP 18030-075</p>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20C%C3%B4nego%20Janu%C3%A1rio%20Barbosa%2C%20225%2C%20Jardim%20Vergueiro%2C%20Sorocaba%2C%20SP%2C%2018030-075" target="_blank" rel="noopener">Abrir rota no Google Maps</a>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="light pad" id="faq" aria-labelledby="faq-h">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="overline">FAQ</span>
-      <h2 id="faq-h">Perguntas frequentes.</h2>
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="overline">FAQ</p>
+      <h2 class="title">Perguntas frequentes.</h2>
     </div>
-
-    <div class="faq reveal" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Quais serviços vocês oferecem?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Prótese dentária (parcial, total e fixa, coroas e facetas), componentes protéticos sobre implantes já instalados, placas e moldeiras para clareamento caseiro, e alinhadores transparentes. Todos os serviços são executados sob prescrição do dentista. Atendemos exclusivamente profissionais autônomos (CPF) e clínicas (CNPJ) — não atendemos pacientes diretamente.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Quais são os prazos de entrega?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">O prazo depende do tipo de serviço. Coroas unitárias saem em 7 dias corridos; reabilitações completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Vocês atendem clínicas de outras cidades?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Sim. Operamos a partir de Sorocaba, SP. Atendemos todo o estado e demais capitais brasileiras por logística rastreada, com seguro e prazo de envio acordado na abertura do pedido.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Como funciona o orçamento?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Após o envio do caso, retornamos em até 24h com proposta detalhada: material, etapas, prazo e valor. Sem custo de avaliação.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Trabalham com quais materiais?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Como é feita a entrega das próteses?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Embalagem identificada com etiqueta do caso, transportadora parceira e código de rastreio enviado por WhatsApp. Em Sorocaba e região, entrega própria sob demanda.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Posso visitar o laboratório?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Claro. Recebemos profissionais com agendamento prévio para conhecer o espaço, os equipamentos e a equipe técnica.</div></div>
-      </div>
-    </div>
+    <div class="faq-list" id="faqList"></div>
   </div>
 </section>
+</main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site">
-  <div class="container">
-    <div class="foot-grid">
-      <div>
-        <a href="#top" class="logo">
-          <img class="logo-img" src="assets/brand/labucal-logo-96.png" alt="" width="42" height="42" loading="lazy" />
-          <span>Labucal</span>
-        </a>
-        <p class="tag">Laboratório de próteses dentárias. Precisão, prazo e parceria para dentistas e clínicas.</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/labucalprotese/" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.facebook.com/labucalprotese" aria-label="Facebook" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
+<footer class="footer on-ink" id="footer">
+  <img class="footer-teeth footer-teeth-left" src="/assets/labucal-images/prosthesis-part-01-upper.webp" alt="" loading="lazy" aria-hidden="true" />
+  <img class="footer-teeth footer-teeth-right" src="/assets/labucal-images/prosthesis-part-02-lower.webp" alt="" loading="lazy" aria-hidden="true" />
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a class="brand" href="#top"><img class="brand-logo" src="/assets/brand/labucal-logo-96.png" alt="" width="38" height="38" /><span class="word">Labucal</span></a>
+        <p class="footer-tag">Laboratório de prótese dentária em Sorocaba/SP. Precisão milimétrica e prazos cumpridos, para dentistas e clínicas.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/labucalprotese/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/labucalprotese" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8h2V5h-2c-2 0-3 1.4-3 3.3V11H9v3h2v6h3v-6h2.2l.4-3H14V8.6c0-.4.3-.6.7-.6z"/></svg></a>
         </div>
       </div>
-      <div>
+      <div class="footer-col">
         <h4>Navegação</h4>
-        <ul>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#processo">Processo</a></li>
-          <li><a href="#galeria">Galeria</a></li>
-          <li><a href="#rede">Rede</a></li>
-          <li><a href="#faq">Perguntas frequentes</a></li>
-        </ul>
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#rede">Rede</a>
+        <a href="#faq">Perguntas frequentes</a>
       </div>
-      <div>
+      <div class="footer-col">
         <h4>Contato</h4>
-        <ul>
-          <li><a href="tel:+5515991107117">(15) 99110-7117</a></li>
-          <li><a href="mailto:contato@labucal.com.br">contato@labucal.com.br</a></li>
-          <li>Rua Cônego Januário Barbosa, 225 · Jardim Vergueiro · Sorocaba, SP · CEP 18030-075</li>
-          <li>Seg a sex · 08h às 18h</li>
-        </ul>
+        <a href="tel:+5515991107117" class="fline">(15) 99110-7117</a>
+        <a href="mailto:contato@labucal.com.br" class="fline">contato@labucal.com.br</a>
+        <span class="fline">Rua Cônego Januário Barbosa, 225<br/>Jardim Vergueiro · Sorocaba/SP · 18030-075</span>
+        <span class="fline">Seg a sex · 08h às 18h</span>
       </div>
     </div>
-    <div class="foot-bottom">
+    <div class="footer-bottom">
       <span>© 2026 Labucal · Todos os direitos reservados.</span>
-      <span><a href="privacidade.html" style="text-decoration: underline; text-underline-offset: 3px;">Política de privacidade</a></span>
-      <span>CNPJ 12.720.218/0001-08</span>
+      <a href="privacidade.html">Política de privacidade</a>
+      <span class="cnpj">CNPJ 12.720.218/0001-08</span>
     </div>
   </div>
 </footer>
 
-<!-- ============ LABUCALZINHO ============ -->
-<button class="lz-btn" id="lzBtn" aria-label="Falar com o Labucalzinho">
-  <!-- Mascot tooth -->
-  <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z" fill="rgba(255,255,255,0.04)"/>
-    <!-- eyes -->
-    <circle cx="12.5" cy="14" r="0.9" fill="currentColor" stroke="none"/>
-    <circle cx="19.5" cy="14" r="0.9" fill="currentColor" stroke="none"/>
-    <!-- smile -->
-    <path d="M13 17.5 Q 16 19.5 19 17.5" stroke-width="1.2"/>
-  </svg>
-  <span class="badge" aria-hidden="true"></span>
-</button>
-
-<aside class="lz-panel" id="lzPanel" role="dialog" aria-label="Chat com Labucalzinho">
-  <div class="lz-head">
-    <div class="avatar">
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round">
-        <path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z"/>
-        <circle cx="12.5" cy="14" r="0.9" fill="white" stroke="none"/>
-        <circle cx="19.5" cy="14" r="0.9" fill="white" stroke="none"/>
-        <path d="M13 17.5 Q 16 19.5 19 17.5"/>
-      </svg>
-    </div>
-    <div>
-      <div class="name">Labucalzinho</div>
-      <div class="status">online agora</div>
-    </div>
-    <button class="lz-close" id="lzClose" aria-label="Fechar chat">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-  </div>
-  <div class="lz-body" id="lzBody" aria-live="polite" aria-atomic="false">
-    <div class="msg bot">Olá! Sou o Labucalzinho, assistente do laboratório. Tiro dúvidas sobre próteses, materiais, prazos e orçamentos. No que posso te ajudar?</div>
-    <div class="quick">
-      <button data-q="orcamento">Pedir orçamento</button>
-      <button data-q="prazo">Ver prazos</button>
-      <button data-q="materiais">Materiais que trabalham</button>
-      <button data-q="agendar">Agendar visita</button>
-      <button data-action="whatsapp">Falar no WhatsApp</button>
+<!-- ============ FLOATING: REVIEWS POPUP ============ -->
+<aside class="reviews-pop" id="reviewsPop" aria-live="polite" aria-label="Avaliações no Google">
+  <button class="rp-close" id="rpClose" aria-label="Fechar">&times;</button>
+  <div class="rp-top">
+    <svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.8z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1-3.6 1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M6 14.3a6.6 6.6 0 0 1 0-4.2V7.3H2.3a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.3L6 10.1c.9-2.6 3.2-4.5 6-4.5z"/></svg>
+    <div class="rp-meta">
+      <div class="rp-score"><b id="rpRating">5,0</b><span class="stars" id="rpStars"></span></div>
+      <span class="rp-count" id="rpCount">2 avaliações no Google</span>
     </div>
   </div>
-  <form class="lz-input" id="lzForm">
-    <input type="text" id="lzInput" placeholder="Escrever mensagem…" autocomplete="off" />
-    <button type="submit" class="lz-send" aria-label="Enviar">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </button>
-  </form>
+  <figure class="rp-review">
+    <blockquote class="rp-quote" id="rpQuote">Excelente serviço, cumpriram com o prazo de entrega, recomendo amplamente.</blockquote>
+    <figcaption class="rp-by">
+      <span class="rp-av" id="rpAv">D</span>
+      <span class="rp-who"><span class="rp-author" id="rpAuthor">Diego Silva Feitosa</span><span class="rp-time" id="rpTime">há 4 anos</span></span>
+    </figcaption>
+  </figure>
+  <a class="rp-cta" id="rpLink" href="https://www.google.com/maps/place/?q=place_id:ChIJ6f3VvLmLxZQRdLE0dLMATaI" target="_blank" rel="noopener">Ver todas no Google <span class="arrow">→</span></a>
 </aside>
 
-<!-- ============ GOOGLE REVIEWS POPUP ============ -->
-<div class="gr-popup" id="grPopup" role="dialog" aria-live="polite" aria-label="Avaliações no Google" hidden>
-  <div class="gr-head">
-    <svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true">
-      <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-      <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
-      <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
-      <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
-    </svg>
+<!-- ============ FLOATING: CHAT ============ -->
+<button class="fab-chat" id="fabChat" aria-label="Abrir chat com o Labucalzinho" aria-expanded="false">
+  <span class="pulse"></span>
+  <span class="ic-open"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z"/><circle cx="12.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><circle cx="19.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><path d="M13 17.5 Q 16 19.5 19 17.5" stroke-width="1.2"/></svg></span>
+  <span class="ic-close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+</button>
+
+<section class="chat-panel" id="chatPanel" role="dialog" aria-modal="true" aria-label="Chat com o Labucalzinho">
+  <div class="chat-head">
+    <span class="av"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M9 5 C 6 5, 5 8, 5.5 12 C 6 16, 7 19, 8 23 C 8.5 25, 9 28, 11 28 C 12.5 28, 13 26, 14 23 C 14.5 21, 15 20, 16 20 C 17 20, 17.5 21, 18 23 C 19 26, 19.5 28, 21 28 C 23 28, 23.5 25, 24 23 C 25 19, 26 16, 26.5 12 C 27 8, 26 5, 23 5 C 20 5, 18 7, 16 7 C 14 7, 12 5, 9 5 Z"/><circle cx="12.5" cy="14" r="0.9" fill="#fff" stroke="none"/><circle cx="19.5" cy="14" r="0.9" fill="#fff" stroke="none"/><path d="M13 17.5 Q 16 19.5 19 17.5" stroke-width="1.3"/></svg></span>
     <div>
-      <div class="gr-source">Labucal no Google</div>
-      <div class="gr-sub">Avaliações de clientes</div>
+      <b>Labucalzinho</b>
+      <span class="status"><span class="led"></span> Assistente do laboratório</span>
     </div>
-    <button type="button" class="gr-close" id="grClose" aria-label="Fechar aviso">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Fechar chat">&times;</button>
   </div>
-  <div class="gr-stars" aria-label="5 estrelas">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-  </div>
-  <p class="gr-meta">Veja o que dentistas e clínicas parceiras dizem do nosso trabalho diretamente no Google.</p>
-  <a href="https://www.google.com/maps/search/?api=1&amp;query=Labucal+Sorocaba" class="gr-cta" target="_blank" rel="noopener" id="grCta">
-    Ver avaliações
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chips" id="chatChips"></div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Escreva sua dúvida…" autocomplete="off" />
+    <button type="submit" aria-label="Enviar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></button>
+  </form>
+</section>
+
+<!-- ============ FLOATING: COOKIE NOTICE ============ -->
+<div class="cookie" id="cookie">
+  <p><b>Cookies e privacidade.</b> Utilizamos apenas cookies essenciais ao funcionamento do site. Não usamos rastreamento publicitário. Saiba mais em nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
+  <button class="btn btn-primary" id="cookieOk">Entendi</button>
 </div>
 
-<!-- ============ COOKIE NOTICE ============ -->
-<div class="cookie-notice" id="cookieNotice" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
-  <div class="cookie-icon" aria-hidden="true">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21.5 12c0 5.25-4.25 9.5-9.5 9.5S2.5 17.25 2.5 12 6.75 2.5 12 2.5a3.5 3.5 0 0 0 4 4 3.5 3.5 0 0 0 4 4 3.5 3.5 0 0 0 1.5 1.5z"/>
-      <circle cx="8" cy="11" r="0.9" fill="currentColor"/>
-      <circle cx="14" cy="14" r="0.9" fill="currentColor"/>
-      <circle cx="10" cy="16.5" r="0.9" fill="currentColor"/>
-      <circle cx="16" cy="9" r="0.9" fill="currentColor"/>
-    </svg>
-  </div>
-  <div class="cookie-text">
-    <strong>Cookies e privacidade</strong>
-    <p>Utilizamos apenas cookies essenciais ao funcionamento do site. Não usamos rastreamento publicitário. Saiba mais em nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
-  </div>
-  <div class="cookie-actions">
-    <button type="button" class="cookie-btn" id="cookieAccept">Entendi</button>
-  </div>
-</div>
-
-<!-- ============ CUSTOM SCROLLBAR (overlay) ============ -->
-<div class="app-scrollbar" id="appScrollbar" aria-hidden="true">
-  <div class="app-scrollbar__thumb" id="appScrollbarThumb"></div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function(){
-  // ---------- Nav scroll ----------
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 80);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Mobile menu
-  const ham = document.getElementById('hamburger');
-  const mm = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => mm.classList.add('open'));
-  document.getElementById('mobileClose').addEventListener('click', () => mm.classList.remove('open'));
-  mm.querySelectorAll('[data-mclose]').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
-
-  // ---------- Custom overlay scrollbar ----------
-  (function customScrollbar(){
-    const bar = document.getElementById('appScrollbar');
-    const thumb = document.getElementById('appScrollbarThumb');
-    if (!bar || !thumb) return;
-    const scroller = document.scrollingElement || document.documentElement;
-
-    let hideTimer = null;
-    let dragging = false;
-    let hovering = false;
-
-    const trackH = () => bar.clientHeight;
-
-    const update = () => {
-      const scrollH = scroller.scrollHeight;
-      const winH = window.innerHeight;
-      if (scrollH <= winH + 2) { bar.classList.remove('is-active'); return; }
-      const ratio = winH / scrollH;
-      const th = Math.max(36, Math.round(trackH() * ratio));
-      const maxThumbTop = Math.max(0, trackH() - th);
-      const range = scrollH - winH;
-      const top = range > 0 ? (scroller.scrollTop / range) * maxThumbTop : 0;
-      thumb.style.height = th + 'px';
-      thumb.style.transform = 'translateY(' + Math.round(top) + 'px)';
-    };
-
-    const isScrollable = () => scroller.scrollHeight > window.innerHeight + 2;
-
-    const flash = () => {
-      if (!isScrollable()) { bar.classList.remove('is-active'); return; }
-      bar.classList.add('is-active');
-      if (hideTimer) clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => {
-        if (!dragging && !hovering) bar.classList.remove('is-active');
-      }, 1200);
-    };
-
-    window.addEventListener('scroll', () => { update(); flash(); }, { passive: true });
-    window.addEventListener('resize', () => { update(); flash(); }, { passive: true });
-
-    // Conteúdo dinâmico (imagens carregando, acordeão do FAQ, toggle de serviços)
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(() => { update(); flash(); }).observe(document.body);
-    }
-    window.addEventListener('load', () => { update(); flash(); });
-
-    // Mostra ao aproximar o mouse da borda direita
-    window.addEventListener('mousemove', (e) => {
-      if (window.innerWidth - e.clientX < 40) flash();
-    }, { passive: true });
-
-    bar.addEventListener('mouseenter', () => { hovering = true; flash(); });
-    bar.addEventListener('mouseleave', () => { hovering = false; flash(); });
-
-    // Arrastar o thumb. A geometria é "congelada" no pointerdown para que uma
-    // mudança de altura no meio do arraste (imagem, acordeão) não cause salto.
-    let startY = 0, startScroll = 0, dragRange = 0, dragMaxThumbTop = 1;
-    thumb.addEventListener('pointerdown', (e) => {
-      dragging = true;
-      bar.classList.add('is-dragging', 'is-active');
-      startY = e.clientY;
-      startScroll = scroller.scrollTop;
-      dragRange = Math.max(0, scroller.scrollHeight - window.innerHeight);
-      dragMaxThumbTop = Math.max(1, trackH() - thumb.offsetHeight);
-      try { thumb.setPointerCapture(e.pointerId); } catch (_) {}
-      e.preventDefault();
-    });
-    thumb.addEventListener('pointermove', (e) => {
-      if (!dragging) return;
-      const dy = e.clientY - startY;
-      let next = startScroll + (dy / dragMaxThumbTop) * dragRange;
-      next = Math.max(0, Math.min(dragRange, next));
-      scroller.scrollTop = next;   // atribuição direta = instantâneo (ignora scroll-behavior)
-    });
-    const endDrag = (e) => {
-      if (!dragging) return;
-      dragging = false;
-      bar.classList.remove('is-dragging');
-      try { thumb.releasePointerCapture(e.pointerId); } catch (_) {}
-      flash();
-    };
-    thumb.addEventListener('pointerup', endDrag);
-    thumb.addEventListener('pointercancel', endDrag);
-
-    update();
-    flash();
-  })();
-
-  // ---------- Hero constellation ----------
-  (function buildHero(){
-    const svg = document.getElementById('heroSvg');
-    if (!svg) return;
-    const W = 500, H = 520, CX = W/2, CY = H/2;
-    // Points in a soft ring around the prosthesis center
-    const points = [
-      // outer ring
-      [80, 80], [180, 50], [300, 60], [420, 95], [460, 200],
-      [445, 320], [380, 420], [270, 460], [150, 445], [60, 360],
-      [40, 230],
-      // closer to center
-      [140, 160], [360, 170], [370, 360], [130, 360],
-      // far outliers
-      [20, 100], [480, 470], [250, 20]
-    ];
-
-    // Connections: hand-picked indices to feel like a real network
-    const conns = [
-      [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,0],
-      [0,11],[2,12],[6,13],[8,14],[3,12],[5,13],[9,14],[11,14],
-      [11,1],[12,4],[13,7],[14,9],[0,15],[3,17],[6,16]
-    ];
-
-    const linesGroup = svg.querySelector('g');
-    conns.forEach((c, i) => {
-      const [a,b] = c;
-      const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      ln.setAttribute('x1', points[a][0]); ln.setAttribute('y1', points[a][1]);
-      ln.setAttribute('x2', points[b][0]); ln.setAttribute('y2', points[b][1]);
-      ln.classList.add('link');
-      ln.style.animationDelay = (i * 0.25) + 's';
-      ln.style.opacity = 0.25;
-      linesGroup.appendChild(ln);
-    });
-
-    points.forEach((p, i) => {
-      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]);
-      c.setAttribute('r', 3);
-      c.setAttribute('fill', '#7BA7E1');
-      c.classList.add('star');
-      c.style.animationDelay = (i * 0.3) + 's';
-      svg.appendChild(c);
-    });
-  })();
-
-  // ---------- Prosthesis assembly on scroll ----------
-  (function prosthesisAssembly(){
-    const assembly = document.getElementById('prosthesisAssembly');
-    const hero = document.getElementById('top');
-    if (!assembly || !hero) return;
-    const update = () => {
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const raw = window.scrollY / Math.min(760, vh * 0.82);
-      const p = Math.min(1, Math.max(0, raw));
-      const eased = p * p * (3 - (2 * p));
-      const upperY = -150 + (eased * 110);
-      const lowerY = 170 - (eased * 115);
-      const scale = 0.86 + (eased * 0.12);
-      assembly.style.setProperty('--prosthesis-progress', p.toFixed(3));
-      assembly.style.setProperty('--prosthesis-upper-y', `${upperY.toFixed(1)}px`);
-      assembly.style.setProperty('--prosthesis-lower-y', `${lowerY.toFixed(1)}px`);
-      assembly.style.setProperty('--prosthesis-scale', scale.toFixed(3));
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-
-  // ---------- Network constellation ----------
-  (function buildNetwork(){
-    const svg = document.getElementById('networkSvg');
-    const wrap = document.getElementById('networkWrap');
-    const tip = document.getElementById('netTooltip');
-    if (!svg) return;
-    const W = 1000, H = 500;
-    const clinics = [
-      {x: 80,  y: 120, name: 'Andrade Odontologia', city: 'São Paulo', size: 6},
-      {x: 200, y: 80,  name: 'Espaço Odonto',       city: 'Campinas',  size: 5},
-      {x: 320, y: 160, name: 'Salles Estética',     city: 'BH',        size: 7},
-      {x: 460, y: 90,  name: 'Clínica Vértice',     city: 'Santos',    size: 4},
-      {x: 580, y: 200, name: 'Núcleo Sorriso',      city: 'Ribeirão',  size: 5},
-      {x: 720, y: 110, name: 'Odonto Premium',      city: 'Curitiba',  size: 6},
-      {x: 860, y: 220, name: 'Studio Dental',       city: 'POA',       size: 4},
-      {x: 940, y: 360, name: 'Clínica Norte',       city: 'Brasília',  size: 5},
-      {x: 780, y: 410, name: 'Espaço Vida',         city: 'Goiânia',   size: 4},
-      {x: 600, y: 360, name: 'Centro Odonto',       city: 'Sorocaba',  size: 5},
-      {x: 440, y: 410, name: 'Sorriso Real',        city: 'Bauru',     size: 4},
-      {x: 280, y: 380, name: 'Mais Dental',         city: 'Santo André', size: 5},
-      {x: 130, y: 320, name: 'Clínica Aurora',      city: 'Guarulhos', size: 4},
-      {x: 380, y: 260, name: 'Odonto Lab',          city: 'São Paulo', size: 6},
-      {x: 660, y: 280, name: 'Núcleo Excelência',   city: 'Jundiaí',   size: 5},
-      {x: 540, y: 60,  name: 'Clínica Plenitude',   city: 'Osasco',    size: 4},
-    ];
-
-    const conns = [
-      [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,0],
-      [13,2],[13,4],[13,11],[13,10],[14,4],[14,5],[14,9],[14,7],[15,3],[15,5],[2,11],[5,9]
-    ];
-
-    // build lines
-    conns.forEach((c, i) => {
-      const a = clinics[c[0]], b = clinics[c[1]];
-      const ln = document.createElementNS('http://www.w3.org/2000/svg','line');
-      ln.setAttribute('x1', a.x); ln.setAttribute('y1', a.y);
-      ln.setAttribute('x2', b.x); ln.setAttribute('y2', b.y);
-      ln.setAttribute('stroke', 'rgba(46,74,140,0.28)');
-      ln.setAttribute('stroke-width', 1);
-      svg.appendChild(ln);
-    });
-
-    clinics.forEach((c, i) => {
-      const circ = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      circ.setAttribute('cx', c.x); circ.setAttribute('cy', c.y);
-      circ.setAttribute('r', c.size);
-      circ.setAttribute('fill', '#142A5C');
-      circ.classList.add('net-star');
-      circ.addEventListener('mouseenter', (e) => {
-        tip.textContent = `${c.name} · ${c.city}`;
-        const rect = wrap.getBoundingClientRect();
-        const px = (c.x / W) * rect.width;
-        const py = (c.y / H) * rect.height;
-        tip.style.left = px + 'px';
-        tip.style.top  = py + 'px';
-        tip.style.opacity = 1;
-      });
-      circ.addEventListener('mouseleave', () => { tip.style.opacity = 0; });
-      svg.appendChild(circ);
-
-      // subtle pulse aura
-      const aura = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      aura.setAttribute('cx', c.x); aura.setAttribute('cy', c.y);
-      aura.setAttribute('r', c.size + 4);
-      aura.setAttribute('fill', 'none');
-      aura.setAttribute('stroke', 'rgba(46,74,140,0.18)');
-      svg.appendChild(aura);
-    });
-  })();
-
-  // ---------- Process line fill on scroll ----------
-  (function processFill(){
-    const section = document.getElementById('processSection');
-    const fill = document.getElementById('processFill');
-    if (!section || !fill) return;
-    const update = () => {
-      const r = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const start = vh * 0.85;
-      const end   = vh * 0.2;
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
-      fill.style.width = (p * 100) + '%';
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  })();
-
-  // ---------- FAQ ----------
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    q.addEventListener('click', () => {
-      const open = item.classList.toggle('open');
-      q.setAttribute('aria-expanded', open ? 'true' : 'false');
-      a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
-    });
-  });
-
-  // ---------- Reveal on scroll ----------
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(r => io.observe(r));
-  } else {
-    reveals.forEach(r => r.classList.add('in'));
-  }
-
-  const prosthesisDecor = document.querySelectorAll('.section-prosthesis');
-  if ('IntersectionObserver' in window) {
-    const decorIo = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-        }
-      });
-    }, { rootMargin: '-8% 0px -12%', threshold: 0.1 });
-    prosthesisDecor.forEach(item => decorIo.observe(item));
-  } else {
-    prosthesisDecor.forEach(item => item.classList.add('in'));
-  }
-
-  const updateDecorScroll = () => {
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    prosthesisDecor.forEach(item => {
-      const section = item.closest('section');
-      if (!section) return;
-      const r = section.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      const t = (p - 0.5) * 2;
-      const mode = item.dataset.scrollDecor || 'right';
-      let x = 0, y = t * 46, rot = t * 7, scale = 0.96 + (p * 0.05);
-      if (mode === 'right') {
-        x = 58 - (p * 118);
-        rot = 10 - (p * 20);
-      } else if (mode === 'left') {
-        x = -58 + (p * 118);
-        rot = -10 + (p * 20);
-      } else {
-        x = Math.sin(p * Math.PI) * 30;
-        y = -42 + (p * 84);
-        rot = -14 + (p * 28);
-        scale = 0.92 + (Math.sin(p * Math.PI) * 0.1);
-      }
-      item.style.setProperty('--scroll-x', `${x.toFixed(1)}px`);
-      item.style.setProperty('--scroll-y', `${y.toFixed(1)}px`);
-      item.style.setProperty('--scroll-rot', `${rot.toFixed(2)}deg`);
-      item.style.setProperty('--scroll-scale', scale.toFixed(3));
-    });
-  };
-  window.addEventListener('scroll', updateDecorScroll, { passive: true });
-  window.addEventListener('resize', updateDecorScroll);
-  updateDecorScroll();
-
-  // ---------- Form ----------
-  document.getElementById('contactForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const nome = form.querySelector('#f-nome').value.trim();
-    const clinica = form.querySelector('#f-clin').value.trim();
-    const contato = form.querySelector('#f-cont').value.trim();
-    const mensagem = form.querySelector('#f-msg').value.trim();
-
-    // Validação mínima (o form usa novalidate): nome e contato são obrigatórios.
-    if (!nome || !contato) {
-      (nome ? form.querySelector('#f-cont') : form.querySelector('#f-nome')).focus();
-      return;
-    }
-
-    const subject = 'Pedido de orçamento — ' + nome;
-    const body = [
-      'Nome: ' + nome,
-      clinica ? 'Clínica: ' + clinica : null,
-      'Contato: ' + contato,
-      '',
-      mensagem || '(sem mensagem)'
-    ].filter(l => l !== null).join('\n');
-
-    const mailto = 'mailto:contato@labucal.com.br'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
-
-    const btn = form.querySelector('button');
-    const original = btn.innerHTML;
-    btn.innerHTML = 'Abrindo e-mail…';
-    btn.style.background = '#7BA7E1';
-    // Abre o cliente de e-mail. Não damos reset() para não perder os dados
-    // caso o usuário não tenha um cliente de e-mail configurado.
-    window.location.href = mailto;
-    setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; }, 2400);
-  });
-
-  // ---------- Labucalzinho (powered by Gemini) ----------
-  const lzBtn   = document.getElementById('lzBtn');
-  const lzPanel = document.getElementById('lzPanel');
-  const lzBody  = document.getElementById('lzBody');
-  const lzClose = document.getElementById('lzClose');
-  const lzForm  = document.getElementById('lzForm');
-  const lzInput = document.getElementById('lzInput');
-
-  setTimeout(() => lzBtn.classList.add('in'), 1800);
-
-  const togglePanel = (force) => {
-    const willOpen = force ?? !lzPanel.classList.contains('open');
-    lzPanel.classList.toggle('open', willOpen);
-  };
-  lzBtn.addEventListener('click', () => togglePanel());
-  lzClose.addEventListener('click', () => togglePanel(false));
-
-  // WhatsApp e detecção do telefone para inserir botão contextual no chat.
-  const WHATSAPP_NUMBER = '5515991107117';
-  const PHONE_REGEX = /(?:\+?55\s*)?\(?15\)?[\s\-.]*9?9110[\s\-.]*7117/;
-  const WHATSAPP_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.14-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.42"/></svg>';
-
-  let lastUserMessage = '';
-
-  const buildWhatsAppUrl = () => {
-    const baseMsg = lastUserMessage
-      ? `Olá! Vim do site do Labucal. Minha pergunta foi: "${lastUserMessage}". Pode me ajudar?`
-      : 'Olá! Vim do site do Labucal e gostaria de mais informações.';
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(baseMsg)}`;
-  };
-
-  const addMsg = (text, who) => {
-    const d = document.createElement('div');
-    d.className = 'msg ' + who;
-    d.textContent = text;
-    if (who === 'bot' && PHONE_REGEX.test(text)) {
-      const cta = document.createElement('a');
-      cta.className = 'msg-cta';
-      cta.href = buildWhatsAppUrl();
-      cta.target = '_blank';
-      cta.rel = 'noopener';
-      cta.innerHTML = WHATSAPP_SVG + '<span>Abrir no WhatsApp</span>';
-      d.appendChild(document.createElement('br'));
-      d.appendChild(cta);
-    }
-    lzBody.appendChild(d);
-    lzBody.scrollTop = lzBody.scrollHeight;
-    return d;
-  };
-  const addTyping = () => {
-    const d = document.createElement('div');
-    d.className = 'msg bot typing';
-    d.setAttribute('aria-label', 'Labucalzinho está digitando');
-    d.innerHTML = '<span></span><span></span><span></span>';
-    lzBody.appendChild(d);
-    lzBody.scrollTop = lzBody.scrollHeight;
-    return d;
-  };
-
-  // URL do proxy Cloudflare Worker que repassa as mensagens ao Gemini.
-  // A chave da API fica como Secret encriptado no Worker, nunca neste arquivo.
-  // Se vazio ou se a request falhar, o chat opera com as respostas fallback hardcoded.
-  const GEMINI_PROXY_URL = 'https://labucal-gemini-proxy.keanukeanom.workers.dev';
-
-  // Carrega contexto dinâmico (rating real) de data/reviews.json se disponível.
-  let liveContext = '';
-  (async function loadLive(){
-    try {
-      const r = await fetch('data/reviews.json', { cache: 'no-cache' });
-      if (!r.ok) return;
-      const d = await r.json();
-      if (d.rating && d.userRatingCount) {
-        const rs = Number(d.rating).toFixed(1).replace('.', ',');
-        liveContext = `\n\nAVALIAÇÕES ATUAIS NO GOOGLE: ${rs} estrelas em ${d.userRatingCount} avaliações.`;
-      }
-    } catch (e) {}
-  })();
-
-  const SYSTEM_PROMPT = `Você é o Labucalzinho, o assistente virtual do Labucal — laboratório de próteses dentárias em Sorocaba, SP. Você ajuda dentistas e clínicas com dúvidas sobre nossos serviços.
-
-CONTEXTO DO LABORATÓRIO:
-- Endereço: Rua Cônego Januário Barbosa, 225, Jardim Vergueiro, Sorocaba, SP
-- Telefone / WhatsApp: (15) 99110-7117
-- E-mail: contato@labucal.com.br
-- Instagram: @labucalprotese
-- Facebook: facebook.com/labucalprotese
-- Horário de atendimento: segunda a sexta, 8h às 18h
-- CNPJ: 12.720.218/0001-08
-
-CLIENTES:
-- Atendemos exclusivamente dentistas e clínicas: autônomos (CPF) e empresas (CNPJ).
-- NÃO atendemos pacientes diretamente. Se um paciente perguntar sobre tratamento, oriente-o gentilmente a procurar o dentista de confiança, que entrará em contato com o Labucal.
-
-SERVIÇOS PRINCIPAIS (todos sob prescrição/indicação do dentista):
-- Prótese Dentária — parcial, total, fixa, coroas e facetas. Confecção da peça a partir do modelo e diretrizes enviados pelo dentista.
-- Implantes Dentários — componentes protéticos (coroa, abutment, barra) sobre implantes JÁ instalados pelo cirurgião-dentista. NÃO realizamos a cirurgia de implante em si.
-- Clareamento Dental — confecção de placas e moldeiras personalizadas para clareamento caseiro supervisionado pelo dentista. NÃO realizamos o clareamento de consultório.
-- Alinhadores Transparentes — confecção dos alinhadores a partir do escaneamento ou modelo enviado pelo dentista, com acompanhamento técnico em cada etapa do tratamento.
-
-TAMBÉM TRABALHAMOS COM (técnicas e especialidades dentro dos serviços acima):
-- CAD — planejamento e modelagem digital com tecnologia computer-aided design para confecção de peças com precisão milimétrica.
-- PT (Prótese Total) — reabilitação completa da arcada para casos de edentulismo (perda total dos dentes).
-- PPR (Prótese Parcial Removível) — estrutura com grampos metálicos de retenção nos dentes remanescentes.
-- Metalocerâmica — coroas com infraestrutura metálica e cobertura cerâmica, combinando resistência e estética.
-
-MATERIAIS COM QUE TRABALHAMOS:
-zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance, ligas metálicas certificadas. Indicamos o ideal para cada caso.
-
-PROCESSO (5 etapas):
-1. Solicitação — recebemos o caso do dentista com modelo e diretrizes.
-2. Análise técnica — viabilidade, materiais, cronograma.
-3. Modelagem — produção da peça com aferição em cada etapa.
-4. Controle — conferência dimensional, estética e funcional.
-5. Entrega — embalagem identificada e envio no prazo combinado.
-
-PRAZOS:
-- Coroas unitárias: 7 dias corridos.
-- Reabilitações completas: 15 a 25 dias.
-- O cronograma é sempre combinado caso a caso na abertura do pedido.
-
-LOGÍSTICA:
-- Operamos a partir de Sorocaba, SP. Atendemos todo o estado e demais capitais brasileiras por logística rastreada com seguro.
-- Em Sorocaba e região, entrega própria sob demanda.
-- Código de rastreio enviado por WhatsApp.
-
-ORÇAMENTOS:
-- Resposta em até 24h após o envio do caso.
-- Sem custo de avaliação.
-
-REGRAS DE RESPOSTA:
-- Use português brasileiro, tom profissional, próximo e direto. Sem tratamento formal "senhor/senhora", o tom é de colega de profissão.
-- Respostas curtas: máximo 3 frases. Se a dúvida é técnica e complexa, direcione para WhatsApp (15) 99110-7117 ou e-mail contato@labucal.com.br.
-- Sempre que sugerir contato direto, cite explicitamente o número (15) 99110-7117 (com este formato) — isso garante que o botão verde de WhatsApp apareça automaticamente abaixo da mensagem.
-- Nunca invente valores em reais, prazos específicos para casos individuais ou materiais fora da lista acima.
-- Para orçamentos formais, sempre direcione para o WhatsApp ou e-mail.
-- Se o usuário só cumprimentar (oi, olá, bom dia), responda curto e amigável apresentando 2-3 coisas em que pode ajudar.
-- Termine respostas longas oferecendo um próximo passo claro (ex: "quer que eu encaminhe pelo WhatsApp?").
-- Se a pergunta for fora do escopo do laboratório (clima, política, etc.), redirecione gentilmente para próteses dentárias e parceria com o Labucal.
-- Não responda perguntas pessoais sobre você (você é um assistente, não tem vida pessoal nem opiniões próprias).
-- Sem emojis, ou no máximo 1 por resposta se fizer sentido natural.`;
-
-  const FALLBACK = {
-    prazo:     "Coroas unitárias: 7 dias corridos. Reabilitações maiores: 15 a 25 dias. Posso confirmar para o seu caso pelo WhatsApp (15) 99110-7117.",
-    orcamento: "Para orçamento detalhado, mande os dados do caso pelo WhatsApp (15) 99110-7117 ou e-mail contato@labucal.com.br. Resposta em até 24h.",
-    agendar:   "Você pode nos visitar de segunda a sexta, 8h às 18h, em Sorocaba. Para agendar, mande mensagem no WhatsApp (15) 99110-7117.",
-    materiais: "Trabalhamos com zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso pelo WhatsApp (15) 99110-7117.",
-    default:   "Posso te conectar com a equipe técnica pelo WhatsApp (15) 99110-7117 ou e-mail contato@labucal.com.br."
-  };
-  const fallbackFor = (text) => {
-    const lower = text.toLowerCase();
-    if (/prazo|tempo|quando|dias|demora/.test(lower)) return FALLBACK.prazo;
-    if (/or[çc]ament|valor|pre[çc]o|custo|quanto/.test(lower)) return FALLBACK.orcamento;
-    if (/visit|agend|reun|conhecer|hor[áa]rio/.test(lower)) return FALLBACK.agendar;
-    if (/material|materiais|zirc[oô]nia|dissilicato|cer[âa]mica|resina|metal|liga/.test(lower)) return FALLBACK.materiais;
-    return FALLBACK.default;
-  };
-
-  const history = [];
-  let pending = false;
-
-  const askGemini = async (userMessage) => {
-    history.push({ role: 'user', parts: [{ text: userMessage }] });
-    if (!GEMINI_PROXY_URL) {
-      history.pop();
-      return fallbackFor(userMessage);
-    }
-    try {
-      const res = await fetch(GEMINI_PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: SYSTEM_PROMPT + liveContext }] },
-          contents: history,
-          generationConfig: {
-            temperature: 0.6,
-            maxOutputTokens: 300,
-            candidateCount: 1
-          }
-        })
-      });
-      if (!res.ok) {
-        const errBody = await res.text();
-        console.error('[Labucalzinho] Gemini HTTP', res.status, errBody);
-        throw new Error('HTTP ' + res.status);
-      }
-      const data = await res.json();
-      const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-      if (!reply) {
-        console.error('[Labucalzinho] Resposta vazia ou bloqueada:', JSON.stringify(data));
-        throw new Error('empty');
-      }
-      history.push({ role: 'model', parts: [{ text: reply }] });
-      // Limita histórico a 12 turnos para não estourar tokens
-      if (history.length > 12) history.splice(0, history.length - 12);
-      return reply;
-    } catch (e) {
-      console.warn('Gemini fallback:', e.message);
-      history.pop();
-      return fallbackFor(userMessage);
-    }
-  };
-
-  const handleUserInput = async (text) => {
-    if (pending || !text) return;
-    pending = true;
-    lastUserMessage = text;
-    addMsg(text, 'me');
-    const typing = addTyping();
-    lzInput.disabled = true;
-    try {
-      const reply = await askGemini(text);
-      typing.remove();
-      addMsg(reply, 'bot');
-    } finally {
-      pending = false;
-      lzInput.disabled = false;
-      if (lzPanel.classList.contains('open')) lzInput.focus();
-    }
-  };
-
-  lzBody.addEventListener('click', (e) => {
-    const btn = e.target.closest('.quick button');
-    if (!btn) return;
-    // Chip especial: abre WhatsApp direto, sem passar pela IA
-    if (btn.dataset.action === 'whatsapp') {
-      window.open(buildWhatsAppUrl(), '_blank', 'noopener');
-      return;
-    }
-    const label = btn.textContent;
-    btn.parentElement.remove();
-    handleUserInput(label);
-  });
-
-  lzForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const v = lzInput.value.trim();
-    if (!v) return;
-    lzInput.value = '';
-    handleUserInput(v);
-  });
-
-  // Smooth scroll for nav anchors (extra reliability across browsers)
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const id = a.getAttribute('href');
-      if (id.length > 1) {
-        const target = document.querySelector(id);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' });
-        }
-      }
-    });
-  });
-
-  // ---------- Toggle de serviços extras ----------
-  (function servicesToggle(){
-    const btn = document.getElementById('servicesToggle');
-    const extra = document.getElementById('servicesExtra');
-    if (!btn || !extra) return;
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      extra.hidden = open;
-    });
-  })();
-
-  // ---------- Map overlay: evita que a roda do mouse roube o scroll ----------
-  (function mapOverlay(){
-    const overlay = document.getElementById('mapOverlay');
-    const card = overlay && overlay.closest('.map-card');
-    if (!overlay || !card) return;
-    overlay.addEventListener('click', () => overlay.classList.add('inactive'));
-    card.addEventListener('mouseleave', () => overlay.classList.remove('inactive'));
-  })();
-
-  // ---------- Cookie notice ----------
-  (function cookieNotice(){
-    const STORAGE_KEY = 'labucal_cookies_accepted';
-    const notice = document.getElementById('cookieNotice');
-    const acceptBtn = document.getElementById('cookieAccept');
-    if (!notice || !acceptBtn) return;
-    try {
-      if (localStorage.getItem(STORAGE_KEY) === '1') return;
-    } catch (e) { /* localStorage indisponível, mostrar mesmo assim */ }
-    notice.hidden = false;
-    setTimeout(() => notice.classList.add('in'), 700);
-    acceptBtn.addEventListener('click', () => {
-      try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
-      notice.classList.remove('in');
-      setTimeout(() => { notice.hidden = true; }, 400);
-    });
-  })();
-
-  // ---------- Google reviews popup ----------
-  (function reviewsPopup(){
-    const STORAGE_KEY = 'labucal_reviews_dismissed';
-    const popup = document.getElementById('grPopup');
-    const closeBtn = document.getElementById('grClose');
-    const cta = document.getElementById('grCta');
-    if (!popup || !closeBtn) return;
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY) === '1') return;
-    } catch (e) {}
-
-    // Hidrata o popup com dados reais do Google (data/reviews.json gerado pelo workflow).
-    // Se o arquivo ainda não existir ou falhar, o popup mantém o conteúdo estático.
-    (async function hydrate(){
-      try {
-        const res = await fetch('data/reviews.json', { cache: 'no-cache' });
-        if (!res.ok) return;
-        const data = await res.json();
-        const rating = Number(data.rating) || 0;
-        const count = Number(data.userRatingCount) || 0;
-        if (rating <= 0) return;
-        const ratingStr = rating.toFixed(1).replace('.', ',');
-        const starsBox = popup.querySelector('.gr-stars');
-        if (starsBox) {
-          const full = Math.floor(rating);
-          const decimal = rating - full;
-          const hasHalf = decimal >= 0.25 && decimal < 0.75;
-          const fullCount = hasHalf ? full : Math.round(rating);
-          const halfCount = hasHalf ? 1 : 0;
-          const emptyCount = 5 - fullCount - halfCount;
-          const fullStar = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-          const halfStar = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="grHalfStar"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="currentColor" stop-opacity="0.22"/></linearGradient></defs><path fill="url(#grHalfStar)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-          const emptyStar = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.22" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-          starsBox.setAttribute('aria-label', `${ratingStr} de 5 estrelas em ${count} avaliações`);
-          starsBox.innerHTML = fullStar.repeat(fullCount) + halfStar.repeat(halfCount) + emptyStar.repeat(emptyCount);
-        }
-        const meta = popup.querySelector('.gr-meta');
-        if (meta && count > 0) {
-          meta.textContent = `${ratingStr} ★ em ${count} ${count === 1 ? 'avaliação' : 'avaliações'} no Google.`;
-        }
-        if (cta && typeof data.googleMapsUri === 'string' && /^https:\/\//.test(data.googleMapsUri)) {
-          cta.href = data.googleMapsUri;
-        }
-      } catch (e) { /* silent: popup mantém conteúdo estático */ }
-    })();
-
-    let shown = false;
-    const persistDismiss = () => {
-      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
-    };
-    const dismiss = () => {
-      popup.classList.remove('in');
-      setTimeout(() => { popup.hidden = true; }, 500);
-      persistDismiss();
-    };
-    const onScrollCheck = () => {
-      if (shown) return;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = window.scrollY / Math.max(docHeight, 1);
-      if (progress >= 0.45) {
-        shown = true;
-        popup.hidden = false;
-        requestAnimationFrame(() => popup.classList.add('in'));
-        window.removeEventListener('scroll', onScrollCheck);
-      }
-    };
-    closeBtn.addEventListener('click', dismiss);
-    if (cta) cta.addEventListener('click', persistDismiss);
-    window.addEventListener('scroll', onScrollCheck, { passive: true });
-    onScrollCheck();
-  })();
-})();
-</script>
+<!-- ============ TWEAKS PANEL ============ -->
+<!-- barra de rolagem custom (overlay) -->
+<div class="app-scrollbar" id="appScrollbar" aria-hidden="true"><div class="app-scrollbar__thumb" id="appScrollbarThumb"></div></div>
+
+<script src="script.js"></script>
+<script src="scroll.js"></script>
 </body>
 </html>

@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-
-# Pastas internas que não devem ser indexadas
 Disallow: /scripts/
 Disallow: /.github/
 Disallow: /data/

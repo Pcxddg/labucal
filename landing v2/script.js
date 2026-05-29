@@ -183,9 +183,9 @@
     let lines = "";
     pts.forEach((p, i) => {
       const nb = pts.map((q, j) => ({ j, d: Math.hypot(p.x - q.x, p.y - q.y) })).filter(o => o.j !== i).sort((a, b) => a.d - b.d).slice(0, 2);
-      nb.forEach(o => { if (o.j > i) lines += `<line x1="${p.x}" y1="${p.y}" x2="${pts[o.j].x}" y2="${pts[o.j].y}" stroke="#E7C291" stroke-opacity="0.28" stroke-width="1"/>`; });
+      nb.forEach(o => { if (o.j > i) lines += `<line x1="${p.x}" y1="${p.y}" x2="${pts[o.j].x}" y2="${pts[o.j].y}" stroke="#7FBBDD" stroke-opacity="0.28" stroke-width="1"/>`; });
     });
-    const dots = pts.map(p => `<circle cx="${p.x}" cy="${p.y}" r="${1.6 + Math.random() * 2}" fill="#E7C291" fill-opacity="${0.4 + Math.random() * 0.5}"/>`).join("");
+    const dots = pts.map(p => `<circle cx="${p.x}" cy="${p.y}" r="${1.6 + Math.random() * 2}" fill="#7FBBDD" fill-opacity="${0.4 + Math.random() * 0.5}"/>`).join("");
     svg.innerHTML = lines + dots;
   }
   drawConstellation();
@@ -207,12 +207,12 @@
     ];
     let lines = "";
     for (let i = 1; i < nodes.length; i++) {
-      lines += `<line x1="${nodes[0].x}" y1="${nodes[0].y}" x2="${nodes[i].x}" y2="${nodes[i].y}" stroke="#E7C291" stroke-opacity="0.22" stroke-width="1.2"/>`;
+      lines += `<line x1="${nodes[0].x}" y1="${nodes[0].y}" x2="${nodes[i].x}" y2="${nodes[i].y}" stroke="#7FBBDD" stroke-opacity="0.22" stroke-width="1.2"/>`;
     }
     const g = nodes.map((n, i) =>
       `<g class="node" data-i="${i}" tabindex="0" role="img" aria-label="${n.label} — ${n.sub}">
-         <circle cx="${n.x}" cy="${n.y}" r="${n.hub ? 22 : 16}" fill="#E7C291" fill-opacity="0.07"/>
-         <circle class="core" cx="${n.x}" cy="${n.y}" r="${n.hub ? 8 : 5}" fill="${n.hub ? "#C0772C" : "#E7C291"}"/>
+         <circle cx="${n.x}" cy="${n.y}" r="${n.hub ? 22 : 16}" fill="#7FBBDD" fill-opacity="0.07"/>
+         <circle class="core" cx="${n.x}" cy="${n.y}" r="${n.hub ? 8 : 5}" fill="${n.hub ? "#3E92C0" : "#7FBBDD"}"/>
        </g>`).join("");
     svg.innerHTML = lines + g;
     const rect = () => svg.getBoundingClientRect();
@@ -512,7 +512,7 @@ REGRAS DE RESPOSTA:
   }
 
   const PALETTES = [
-    { id: "clinica", label: "Clínica", sw: ["#0B1B3A", "#F4EFE6", "#C0772C"] },
+    { id: "clinica", label: "Clínica", sw: ["#0B1B3A", "#F4EFE6", "#3E92C0"] },
     { id: "frio", label: "Tecido", sw: ["#0B1B3A", "#F1F3F5", "#1E7C8C"] },
     { id: "grafite", label: "Ardósia", sw: ["#1A1A1E", "#E9E6E0", "#A8853C"] },
   ];

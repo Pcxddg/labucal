@@ -18,10 +18,10 @@
   --text: #15233f;           /* body text */
   --muted: #5b6580;          /* secondary text */
   --muted-2: #8289aa;
-  --accent: #C0772C;         /* kiln amber */
-  --accent-deep: #9c5e1e;
-  --accent-soft: #E7C291;
-  --accent-tint: #F3E6D2;
+  --accent: #3E92C0;         /* azul céu (accent principal) */
+  --accent-deep: #2C7299;    /* azul mais escuro (hover) */
+  --accent-soft: #7FBBDD;    /* azul claro (sobre fundo escuro) */
+  --accent-tint: #DDEEF6;    /* azul muito claro (tints/fundos) */
   --on-ink: #EDE7DA;         /* text on navy */
   --on-ink-mut: #9aa6c2;     /* muted text on navy */
 
@@ -235,7 +235,7 @@ h2.title {
 .hero::before { /* subtle radial warm glow */
   content:""; position:absolute; z-index:-1; inset:0;
   background:
-    radial-gradient(900px 500px at 78% 18%, rgba(192,119,44,.20), transparent 60%),
+    radial-gradient(900px 500px at 78% 18%, rgba(62,146,192,.20), transparent 60%),
     radial-gradient(700px 500px at 10% 90%, rgba(40,70,130,.5), transparent 60%);
 }
 .hero::after {
@@ -427,7 +427,7 @@ h2.title {
 .step::before { /* connector dot line */
   content:""; position:absolute; top: 7px; left:0; right:0; height:1px; background: rgba(237,231,218,.16);
 }
-.step .dot { position:absolute; top:0; left:0; width:15px; height:15px; border-radius:50%; background: var(--accent); box-shadow:0 0 0 4px rgba(192,119,44,.18); }
+.step .dot { position:absolute; top:0; left:0; width:15px; height:15px; border-radius:50%; background: var(--accent); box-shadow:0 0 0 4px rgba(62,146,192,.18); }
 .step .snum { font-family: var(--font-mono); font-size: 12px; color: var(--accent-soft); letter-spacing:.1em; }
 .step h3 { font-size: 20px; margin: 10px 0 9px; color: var(--on-ink); font-weight: 600; }
 .step p { margin: 0; font-size: 14.5px; color: var(--on-ink-mut); }
@@ -459,7 +459,7 @@ h2.title {
    REDE / CONSTELAÇÃO + DEPOIMENTOS
    ===================================================== */
 .rede { background: var(--ink-2); color: var(--on-ink); position: relative; overflow: hidden; }
-.rede::before { content:""; position:absolute; inset:0; background: radial-gradient(700px 400px at 85% 10%, rgba(192,119,44,.14), transparent 60%); }
+.rede::before { content:""; position:absolute; inset:0; background: radial-gradient(700px 400px at 85% 10%, rgba(62,146,192,.14), transparent 60%); }
 .rede .wrap { position: relative; }
 .rede-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,64px); align-items: center; }
 .net { position: relative; aspect-ratio: 1/0.86; }
@@ -583,7 +583,7 @@ h2.title {
 .fab-chat.open .ic-open { display: none; }
 .fab-chat.open .ic-close { display: block; }
 .fab-chat .pulse { position:absolute; inset:0; border-radius:50%; box-shadow:0 0 0 0 var(--accent); animation: pulse 2.4s infinite; }
-@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(192,119,44,.5);} 70%{box-shadow:0 0 0 16px rgba(192,119,44,0);} 100%{box-shadow:0 0 0 0 rgba(192,119,44,0);} }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(62,146,192,.5);} 70%{box-shadow:0 0 0 16px rgba(62,146,192,0);} 100%{box-shadow:0 0 0 0 rgba(62,146,192,0);} }
 
 .chat-panel {
   position: fixed; right: 22px; bottom: 94px; z-index: 80;
@@ -690,7 +690,7 @@ h2.title {
 .assembly { background: var(--ink); color: var(--on-ink); position: relative; }
 .assembly-track { height: 230vh; position: relative; }
 .assembly-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
-.assembly-stage::before { content:""; position:absolute; inset:0; background: radial-gradient(720px 480px at 72% 40%, rgba(192,119,44,.16), transparent 62%); }
+.assembly-stage::before { content:""; position:absolute; inset:0; background: radial-gradient(720px 480px at 72% 40%, rgba(62,146,192,.16), transparent 62%); }
 .assembly-inner { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px,5vw,72px); align-items: center; width: 100%; position: relative; z-index: 2; }
 .assembly-copy h2.title { color: var(--on-ink); }
 .assembly-copy .lead { color: var(--on-ink-mut); }
@@ -698,7 +698,7 @@ h2.title {
 .assembly-legend li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 14px; border-radius: var(--r); opacity: .4; transition: opacity .35s, background .35s; }
 .assembly-legend li.active { opacity: 1; background: rgba(255,255,255,.05); }
 .assembly-legend .dot { width: 13px; height: 13px; border-radius: 50%; margin-top: 5px; flex: none; background: rgba(237,231,218,.3); transition: background .35s, box-shadow .35s; }
-.assembly-legend li.active .dot { background: var(--accent); box-shadow: 0 0 0 4px rgba(192,119,44,.22); }
+.assembly-legend li.active .dot { background: var(--accent); box-shadow: 0 0 0 4px rgba(62,146,192,.22); }
 .assembly-legend b { display: block; font-size: 15.5px; color: var(--on-ink); font-weight: 600; font-family: var(--font-sans); }
 .assembly-legend span { font-size: 13px; color: var(--on-ink-mut); }
 .assembly-legend .ln { font-family: var(--font-mono); font-size: 11px; color: var(--accent-soft); margin-right: 2px; }
@@ -774,8 +774,8 @@ h2.title {
 .proc-stage { position: sticky; top: 0; min-height: 100vh; display: flex; align-items: center; }
 .proc-rail { position: relative; margin-top: 10px; }
 .proc-line { position: absolute; top: 7px; left: 0; right: 0; height: 2px; background: rgba(237,231,218,.16); border-radius: 2px; z-index: 0; }
-.proc-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--accent); border-radius: 2px; box-shadow: 0 0 12px rgba(192,119,44,.6); transition: width .12s linear; }
-.proc-token { position: absolute; top: 7px; left: 0; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; z-index: 4; box-shadow: 0 0 0 6px rgba(192,119,44,.18), 0 8px 20px rgba(0,0,0,.4); transition: left .12s linear; }
+.proc-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--accent); border-radius: 2px; box-shadow: 0 0 12px rgba(62,146,192,.6); transition: width .12s linear; }
+.proc-token { position: absolute; top: 7px; left: 0; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; z-index: 4; box-shadow: 0 0 0 6px rgba(62,146,192,.18), 0 8px 20px rgba(0,0,0,.4); transition: left .12s linear; }
 .proc-rail .steps .step::before { display: none; }
 .proc-rail .step { z-index: 1; transition: opacity .45s; }
 .proc-rail .step:not(.lit) { opacity: .42; }
@@ -818,7 +818,7 @@ h2.title {
 .ctrl-piece { position: absolute; left: 50%; top: 52%; transform: translate(-50%,-50%); width: 150px; height: 178px; background: linear-gradient(155deg,#fbf7ef,#e0d7c6); border-radius: 75px 75px 30px 30px; box-shadow: inset -10px -12px 26px rgba(11,27,58,.14), inset 8px 8px 20px rgba(255,255,255,.7), 0 18px 40px -18px rgba(11,27,58,.4); }
 .ctrl-piece::before { content:""; position:absolute; left:50%; top:22%; transform:translateX(-50%); width:2px; height:46%; background: rgba(11,27,58,.10); border-radius:2px; }
 .ctrl-piece::after { content:""; position:absolute; left:26%; right:26%; top:30%; height:40%; border-radius:50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.7), transparent 60%); }
-.ctrl-mark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(192,119,44,.2); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .35s cubic-bezier(.22,1.6,.4,1); z-index: 3; }
+.ctrl-mark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(62,146,192,.2); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .35s cubic-bezier(.22,1.6,.4,1); z-index: 3; }
 .ctrl-mark.on { opacity: 1; transform: scale(1); }
 .ctrl-scanline { position: absolute; left: 8%; right: 8%; height: 2px; top: 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 18px 2px var(--accent); opacity: 0; z-index: 4; }
 .ctrl-scanline.active { opacity: 1; }

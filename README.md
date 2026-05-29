@@ -282,7 +282,7 @@ Con 4 llamadas al dia (~120 al mes) usando el FieldMask actual (Pro + Atmosphere
 
 ## Componentes flotantes
 
-El sitio tiene tres elementos UI fijos que viven sobre el contenido principal. Todos respetan la paleta y la tipografia del sitio.
+El sitio tiene cuatro elementos UI fijos que viven sobre el contenido principal. Todos respetan la paleta y la tipografia del sitio.
 
 ### Aviso de cookies
 
@@ -309,6 +309,39 @@ El sitio tiene tres elementos UI fijos que viven sobre el contenido principal. T
 - Comportamiento: la capa esta encima del iframe e intercepta los eventos de puntero por defecto. Al recibir un clic se anade la clase `.inactive` que la convierte en transparente para eventos (`pointer-events: none`), liberando el mapa. Cuando el cursor sale del `.map-card` (mouseleave) se restaura.
 - Hint: el pseudo-elemento `::after` muestra "Clique no mapa para interagir" arriba a la izquierda al hacer hover, y siempre visible en touch (`@media (hover: none)`).
 - No afecta al link "Abrir rota no Google Maps" porque `.map-info` queda por encima en el stacking.
+
+### Barra de rolagem custom (scrollbar overlay)
+
+**El problema que resuelve.** La barra de scroll nativa del navegador (gris, con flechas, track claro) se veia fea y fuera de la paleta. Ademas, al ser una barra "clasica" en Windows, **reservaba ancho** y desplazaba/encogia el contenido, y su track claro chocaba con las secciones oscuras del sitio. Esta solucion la reemplaza por una barra propia, discreta y en la paleta de la marca, que **no desplaza el contenido**.
+
+**Como funciona (dos partes).**
+
+1. **Se oculta la barra nativa de la ventana**, sin reservar espacio (asi el contenido va de borde a borde, sin desplazamiento):
+   ```css
+   html { scrollbar-width: none; -ms-overflow-style: none; } /* Firefox + legacy */
+   html::-webkit-scrollbar { width: 0; height: 0; display: none; } /* WebKit/Chromium */
+   ```
+   Importante: el selector esta **acotado a `html`** (no global) para que la barra del chat (`.lz-body`) conserve la suya.
+
+2. **Se dibuja una barra overlay propia**, controlada por JavaScript vanilla:
+   - HTML: `<div class="app-scrollbar" id="appScrollbar" aria-hidden="true"><div class="app-scrollbar__thumb" id="appScrollbarThumb"></div></div>`, justo antes del `<script>` principal.
+   - CSS: `.app-scrollbar` es `position: fixed` a la derecha (`z-index: 95`, `pointer-events: none`); el `.app-scrollbar__thumb` es un thumb azul translucido (`rgba(46,74,140,0.55)` = `--ink-600`) que se ve bien **sobre claro y sobre oscuro**.
+   - JS: IIFE `customScrollbar` dentro del `<script>` principal. Calcula altura y posicion del thumb segun `scrollHeight`/`innerHeight`/`scrollTop`, lo mueve con `transform: translateY()`, y permite **arrastrarlo** (pointer events).
+
+**Comportamientos clave.**
+- **Auto-hide:** el thumb aparece al scrollear o al acercar el mouse al borde derecho, y se oculta solo tras ~1,2 s de inactividad (estilo macOS). Clase `.is-active`.
+- **Contenido dinamico:** un `ResizeObserver` sobre `document.body` recalcula la barra cuando cambia la altura (imagenes que cargan, acordeon del FAQ, toggle de servicios) y reinicia el auto-hide.
+- **Arrastre robusto:** al iniciar el drag se "congela" la geometria (`dragRange`, `dragMaxThumbTop`) para que un cambio de altura en pleno arrastre no provoque saltos. El scroll se aplica con `scroller.scrollTop = ...` (asignacion directa = instantanea, ignora `scroll-behavior: smooth`).
+- **Touch:** en pantallas tactiles (`@media (hover: none) and (pointer: coarse)`) el thumb pasa a `pointer-events: none` — es solo un **indicador visual**, se scrollea con swipe (evita un target diminuto, cumple WCAG 2.5.5).
+- **Reduced motion:** respeta `prefers-reduced-motion`.
+- **Sin JS / fallback:** un `<noscript>` en el `<head>` restaura la barra nativa y oculta la custom, por si el JS esta deshabilitado.
+- **Accesibilidad:** el overlay es `aria-hidden="true"` **a proposito** — no es focusable y el scroll sigue 100 % operable por teclado, rueda y touch (el thumb es solo una conveniencia de mouse, no una funcion nueva). Por eso no lleva `role="scrollbar"` (eso obligaria a un widget de teclado completo y redundante).
+
+**Como ajustarla.**
+- Grosor: `width` de `.app-scrollbar` (area) y del `.app-scrollbar__thumb` (visible). Hoy 10px / 6px (10px en hover).
+- Color/opacidad: el `background` del thumb (`rgba(46,74,140,...)`). Mantener un valor que contraste sobre claro y oscuro.
+- Tiempo de auto-hide: el `setTimeout(..., 1200)` dentro de `flash()`.
+- La misma solucion esta replicada en `privacidade.html` (con su propio `<script>` al final del `<body>`).
 
 ## Publicacion
 

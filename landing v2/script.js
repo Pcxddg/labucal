@@ -479,6 +479,42 @@ REGRAS DE RESPOSTA:
   });
 
   /* =====================================================
+     PEÇAS DECORATIVAS ANIMADAS POR SCROLL (port da v1)
+     ===================================================== */
+  const decor = $$(".section-prosthesis");
+  if (decor.length) {
+    if ("IntersectionObserver" in window) {
+      const dio = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+      }, { rootMargin: "-8% 0px -12%", threshold: 0.1 });
+      decor.forEach(d => dio.observe(d));
+    } else decor.forEach(d => d.classList.add("in"));
+
+    const updateDecor = () => {
+      const vh = innerHeight || document.documentElement.clientHeight;
+      decor.forEach(item => {
+        const sec = item.closest("section");
+        if (!sec) return;
+        const r = sec.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+        const t = (p - 0.5) * 2;
+        const mode = item.dataset.scrollDecor || "right";
+        let x = 0, y = t * 46, rot = t * 7, scale = 0.96 + p * 0.05;
+        if (mode === "right") { x = 58 - p * 118; rot = 10 - p * 20; }
+        else if (mode === "left") { x = -58 + p * 118; rot = -10 + p * 20; }
+        else { x = Math.sin(p * Math.PI) * 30; y = -42 + p * 84; rot = -14 + p * 28; scale = 0.92 + Math.sin(p * Math.PI) * 0.1; }
+        item.style.setProperty("--scroll-x", x.toFixed(1) + "px");
+        item.style.setProperty("--scroll-y", y.toFixed(1) + "px");
+        item.style.setProperty("--scroll-rot", rot.toFixed(2) + "deg");
+        item.style.setProperty("--scroll-scale", scale.toFixed(3));
+      });
+    };
+    addEventListener("scroll", updateDecor, { passive: true });
+    addEventListener("resize", updateDecor);
+    updateDecor();
+  }
+
+  /* =====================================================
      TWEAKS panel (vanilla, host protocol)
      ===================================================== */
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{

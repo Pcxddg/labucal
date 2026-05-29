@@ -368,6 +368,39 @@ h2.title {
 .brand-logo { width:38px; height:38px; border-radius:9px; object-fit:contain; flex:none; }
 
 /* =====================================================
+   PEÇAS DECORATIVAS ANIMADAS POR SCROLL (port da v1)
+   ===================================================== */
+.has-decor { position: relative; overflow: hidden; }
+.has-decor > .wrap { position: relative; z-index: 1; }
+.section-prosthesis {
+  --from-x: 0px; --from-rot: 0deg; --to-x: 0px; --to-rot: 0deg;
+  --scroll-x: 0px; --scroll-y: 0px; --scroll-rot: 0deg; --scroll-scale: 0.94;
+  --decor-opacity: 0.14;
+  position: absolute; top: 8%;
+  width: clamp(260px, 36vw, 560px);
+  pointer-events: none; z-index: 0; opacity: 0;
+  transform: translate3d(calc(var(--from-x) + var(--scroll-x)), var(--scroll-y), 0) rotate(calc(var(--from-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
+  transition: opacity 900ms ease, transform 120ms linear;
+  filter: drop-shadow(0 28px 45px rgba(11,27,58,.18));
+}
+.section-prosthesis.in {
+  opacity: var(--decor-opacity);
+  transform: translate3d(calc(var(--to-x) + var(--scroll-x)), var(--scroll-y), 0) rotate(calc(var(--to-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
+}
+.on-ink .section-prosthesis { --decor-opacity: 0.20; filter: drop-shadow(0 28px 50px rgba(0,0,0,.35)); }
+.section-prosthesis.decor-right { right: max(-120px, -7vw); top: 8%; --from-x: 120px; --from-rot: 12deg; --to-rot: -5deg; }
+.section-prosthesis.decor-left  { left: max(-140px, -8vw); bottom: 8%; top: auto; --from-x: -120px; --from-rot: -13deg; --to-rot: 5deg; }
+.section-prosthesis.decor-high  { top: 10%; bottom: auto; }
+.section-prosthesis.decor-low   { top: auto; bottom: 4%; }
+.section-prosthesis.decor-slim  { width: clamp(180px, 26vw, 410px); }
+.section-prosthesis.decor-small { width: clamp(160px, 21vw, 320px); --decor-opacity: 0.10; }
+.on-ink .section-prosthesis.decor-small { --decor-opacity: 0.14; }
+.section-prosthesis.decor-left.decor-small  { left: max(-90px, -5vw); }
+.section-prosthesis.decor-right.decor-small { right: max(-90px, -5vw); }
+@media (max-width: 860px) { .section-prosthesis { display: none; } }
+@media (prefers-reduced-motion: reduce) { .section-prosthesis { transition: opacity .01ms; } }
+
+/* =====================================================
    SOBRE / PILLARS
    ===================================================== */
 .sobre { background: var(--paper); }
@@ -709,20 +742,21 @@ h2.title {
   width: min(82vw, 420px);
   aspect-ratio: 920 / 1180;
   filter: drop-shadow(0 30px 52px rgba(0,0,0,.42));
-  transform: translateY(24px) scale(.94);
-  opacity: .72;
-  will-change: transform, opacity;
 }
-.assembly-product {
+.layer {
   position: absolute;
   inset: 0;
+  will-change: transform, opacity;
+}
+.layer-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
   user-select: none;
   pointer-events: none;
 }
-.assembly-tag {
+.layer .tag {
   position: absolute;
   left: calc(100% + 14px);
   transform: translateY(-50%);
@@ -738,12 +772,12 @@ h2.title {
   align-items: center;
   gap: 8px;
 }
-.assembly-tag::before { content:""; width: 14px; height: 1px; background: var(--accent-soft); }
-.assembly-tag.active { opacity: 1; }
-.tag-glaze { top: 13%; }
-.tag-ceramica { top: 28%; }
-.tag-zirconia { top: 50%; }
-.tag-preparo { top: 76%; }
+.layer .tag::before { content:""; width: 14px; height: 1px; background: var(--accent-soft); }
+.layer.lit .tag { opacity: 1; }
+.layer.l0 .tag { top: 82%; }
+.layer.l1 .tag { top: 61%; }
+.layer.l2 .tag { top: 42%; }
+.layer.l3 .tag { top: 17%; }
 
 .assembly-scrub { position: absolute; right: -6px; top: 8%; bottom: 8%; width: 3px; border-radius: 3px; background: rgba(237,231,218,.14); }
 .assembly-scrub span { position: absolute; left: 0; top: 0; width: 100%; border-radius: 3px; background: var(--accent); height: 0%; }
@@ -756,12 +790,12 @@ h2.title {
   .assembly-inner { grid-template-columns: 1fr; gap: 24px; }
   .assembly-viz { height: 320px; order: -1; }
   .layer-stack { width: min(78vw, 270px); }
-  .assembly-tag { display: none; }
+  .layer .tag { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .assembly-track { height: auto; }
   .assembly-stage { position: static; height: auto; padding-block: clamp(64px,9vw,128px); }
-  .layer-stack { opacity: 1 !important; transform: none !important; }
+  .layer { opacity: 1 !important; transform: none !important; }
   .assembly-legend li { opacity: 1; }
   .assembly-scrub, .assembly-hint { display: none; }
 }

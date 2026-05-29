@@ -332,27 +332,8 @@ h2.title {
 
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
-  .hero-visual { aspect-ratio: 4/3.6; order: -1; }
-  .hero-teeth { inset: 6% 14% 6%; }
-  /* mobile: só os dentes + animação (sem caixa, constelação ou badge) */
-  .hero-figure { background: transparent; border: 0; box-shadow: none; }
-  .hero-figure .hero-bg, .constellation, .hero-badge { display: none; }
-  /* animação inicial (on-load): os dentes montam-se sozinhos ao abrir.
-     No mobile o hero fica no topo, então o scrub por scroll não chega a ser visto. */
-  .hero-teeth-upper { animation: teethInUpper 1.2s .25s cubic-bezier(.22,1,.36,1) both; }
-  .hero-teeth-lower { animation: teethInLower 1.2s .25s cubic-bezier(.22,1,.36,1) both; }
-}
-@keyframes teethInUpper {
-  from { transform: translate3d(0,-150px,0) scale(.86); }
-  to   { transform: translate3d(0,-26px,0) scale(.99); }
-}
-@keyframes teethInLower {
-  from { transform: translate3d(0,150px,0) scale(.86); }
-  to   { transform: translate3d(0,40px,0) scale(.99); }
-}
-@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
-  .hero-teeth-upper { animation: none; transform: translate3d(0,-26px,0) scale(.99); }
-  .hero-teeth-lower { animation: none; transform: translate3d(0,40px,0) scale(.99); }
+  /* mobile: removemos o visual dos dentes do hero (fica só o texto sobre o fundo) */
+  .hero-visual { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-teeth {

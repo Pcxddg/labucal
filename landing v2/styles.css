@@ -899,9 +899,20 @@ h2.title {
 .ctrl-checklist span { font-size: 13px; color: var(--muted); }
 .ctrl-viz { position: relative; aspect-ratio: 1; width: 100%; max-width: 440px; margin-inline: auto; border-radius: var(--r-xl); overflow: hidden; background: linear-gradient(160deg, var(--surface), var(--surface-warm)); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .ctrl-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(11,27,58,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(11,27,58,.05) 1px, transparent 1px); background-size: 34px 34px; }
-.ctrl-piece { position: absolute; left: 50%; top: 52%; transform: translate(-50%,-50%); width: 150px; height: 178px; background: linear-gradient(155deg,#fbf7ef,#e0d7c6); border-radius: 75px 75px 30px 30px; box-shadow: inset -10px -12px 26px rgba(11,27,58,.14), inset 8px 8px 20px rgba(255,255,255,.7), 0 18px 40px -18px rgba(11,27,58,.4); }
-.ctrl-piece::before { content:""; position:absolute; left:50%; top:22%; transform:translateX(-50%); width:2px; height:46%; background: rgba(11,27,58,.10); border-radius:2px; }
-.ctrl-piece::after { content:""; position:absolute; left:26%; right:26%; top:30%; height:40%; border-radius:50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.7), transparent 60%); }
+.ctrl-piece {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%,-50%);
+  width: min(58%, 255px);
+  aspect-ratio: 400 / 330;
+  filter: drop-shadow(0 22px 34px rgba(11,27,58,.28));
+}
+.ctrl-piece img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .ctrl-mark { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-deep); box-shadow: 0 0 0 4px rgba(44,114,153,.2); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .35s cubic-bezier(.22,1.6,.4,1); z-index: 3; }
 .ctrl-mark.on { opacity: 1; transform: scale(1); }
 .ctrl-scanline { position: absolute; left: 8%; right: 8%; height: 2px; top: 0; background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 18px 2px var(--accent); opacity: 0; z-index: 4; }

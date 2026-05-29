@@ -375,26 +375,26 @@ h2.title {
 .section-prosthesis {
   --from-x: 0px; --from-rot: 0deg; --to-x: 0px; --to-rot: 0deg;
   --scroll-x: 0px; --scroll-y: 0px; --scroll-rot: 0deg; --scroll-scale: 0.94;
-  --decor-opacity: 0.14;
+  --decor-opacity: 0.42;
   position: absolute; top: 8%;
   width: clamp(260px, 36vw, 560px);
   pointer-events: none; z-index: 0; opacity: 0;
   transform: translate3d(calc(var(--from-x) + var(--scroll-x)), var(--scroll-y), 0) rotate(calc(var(--from-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
   transition: opacity 900ms ease, transform 120ms linear;
-  filter: drop-shadow(0 28px 45px rgba(11,27,58,.18));
+  filter: drop-shadow(0 18px 32px rgba(11,27,58,.55)) drop-shadow(0 3px 8px rgba(11,27,58,.45));
 }
 .section-prosthesis.in {
   opacity: var(--decor-opacity);
   transform: translate3d(calc(var(--to-x) + var(--scroll-x)), var(--scroll-y), 0) rotate(calc(var(--to-rot) + var(--scroll-rot))) scale(var(--scroll-scale));
 }
-.on-ink .section-prosthesis { --decor-opacity: 0.20; filter: drop-shadow(0 28px 50px rgba(0,0,0,.35)); }
+.on-ink .section-prosthesis { --decor-opacity: 0.30; filter: drop-shadow(0 22px 44px rgba(0,0,0,.5)); }
 .section-prosthesis.decor-right { right: max(-120px, -7vw); top: 8%; --from-x: 120px; --from-rot: 12deg; --to-rot: -5deg; }
 .section-prosthesis.decor-left  { left: max(-140px, -8vw); bottom: 8%; top: auto; --from-x: -120px; --from-rot: -13deg; --to-rot: 5deg; }
 .section-prosthesis.decor-high  { top: 10%; bottom: auto; }
 .section-prosthesis.decor-low   { top: auto; bottom: 4%; }
 .section-prosthesis.decor-slim  { width: clamp(180px, 26vw, 410px); }
-.section-prosthesis.decor-small { width: clamp(160px, 21vw, 320px); --decor-opacity: 0.10; }
-.on-ink .section-prosthesis.decor-small { --decor-opacity: 0.14; }
+.section-prosthesis.decor-small { width: clamp(160px, 21vw, 320px); --decor-opacity: 0.32; }
+.on-ink .section-prosthesis.decor-small { --decor-opacity: 0.24; }
 .section-prosthesis.decor-left.decor-small  { left: max(-90px, -5vw); }
 .section-prosthesis.decor-right.decor-small { right: max(-90px, -5vw); }
 @media (max-width: 860px) { .section-prosthesis { display: none; } }

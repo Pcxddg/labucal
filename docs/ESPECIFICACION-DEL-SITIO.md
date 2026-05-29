@@ -202,7 +202,7 @@ Menú mobile (hamburguesa) incluye además **Rede** (`#rede`).
    serviços são executados sob prescrição do dentista. Atendemos exclusivamente profissionais autônomos
    (CPF) e clínicas (CNPJ) — não atendemos pacientes diretamente.
 2. **Quais são os prazos de entrega?**
-   O prazo depende do tipo de serviço. Coroas unitárias saem em 5 a 7 dias úteis; reabilitações
+   O prazo depende do tipo de serviço. Coroas unitárias saem em 7 dias corridos; reabilitações
    completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após
    análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido.
 3. **Vocês atendem clínicas de outras cidades?**
@@ -345,7 +345,7 @@ metálicas certificadas.
 PROCESSO (5 etapas): Solicitação → Análise técnica → Modelagem → Controle → Entrega.
 
 PRAZOS:
-- Coroas unitárias: 5 a 7 dias úteis.
+- Coroas unitárias: 7 dias corridos.
 - Reabilitações completas: 15 a 25 dias.
 - Cronograma combinado caso a caso na abertura do pedido.
 

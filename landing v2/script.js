@@ -50,7 +50,7 @@
   ];
   const FAQ = [
     { q: "Quais serviços vocês oferecem?", a: "Prótese dentária (parcial, total e fixa, coroas e facetas), componentes protéticos sobre implantes já instalados, placas e moldeiras para clareamento caseiro, e alinhadores transparentes. Todos os serviços são executados sob prescrição do dentista. Atendemos exclusivamente profissionais autônomos (CPF) e clínicas (CNPJ) — não atendemos pacientes diretamente." },
-    { q: "Quais são os prazos de entrega?", a: "O prazo depende do tipo de serviço. Coroas unitárias saem em 5 a 7 dias úteis; reabilitações completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido." },
+    { q: "Quais são os prazos de entrega?", a: "O prazo depende do tipo de serviço. Coroas unitárias saem em 7 dias corridos; reabilitações completas, entre 15 e 25 dias. Para alinhadores e placas de clareamento, definimos o cronograma após análise do caso. O prazo é sempre combinado caso a caso na abertura do pedido." },
     { q: "Vocês atendem clínicas de outras cidades?", a: "Sim. Operamos a partir de Sorocaba, SP. Atendemos todo o estado e demais capitais brasileiras por logística rastreada, com seguro e prazo de envio acordado na abertura do pedido." },
     { q: "Como funciona o orçamento?", a: "Após o envio do caso, retornamos em até 24h com proposta detalhada: material, etapas, prazo e valor. Sem custo de avaliação." },
     { q: "Trabalham com quais materiais?", a: "Zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso." },
@@ -331,7 +331,7 @@ MATERIAIS: zircônia, dissilicato de lítio, cerâmica feldspática, resinas de 
 PROCESSO (5 etapas): Solicitação → Análise técnica → Modelagem → Controle → Entrega.
 
 PRAZOS:
-- Coroas unitárias: 5 a 7 dias úteis.
+- Coroas unitárias: 7 dias corridos.
 - Reabilitações completas: 15 a 25 dias.
 - Cronograma combinado caso a caso na abertura do pedido.
 
@@ -391,7 +391,7 @@ REGRAS DE RESPOSTA:
 
   function fallback(q) {
     const s = q.toLowerCase();
-    if (/prazo|quando|demora|tempo/.test(s)) return "Coroas unitárias saem em 5 a 7 dias úteis e reabilitações completas entre 15 e 25 dias. O cronograma é combinado caso a caso na abertura do pedido.";
+    if (/prazo|quando|demora|tempo/.test(s)) return "Coroas unitárias saem em 7 dias corridos e reabilitações completas entre 15 e 25 dias. O cronograma é combinado caso a caso na abertura do pedido.";
     if (/or[çc]amento|valor|pre[çc]o|custo/.test(s)) return "Envie o caso pelo WhatsApp (15) 99110-7117 e retornamos em até 24h com material, etapas, prazo e valor. Sem custo de avaliação.";
     if (/agendar|visita|visitar|conhecer/.test(s)) return "Claro! Recebemos profissionais com agendamento prévio. Fale com a gente no (15) 99110-7117 para combinar o melhor horário.";
     if (/material|materiais|zirc|cer[âa]mica|dissilicato/.test(s)) return "Trabalhamos com zircônia, dissilicato de lítio, cerâmica feldspática, resinas de alta performance e ligas metálicas certificadas. Indicamos o ideal para cada caso.";

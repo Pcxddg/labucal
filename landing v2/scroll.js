@@ -22,14 +22,16 @@
   const heroTeeth = $("#heroTeeth");
   function heroProsthesis() {
     if (!hero || !heroTeeth) return;
-    const r = hero.getBoundingClientRect();
-    const travel = Math.max(1, Math.min(innerHeight * 0.72, r.height * 0.62));
-    const p = clamp(-r.top / travel, 0, 1);
-    const open = 1 - easeInOutCubic(p);
-    const gap = 9 + 25 * open;
-    heroTeeth.style.setProperty("--teeth-open", open.toFixed(3));
-    heroTeeth.style.setProperty("--teeth-gap", `${gap.toFixed(1)}px`);
-    heroTeeth.style.transform = `translate(-50%, -50%) translateY(${(p * 10).toFixed(1)}px) scale(${(1 + p * 0.035).toFixed(3)})`;
+    const vh = innerHeight || document.documentElement.clientHeight;
+    const raw = scrollY / Math.min(760, vh * 0.82);
+    const p = clamp(raw, 0, 1);
+    const eased = p * p * (3 - (2 * p));
+    const upperY = -150 + (eased * 110);
+    const lowerY = 170 - (eased * 115);
+    const scale = 0.86 + (eased * 0.12);
+    heroTeeth.style.setProperty("--teeth-upper-y", `${upperY.toFixed(1)}px`);
+    heroTeeth.style.setProperty("--teeth-lower-y", `${lowerY.toFixed(1)}px`);
+    heroTeeth.style.setProperty("--teeth-scale", scale.toFixed(3));
   }
 
   const aTrack = $(".assembly-track");
@@ -120,8 +122,9 @@
   /* ---------- reduced motion: jump to final states ---------- */
   if (reduce) {
     if (heroTeeth) {
-      heroTeeth.style.setProperty("--teeth-open", "0");
-      heroTeeth.style.setProperty("--teeth-gap", "14px");
+      heroTeeth.style.setProperty("--teeth-upper-y", "-40px");
+      heroTeeth.style.setProperty("--teeth-lower-y", "55px");
+      heroTeeth.style.setProperty("--teeth-scale", ".98");
     }
     layers.forEach(el => { el.classList.add("lit"); el.style.transform = "translateX(-50%)"; el.style.opacity = "1"; });
     legend.forEach(l => l.classList.add("active"));

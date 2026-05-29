@@ -289,34 +289,36 @@ h2.title {
 .constellation { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .9; }
 .hero-teeth {
   position: absolute;
-  left: 50%;
-  top: 51%;
+  inset: 17% 15% 15%;
   z-index: 3;
-  width: min(72%, 360px);
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
   pointer-events: none;
   filter: drop-shadow(0 28px 34px rgba(4, 12, 30, .34));
-  --teeth-gap: 34px;
+  --teeth-upper-y: -150px;
+  --teeth-lower-y: 170px;
+  --teeth-scale: .86;
+  isolation: isolate;
 }
 .hero-teeth-part {
   position: absolute;
-  left: 50%;
-  width: 92%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  height: auto;
   object-fit: contain;
   will-change: transform;
+  transition: transform 80ms linear;
 }
 .hero-teeth-upper {
-  top: 8%;
-  transform: translate(-50%, calc(-1 * var(--teeth-gap))) rotate(calc(-1.4deg * var(--teeth-open, 1)));
-  transform-origin: 50% 88%;
+  transform: translate3d(0, var(--teeth-upper-y), 0) scale(var(--teeth-scale));
+  transform-origin: 50% 72%;
+  z-index: 2;
 }
 .hero-teeth-lower {
-  bottom: 5%;
-  transform: translate(-50%, var(--teeth-gap)) rotate(calc(1.1deg * var(--teeth-open, 1)));
-  transform-origin: 50% 12%;
+  transform: translate3d(0, var(--teeth-lower-y), 0) scale(var(--teeth-scale));
+  transform-origin: 50% 28%;
+  z-index: 1;
 }
 .hero-badge {
   position: absolute; left: -14px; bottom: 34px; z-index: 4;
@@ -331,10 +333,14 @@ h2.title {
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
   .hero-visual { aspect-ratio: 4/3.4; order: -1; }
-  .hero-teeth { width: min(62%, 320px); top: 50%; }
+  .hero-teeth { inset: 12% 20% 11%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-teeth { --teeth-gap: 14px; }
+  .hero-teeth {
+    --teeth-upper-y: -40px;
+    --teeth-lower-y: 55px;
+    --teeth-scale: .98;
+  }
 }
 
 /* =====================================================
@@ -698,17 +704,20 @@ h2.title {
 .assembly-legend .ln { font-family: var(--font-mono); font-size: 11px; color: var(--accent-soft); margin-right: 2px; }
 
 .assembly-viz { position: relative; height: min(72vh, 540px); display: grid; place-items: center; }
-.layer-stack { position: relative; width: 300px; height: 380px; }
+.layer-stack { position: relative; width: min(88vw, 430px); height: 430px; filter: drop-shadow(0 28px 46px rgba(0,0,0,.42)); }
 .layer { position: absolute; left: 50%; transform: translateX(-50%); will-change: transform, opacity; }
-.layer .shape { border-radius: 60px 60px 22px 22px; box-shadow: 0 24px 50px -24px rgba(0,0,0,.6); position: relative; overflow: hidden; }
-.layer .shape::after { content:""; position:absolute; inset:0; background: linear-gradient(160deg, rgba(255,255,255,.28), transparent 55%); }
+.layer-img { display: block; width: 100%; height: auto; object-fit: contain; user-select: none; pointer-events: none; }
 .layer .tag { position: absolute; left: calc(100% + 14px); top: 50%; transform: translateY(-50%); white-space: nowrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--on-ink-mut); opacity: 0; transition: opacity .3s; display: flex; align-items: center; gap: 8px; }
 .layer .tag::before { content:""; width: 14px; height: 1px; background: var(--accent-soft); }
 .layer.lit .tag { opacity: 1; }
-.layer.l0 { bottom: 0; }   .layer.l0 .shape { width: 240px; height: 84px; background: linear-gradient(150deg,#33405e,#1c2944); border-radius: 18px; }
-.layer.l1 { bottom: 64px; } .layer.l1 .shape { width: 188px; height: 76px; background: linear-gradient(150deg,#f7f3ea,#d9d1c0); }
-.layer.l2 { bottom: 122px; } .layer.l2 .shape { width: 158px; height: 86px; background: linear-gradient(150deg,#f0d8b3,#d59f63); }
-.layer.l3 { bottom: 186px; } .layer.l3 .shape { width: 120px; height: 78px; background: linear-gradient(150deg,#ffffff,#e7c291); border-radius: 60px 60px 30px 30px; }
+.layer.l0 { bottom: 0; width: 340px; }
+.layer.l1 { bottom: 118px; width: 318px; }
+.layer.l2 { bottom: 172px; width: 286px; }
+.layer.l3 { bottom: 246px; width: 168px; }
+.layer.l0 .tag { top: 76%; }
+.layer.l1 .tag { top: 62%; }
+.layer.l2 .tag { top: 52%; }
+.layer.l3 .tag { top: 44%; }
 
 .assembly-scrub { position: absolute; right: -6px; top: 8%; bottom: 8%; width: 3px; border-radius: 3px; background: rgba(237,231,218,.14); }
 .assembly-scrub span { position: absolute; left: 0; top: 0; width: 100%; border-radius: 3px; background: var(--accent); height: 0%; }
